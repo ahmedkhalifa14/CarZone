@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="app_name">CarZone</string>
+    <string name="welcome_text1">اهلا بك فى كازون</string>
+    <string name="welcome_text2">المجتمع الموثوق به من مشتري وبائعي السيارات</string>
+    <string name="continue_with_google">الاستمرار بواسطه جوجل</string>
+    <string name="continue_with_facebook">الاستمرار بواسطه فيس بوك</string>
+    <string name="continue_with_email">الاستمرار بواسطه البريد الالكترونى</string>
+    <string name="term_text1">إذا تابعت ، فأنت تقبل</string>
+    <string name="term_text2">شروط وأحكام كارزون وسياسة الخصوصية</string>
+    <string name="cancel">الغاء</string>
+    <string name="email">البريد الالكترونى</string>
+    <string name="password">كلمة المرور</string>
+    <string name="login">تسجيل دخول</string>
+    <string name="login_header_text1">أهلاً بك!</string>
+    <string name="login_header_text2">تسجيل الدخول الى حسابك</string>
+    <string name="register_header_text1">انشاء حسابك</string>
+    <string name="register_header_text2">هل لديك حساب؟</string>
+    <string name="username">اسم المستخدم</string>
+    <string name="sign_up">اشتراك</string>
+    <string name="browse_categories">تصفح الفئات</string>
+    <string name="category_name">اسم التصنيف</string>
+    <string name="currency">جنيه مصري</string>
+    <string name="car_name">اسم السيارة</string>
+    <string name="_7_may">7 مايو</string>
+    <string name="location">القاهره</string>
+    <string name="price">500000</string>
+    <string name="negotiable">قابل للتفاوض</string>
+    <string name="user_name">اسم المستخدم</string>
+    <string name="profile_sub_title">عرض وتحرير الملف الشخصي</string>
+    <string name="carzone_wallet">محفظة كارزون</string>
+    <string name="balance">:الرصيد</string>
+    <string name="account_item_title1">شراء حزم الخصم</string>
+    <string name="account_item_title2">الطلبات ومعلومات الفواتير</string>
+    <string name="account_item_title3">الاعدادات</string>
+    <string name="account_item_title4">المساعدة والدعم</string>
+    <string name="account_item_title5">اللغة</string>
+    <string name="account_item_subtitle1">قم بالبيع بشكل أسرع وبهوامش "\ n" أعلى مع الحزم</string>
+    <string name="account_item_subtitle2">الطلبات والفواتير</string>
+    <string name="account_item_subtitle3">الخصوصية وإدارة الحساب</string>
+    <string name="account_item_subtitle4">مركز المساعدة والشروط القانونية</string>
+    <string name="account_item_subtitle5"> </string>
+    <string name="sell_faster_more_and_at_higher_margins_with_packages">قم بالبيع بشكل أسرع وبهوامش أعلى مع الباقات</string>
+    <string name="user_balance">0</string>
+    <string name="search_message">Search Message...</string>
+    <string name="time">00:00</string>
+    <string name="message">this is message</string>
+
+    // Field Validation
+    <string name="password_empty">من فضلك ادخل كلمة المرور</string>
+    <string name="min_password">يجب أن تتضمن كلمة المرور حرفًا كبيرا واحدًا ورقمًا واحدًا و 8 أحرف بحد أدنى ، ولا يُسمح بحرف خاص</string>
+    <string name="password_no_spec_characters">يمنع استعمال الرموز</string>
+    <string name="one_num_needed">مطلوب رقم واحد على الأقل</string>
+
+    <string name="cap_letter">مطلوب حرف كبير واحد على الأقل</string>
+    <string name="phone_number">رقم الهاتف</string>
+    //onBoarding
+    <string name="on_boarding_title_1">اكتشف إمكانيات لا حصر لها</string>
+    <string name="on_boarding_title_2">تجربة شراء سلسة</string>
+    <string name="on_boarding_title_3">بيع بثقة</string>
+    <string name="on_boarding_title_4">إيجار مريح</string>
+    <string name="on_boarding_description_1">استكشف مجموعة واسعة من المركبات المتاحة للشراء والبيع والإيجار على كارزون.</string>
+    <string name="on_boarding_description_2">مع كارزون، يصبح شراء سيارتك الأحلام أمرًا سهلاً. تصفح القوائم المفصلة، قارن الأسعار، وتواصل مباشرة مع البائعين للتفاوض على أفضل صفقة.</string>
+    <string name="on_boarding_description_3">هل حان الوقت للتخلص من سيارتك الحالية؟ يوفر كارزون منصة موثوقة لبيع مركبتك بسرعة وسهولة.</string>
+    <string name="on_boarding_description_4">هل تحتاج إلى سيارة مؤقتة؟ يوفر كارزون خدمة إيجار مريحة، مما يتيح لك العثور على المركبة المثالية لاحتياجاتك. </string>
+    <string name="get_started">بدء</string>
+    <string name="next">التالى</string>
+    <string name="skip">تخطى</string>
+    <string name="remember_me">تذكرنى</string>
+
+    <string name="home">الرئيسيه</string>
+    <string name="chats">المحادثات</string>
+    <string name="sell">بيع</string>
+    <string name="my_ads">اعلانتى</string>
+    <string name="account">الحساب</string>
+
+    <string name="upload_up_to_7_photos">قم بتحميل ما يصل إلى 7 صور</string>
+    <string name="add_images">اضافة صور</string>
+    <string name="include_some_details">قم بتضمين بعض التفاصيل</string>
+    <string name="price2">السعر *</string>
+    <string name="location2">الموقع *</string>
+    <string name="describe_what_are_you_selling">وصف ماذا تبيع *</string>
+    <string name="last_seen">اونلاين</string>
+    <string name="success_message">success_message</string>
+    <string name="error_message">error_message\n</string>
+    <string name="continue_with_phone_number">الاستمرار برقم الهاتف</string>
+    <string name="verification_code">رمز التحقق</string>
+    <string name="verify">تحقق</string>
+    <string name="phone_number_auth">مصادقة رقم الهاتف</string>
+    <string name="_continue"> استمرار</string>
+    <string name="choose">اختيار</string>
+    <string name="add_title">قم باضافة عنوان *</string>
+
+    <string name="vehicle_name">اسم المركبة</string>
+    <string name="vehicle_engine">محرك المركبة</string>
+    <string name="manufacturer">الشركة المصنعه</string>
+    <string name="fuel_type">نوع الوقود</string>
+    <string name="model">الموديل</string>
+    <string name="seating_capacity">عدد المقاعد</string>
+    <string name="mileage">عدد الأميال</string>
+    <string name="cargo_capacity">سعة الشحن</string>
+    <string name="transmission">عدد النقلات</string>
+    <string name="engine_power">قوة المحرك</string>
+    <string name="engine_torque">عزم المحرك</string>
+    <string name="kerb_weight">كبح الوزن</string>
+    <string name="weight">الوزن</string>
+    <string name="see_all">عرض الكل</string>
+
+</resources>

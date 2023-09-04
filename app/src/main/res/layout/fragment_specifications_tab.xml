@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.fragments.ad.SpecificationsTabFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputTextLayoutVehicleName"
+                style="@style/text_input_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/vehicle_name"
+                app:hintTextColor="@color/primaryColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputTextVehicleName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:padding="@dimen/_18sdp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputTextLayoutManufacturer"
+                style="@style/text_input_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/manufacturer"
+                app:hintTextColor="@color/primaryColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputTextLayoutVehicleName">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputTextManufacturer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:padding="@dimen/_18sdp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputTextLayoutVehicleEngine"
+                style="@style/text_input_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/vehicle_engine"
+                app:hintTextColor="@color/primaryColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputTextLayoutManufacturer">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputTextVehicleEngine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:padding="@dimen/_18sdp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputTextLayoutVehicleFuelType"
+                style="@style/text_input_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:hint="@string/fuel_type"
+                app:hintTextColor="@color/primaryColor"
+                app:layout_constraintEnd_toStartOf="@id/inputTextLayoutVehicleModel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputTextLayoutVehicleEngine"
+                app:layout_constraintWidth_percent="0.49">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputTextVehicleFuelType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+
+                    android:padding="@dimen/_18sdp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputTextLayoutVehicleModel"
+                style="@style/text_input_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/model"
+                app:hintTextColor="@color/primaryColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputTextLayoutVehicleEngine"
+                app:layout_constraintWidth_percent="0.49">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputTextVehicleModel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:padding="@dimen/_18sdp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputTextLayoutMileageCar"
+                style="@style/text_input_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/mileage"
+                app:hintTextColor="@color/primaryColor"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputTextLayoutVehicleFuelType"
+                app:layout_constraintWidth_percent="0.49">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputTextMileageCar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:padding="@dimen/_18sdp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputTextLayoutSeatingCapacityCar"
+                style="@style/text_input_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:hint="@string/seating_capacity"
+                app:hintTextColor="@color/primaryColor"
+                app:layout_constraintEnd_toStartOf="@id/inputTextLayoutMileageCar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputTextLayoutVehicleFuelType"
+                app:layout_constraintWidth_percent="0.49"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputTextSeatingCapacityCar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberSigned"
+                    android:padding="@dimen/_18sdp"
+
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputTextLayoutCargoCapacityVan"
+                style="@style/text_input_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/cargo_capacity"
+                android:visibility="gone"
+                app:hintTextColor="@color/primaryColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputTextLayoutSeatingCapacityCar">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputTextCargoCapacityVan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:padding="@dimen/_18sdp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputTextLayoutTransmissionCar"
+                style="@style/text_input_style"
+                android:hint="@string/transmission"
+                android:visibility="gone"
+                app:hintTextColor="@color/primaryColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputTextLayoutCargoCapacityVan">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputTextTransmissionCar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:padding="@dimen/_18sdp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputTextLayoutEnginePowerMoto"
+                style="@style/text_input_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/engine_power"
+                android:visibility="gone"
+                app:hintTextColor="@color/primaryColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputTextLayoutTransmissionCar">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputTextEnginePowerMoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:padding="@dimen/_18sdp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputTextLayoutEngineTorqueMoto"
+                style="@style/text_input_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/engine_torque"
+                android:visibility="gone"
+                app:hintTextColor="@color/primaryColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputTextLayoutEnginePowerMoto">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputTextEngineTorqueMoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:visibility="gone"
+                    android:padding="@dimen/_18sdp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputTextLayoutKerbWeightMoto"
+                style="@style/text_input_style"
+                android:layout_width="match_parent"
+                android:hint="@string/kerb_weight"
+                android:visibility="gone"
+                app:hintTextColor="@color/primaryColor"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputTextLayoutEngineTorqueMoto">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputTextKerbWeightMoto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:padding="@dimen/_18sdp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputTextLayoutWeightTruck"
+                style="@style/text_input_style"
+                android:layout_width="match_parent"
+                android:hint="@string/weight"
+                android:visibility="gone"
+                app:hintTextColor="@color/primaryColor"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/inputTextLayoutKerbWeightMoto">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputTextSeatingWeightTruck"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:padding="@dimen/_18sdp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

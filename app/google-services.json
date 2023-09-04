@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "417404592226",
+    "project_id": "carzone-6b747",
+    "storage_bucket": "carzone-6b747.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:417404592226:android:1abc0618262b7f134c313b",
+        "android_client_info": {
+          "package_name": "com.example.carzoneapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "417404592226-12j2hao43a6defp4j2o24p766hn777ok.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.carzoneapp",
+            "certificate_hash": "62e0e6b68786ea4437c1b644da88e11421a3e4a6"
+          }
+        },
+        {
+          "client_id": "417404592226-e9vvl1lvonoa2mri8de3a82ml7377b92.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuof2d7o4qiL5VkluwuWp-6Ty6PzcRI2s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "417404592226-e9vvl1lvonoa2mri8de3a82ml7377b92.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

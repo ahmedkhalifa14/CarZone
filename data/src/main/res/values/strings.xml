@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id">417404592226-e9vvl1lvonoa2mri8de3a82ml7377b92.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">983030482735816</string>
+    <string name="fb_login_protocol_scheme">fb983030482735816</string>
+    <string name="facebook_client_token">56789</string>
+</resources>

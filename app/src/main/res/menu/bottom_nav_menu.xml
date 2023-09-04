@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/homeFragment"
+        android:title="@string/home"
+        android:icon="@drawable/home" />
+    <item android:id="@+id/chatFragment"
+        android:title="@string/chats"
+        android:icon="@drawable/chat" />
+    <item android:id="@+id/sellFragment"
+        android:title="@string/sell"
+        android:icon="@drawable/add" />
+
+    <item android:id="@+id/myAdsFragment"
+        android:title="@string/my_ads"
+        android:icon="@drawable/ads" />
+    <item android:id="@+id/accountFragment"
+        android:title="@string/account"
+        android:icon="@drawable/account" />
+</menu>

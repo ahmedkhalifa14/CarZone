@@ -1,0 +1,118 @@
+<resources>
+    <string name="app_name">CarZone</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="welcome_text1">welcome to Car Zone</string>
+    <string name="welcome_text2">The trusted community of car buyers and sellers</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="continue_with_facebook">Continue with Facebook</string>
+    <string name="continue_with_email">Continue with Email</string>
+    <string name="term_text1">If you continue, you are accepting</string>
+    <string name="term_text2">CarZone Terms and Condition and Privacy Policy</string>
+    <string name="cancel">cancel</string>
+    <string name="email">Email\n</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="login_header_text1">Hello there!</string>
+    <string name="login_header_text2">Login to your account</string>
+    <string name="register_header_text1">Create your account!</string>
+    <string name="register_header_text2">Aleady have an account?</string>
+    <string name="username">Username\n</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="browse_categories">Browse Categories</string>
+    <string name="category_name">category name</string>
+    <string name="currency">EGP</string>
+    <string name="car_name">car name</string>
+    <string name="_7_may">7 may</string>
+    <string name="location">cairo</string>
+    <string name="price">500000</string>
+    <string name="negotiable">Negotiable</string>
+    <string name="user_name">User Name</string>
+    <string name="profile_sub_title">View and edit profile</string>
+    <string name="carzone_wallet">CarZone Wallet</string>
+    <string name="balance">Balance:</string>
+    <string name="account_item_title1">But Discount Packages</string>
+    <string name="account_item_title2">Order and Billing Info</string>
+    <string name="account_item_title3">Settings</string>
+    <string name="account_item_title4">Help and Support</string>
+    <string name="account_item_title5">Language</string>
+    <string name="account_item_subtitle1">Sell faster, more and at higher"\n" margins with packages</string>
+    <string name="account_item_subtitle2">Order, billing and invoices</string>
+    <string name="account_item_subtitle3">Privacy and mange account</string>
+    <string name="account_item_subtitle4">Help center and legal terms</string>
+    <string name="account_item_subtitle5"> </string>
+    <string name="sell_faster_more_and_at_higher_margins_with_packages">Sell faster, more and at higher margins with packages</string>
+    <string name="user_balance">0</string>
+    <string name="search_message">Search Message...</string>
+    <string name="time">00:00</string>
+    <string name="message">this is message</string>
+
+    // Field Validation
+    <string name="password_empty">Please, enter your password</string>
+    <string name="min_password">Password should include 1Capital letter, 1 Number, and min 8 character, special character are not allowed</string>
+    <string name="password_no_spec_characters">Special characters are not allowed</string>
+    <string name="one_num_needed">One Number Needed at Least</string>
+
+    <string name="cap_letter">One Capital letter Needed At Least</string>
+    <string name="phone_number">Phone Number</string>
+
+    //onBoarding
+    <string name="on_boarding_title_1">Discover Endless Possibilities</string>
+    <string name="on_boarding_title_2">Seamless Buying Experience</string>
+    <string name="on_boarding_title_3">Sell with Confidence</string>
+    <string name="on_boarding_title_4">Rent with Ease</string>
+    <string name="on_boarding_description_1">Explore a vast collection of vehicles available for buying, selling, and renting on CarZone</string>
+    <string name="on_boarding_description_2">With CarZone, purchasing your dream vehicle is a breeze. Browse detailed listings, compare prices, and connect directly with sellers to negotiate the best deal. </string>
+    <string name="on_boarding_description_3">Ready to part ways with your current wheels? CarZone provides a trusted platform to sell your vehicle quickly and effortlessly.</string>
+    <string name="on_boarding_description_4">Need a temporary set of wheels? CarZone offers a convenient rental service, allowing you to find the perfect vehicle for your needs.</string>
+    <string name="get_started">Get Started</string>
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="home">Home</string>
+    <string name="chats">Chats</string>
+    <string name="sell">Sell</string>
+    <string name="my_ads">My Ads</string>
+    <string name="account">Account</string>
+    <string name="remember_me">Remember me</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="upload_up_to_7_photos">UPLOAD UP TO 7 PHOTOS</string>
+    <string name="add_images">Add Images</string>
+    <string name="include_some_details">Include some details</string>
+    <string name="price2">Price *</string>
+    <string name="location2">Location *</string>
+    <string name="describe_what_are_you_selling">Describe what are you selling *</string>
+    <string name="last_seen">online</string>
+    <string name="success_message">success_message</string>
+    <string name="error_message">error_message\n</string>
+    <string name="continue_with_phone_number">Continue With Phone Number</string>
+    <string name="verification_code">Verification Code</string>
+    <string name="verify">Verify</string>
+    <string name="phone_number_auth">Phone Number Authentication</string>
+    <string name="_continue">Continue</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="let_s_go">Let\'s Go</string>
+    <string name="choose">choose</string>
+    <string name="add_title">Add Title *</string>
+    <string name="vehicle_name">Vehicle Name</string>
+    <string name="vehicle_engine">Vehicle Engine</string>
+    <string name="manufacturer">Manufacturer</string>
+    <string name="fuel_type">Fuel Type</string>
+    <string name="model">Model</string>
+    <string name="seating_capacity">Seating Capacity</string>
+    <string name="mileage">Mileage</string>
+    <string name="cargo_capacity">Cargo Capacity</string>
+    <string name="transmission">Transmission</string>
+    <string name="engine_power">Engine Power</string>
+    <string name="engine_torque">Engine Torque</string>
+    <string name="kerb_weight">Kerb Weight</string>
+    <string name="weight">Weight</string>
+    <string name="see_all">see all</string>
+    <string name="what_are_you_looking_for">What are you looking for?</string>
+    <string name="region_name">region name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ad_images">ad image</string>
+    <string name="favorite">favorite</string>
+    <string name="share">share</string>
+
+
+</resources>

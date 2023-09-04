@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_5sdp"
+    >
+
+    <ImageView
+        android:id="@+id/car_img"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:scaleType="fitXY"
+        android:src="@color/shimmerColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/car_name"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        android:background="@color/shimmerColor"
+        app:layout_constraintStart_toEndOf="@+id/car_img"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:background="@color/shimmerColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/currency_tv"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        android:background="@color/shimmerColor"
+
+        app:layout_constraintStart_toEndOf="@+id/car_img"
+        app:layout_constraintTop_toBottomOf="@id/car_name" />
+
+    <TextView
+        android:id="@+id/car_price"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        android:background="@color/shimmerColor"
+        app:layout_constraintStart_toEndOf="@+id/currency_tv"
+        app:layout_constraintTop_toBottomOf="@id/car_name" />
+
+    <TextView
+        android:id="@+id/negotiable_tv"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:textSize="@dimen/_14ssp"
+        android:background="@color/shimmerColor"
+        app:layout_constraintStart_toEndOf="@id/car_img"
+        app:layout_constraintTop_toBottomOf="@+id/car_price" />
+
+    <TextView
+        android:id="@+id/seller_location_tv"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/car_img"
+        android:background="@color/shimmerColor"
+        />
+
+    <TextView
+        android:id="@+id/listed_date"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:background="@color/shimmerColor"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

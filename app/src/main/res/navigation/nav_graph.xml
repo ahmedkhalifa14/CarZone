@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/startFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.carzoneapp.ui.fragments.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_adDetailsFragment"
+            app:destination="@id/adDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.carzoneapp.ui.fragments.auth.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.carzoneapp.ui.fragments.auth.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment2"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_startFragment"
+            app:destination="@id/startFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/onBoardingFragment"
+        android:name="com.example.carzoneapp.ui.fragments.onboarding.OnBoardingFragment"
+        android:label="fragment_on_boarding"
+        tools:layout="@layout/fragment_on_boarding" >
+        <action
+            android:id="@+id/action_onBoardingFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.example.carzoneapp.ui.fragments.auth.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start" >
+        <action
+            android:id="@+id/action_startFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_phoneAuthFragment"
+            app:destination="@id/phoneAuthFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.carzoneapp.ui.fragments.chat.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" >
+        <action
+            android:id="@+id/action_chatFragment_to_chatListFragment"
+            app:destination="@id/chatListFragment" />
+        <action
+            android:id="@+id/action_chatFragment_to_chatListFragment2"
+            app:destination="@id/chatListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myAdsFragment"
+        android:name="com.example.carzoneapp.ui.fragments.home.MyAdsFragment"
+        android:label="fragment_my_ads"
+        tools:layout="@layout/fragment_my_ads" />
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.example.carzoneapp.ui.fragments.home.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/sellFragment"
+        android:name="com.example.carzoneapp.ui.fragments.ad.SellFragment"
+        android:label="fragment_sell"
+        tools:layout="@layout/fragment_sell" >
+        <action
+            android:id="@+id/action_sellFragment_to_sellDetailsFragment"
+            app:destination="@id/sellDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatListFragment"
+        android:name="com.example.carzoneapp.ui.fragments.chat.ChatListFragment"
+        android:label="fragment_chat_list"
+        tools:layout="@layout/fragment_chat_list" />
+    <fragment
+        android:id="@+id/sellDetailsFragment"
+        android:name="com.example.carzoneapp.ui.fragments.ad.SellDetailsFragment"
+        android:label="fragment_sell_details"
+        tools:layout="@layout/fragment_sell_details" >
+        <action
+            android:id="@+id/action_sellDetailsFragment_to_sellFragment"
+            app:destination="@id/sellFragment" />
+        <argument
+            android:name="category"
+            app:argType="com.example.domain.entity.VehiclesCategories" />
+        <action
+            android:id="@+id/action_sellDetailsFragment_to_chooseLocationFragment"
+            app:destination="@id/chooseLocationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/priceTabFragment"
+        android:name="com.example.carzoneapp.ui.fragments.ad.PriceTabFragment"
+        android:label="fragment_price_tab"
+        tools:layout="@layout/fragment_price_tab" >
+        <action
+            android:id="@+id/action_priceTabFragment_to_chooseLocationFragment"
+            app:destination="@id/chooseLocationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exchangeTabFragment"
+        android:name="com.example.carzoneapp.ui.fragments.ad.SpecificationsTabFragment"
+        android:label="fragment_exchange_tab"
+        tools:layout="@layout/fragment_specifications_tab" />
+    <fragment
+        android:id="@+id/phoneAuthFragment"
+        android:name="com.example.carzoneapp.ui.fragments.auth.PhoneAuthFragment"
+        android:label="fragment_phone_auth"
+        tools:layout="@layout/fragment_phone_auth" >
+        <action
+            android:id="@+id/action_phoneAuthFragment_to_verifyCodeFragment"
+            app:destination="@id/verifyCodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/verifyCodeFragment"
+        android:name="com.example.carzoneapp.ui.fragments.auth.VerifyCodeFragment"
+        android:label="fragment_verify_code"
+        tools:layout="@layout/fragment_verify_code" >
+        <action
+            android:id="@+id/action_verifyCodeFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="verificationId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseLocationFragment"
+        android:name="com.example.carzoneapp.ui.fragments.ad.ChooseLocationFragment"
+        android:label="fragment_choose_location"
+        tools:layout="@layout/fragment_choose_location" >
+        <action
+            android:id="@+id/action_chooseLocationFragment_to_sellDetailsFragment"
+            app:destination="@id/sellDetailsFragment" />
+        <action
+            android:id="@+id/action_chooseLocationFragment_to_priceTabFragment"
+            app:destination="@id/priceTabFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/setupFragment"
+        android:name="com.example.carzoneapp.ui.fragments.auth.SetupFragment"
+        android:label="fragment_setup"
+        tools:layout="@layout/fragment_setup" />
+    <fragment
+        android:id="@+id/adDetailsFragment"
+        android:name="com.example.carzoneapp.ui.fragments.home.AdDetailsFragment"
+        android:label="fragment_ad_details"
+        tools:layout="@layout/fragment_ad_details" />
+</navigation>

@@ -1,0 +1,42 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.CareZoneApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+         <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryColor</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+
+    </style>
+
+    <style name="Theme.CareZoneApp" parent="Base.Theme.CareZoneApp" />
+
+    <style name="button_style" parent="@style/Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="cornerRadius">@dimen/_3sdp</item>
+        <item name="background">@drawable/button_shape</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:textColor">@color/button_text_color</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="text_input_style"
+        parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusBottomEnd">@dimen/_10sdp</item>
+        <item name="hintTextColor">@color/white</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/_10sdp</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/_10sdp</item>
+        <item name="boxCornerRadiusTopStart">@dimen/_10sdp</item>
+        <item name="boxStrokeColor">@color/primaryColor</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="maxLines">1</item>
+        <item name="helperTextTextColor">@android:color/holo_red_dark</item>
+    </style>
+
+
+    <style name="Widget.App.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationView</item>
+    </style>
+
+    <style name="ThemeOverlay.App.BottomNavigationView" parent="">
+        <item name="colorSurface">@color/appModeBG2</item>
+    </style>
+
+</resources>

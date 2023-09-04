@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#FF1E1E</color>
+    <color name="colorPrimary">@color/primaryColor</color>
+    <color name="button_corner_color">@color/white</color>
+    <color name="appModeBG">@color/darkModeColor</color>
+    <color name="text_color">@color/white</color>
+    <color name="button_bg_color2">@color/primaryColor</color>
+    <color name="grey">#1F1E1E</color>
+    <color name="button_text_color2">@color/white</color>
+    <color name="appModeBG2">@color/grey</color>
+    <color name="icon_color">@color/black</color>
+    <color name="pinViewBgColor">@color/grey</color>
+    <color name="shimmerColor">#454545</color>
+
+
+</resources>
