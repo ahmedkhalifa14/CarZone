@@ -70,7 +70,7 @@ class FireBaseService @Inject constructor(
         return vehiclesCategoriesList
     }
 
-    suspend fun <T : VehicleData> addVehicleAds(ads: Ad<T>) {
+    suspend fun  addVehicleAds(ads: Ad) {
         val collectionReference = firebaseFireStore.collection("Ads")
         val documentReference = collectionReference.document()
         documentReference.set(ads).await()
@@ -78,10 +78,10 @@ class FireBaseService @Inject constructor(
 
 
     // Function to retrieve all data from Firestore
-    suspend fun <T : VehicleData> getAdsByVehicleType(): List<Ad<T>> {
+    suspend fun <T : VehicleData> getAdsByVehicleType(): List<Ad> {
         val collectionReference = firebaseFireStore.collection("Ads")
         val querySnapshot = collectionReference.get().await()
-        val adsList = mutableListOf<Ad<T>>()
+        val adsList = mutableListOf<Ad>()
         for (documentSnapshot in querySnapshot.documents) {
             val adsData = documentSnapshot.toObject(AdData::class.java) ?: continue
             val vehicle = documentSnapshot.toObject(Vehicle::class.java) ?: continue
@@ -202,11 +202,11 @@ class FireBaseService @Inject constructor(
     }
 
 
-    suspend fun getAllAds(): MutableList<Ad<VehicleData>> {
+    suspend fun getAllAds(): MutableList<Ad> {
         val firebaseFireStore = FirebaseFirestore.getInstance()
         val collectionReference = firebaseFireStore.collection("Ads")
         val querySnapshot = collectionReference.get().await()
-        val adsList = mutableListOf<Ad<VehicleData>>()
+        val adsList = mutableListOf<Ad>()
         for (documentSnapshot in querySnapshot.documents) {
             try {
                 val adsData = documentSnapshot.get("adsData") as? Map<String, Any>

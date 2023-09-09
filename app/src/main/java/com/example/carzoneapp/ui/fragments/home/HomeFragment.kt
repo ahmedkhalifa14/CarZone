@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carzoneapp.adapters.AdsAdapter
@@ -44,8 +45,14 @@ class HomeFragment : Fragment() {
         setupCategoryRecyclerView()
         setupAdsRecyclerView()
         subscribeToObservables()
+        adsAdapter.setOnItemClickListener { ad->
+            val action = HomeFragmentDirections.actionHomeFragmentToAdDetailsFragment(ad)
+            findNavController().navigate(action)
+        }
+
 
     }
+
 
     override fun onResume() {
         super.onResume()
@@ -118,3 +125,6 @@ class HomeFragment : Fragment() {
     }
 
 }
+
+
+

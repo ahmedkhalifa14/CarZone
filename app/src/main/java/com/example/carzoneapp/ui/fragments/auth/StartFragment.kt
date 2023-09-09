@@ -69,7 +69,9 @@ class StartFragment : Fragment() {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 authViewModel.loginWithGoogleState.collect(
                     EventObserver(
-                        onLoading = {},
+                        onLoading = {
+
+                        },
                         onSuccess = {
                             when (it) {
                                 is AuthState.Success -> {

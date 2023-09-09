@@ -6,6 +6,9 @@
     <color name="appModeBG">@color/darkModeColor</color>
     <color name="text_color">@color/white</color>
     <color name="button_bg_color2">@color/primaryColor</color>
+    <color name="button_corner_color2">@color/primaryColor</color>
+    <color name="button_bg_color">@color/darkModeColor</color>
+
     <color name="grey">#1F1E1E</color>
     <color name="button_text_color2">@color/white</color>
     <color name="appModeBG2">@color/grey</color>

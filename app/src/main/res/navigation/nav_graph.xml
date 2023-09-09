@@ -168,5 +168,9 @@
         android:id="@+id/adDetailsFragment"
         android:name="com.example.carzoneapp.ui.fragments.home.AdDetailsFragment"
         android:label="fragment_ad_details"
-        tools:layout="@layout/fragment_ad_details" />
+        tools:layout="@layout/fragment_ad_details" >
+        <argument
+            android:name="ad"
+            app:argType="com.example.domain.entity.Ad" />
+    </fragment>
 </navigation>

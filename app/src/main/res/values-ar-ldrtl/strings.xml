@@ -44,7 +44,7 @@
     <string name="account_item_subtitle5"> </string>
     <string name="sell_faster_more_and_at_higher_margins_with_packages">قم بالبيع بشكل أسرع وبهوامش أعلى مع الباقات</string>
     <string name="user_balance">0</string>
-    <string name="search_message">Search Message...</string>
+    <string name="search_message">بحث في الرسالة…</string>
     <string name="time">00:00</string>
     <string name="message">this is message</string>
 
@@ -107,5 +107,45 @@
     <string name="kerb_weight">كبح الوزن</string>
     <string name="weight">الوزن</string>
     <string name="see_all">عرض الكل</string>
+
+
+    <string name="what_are_you_looking_for">مالذى تبحث عنه؟</string>
+    <string name="region_name">اسم المنطقة</string>
+    <string name="ad_images">صور الاعلان</string>
+    <string name="favorite">المفضله</string>
+    <string name="share">مشاركه</string>
+    <string name="location_icon">ايقونة الموقع</string>
+    <string name="details">التفاصيل</string>
+    <string name="brand">العلامة التجارية:</string>
+    <string name="model_txt">الموديل:</string>
+    <string name="year">السنة:</string>
+    <string name="kilometers">عدد الكليومترات</string>
+    <string name="fuel_type_txt">نوع الوقود:</string>
+    <string name="engine">المحرك/</string>
+    <string name="seating_capacity_text">عدد المقاعد:</string>
+    <string name="egp">جنيه مصرى</string>
+    <string name="cargo_capacity_text">القدرة على نقل البضائع:</string>
+    <string name="engine_power_txt">قوة المحرك:</string>
+    <string name="engineTorque">عزم المحرك:</string>
+    <string name="kerbWeight">كبح الوزن:</string>
+    <string name="transmission_txt">الانتقال:</string>
+    <string name="description">الوصف</string>
+    <string name="weight_txt">الوزن</string>
+    <string name="see_profile"><![CDATA[رؤية الملف الشخصى>]]></string>
+    <string name="location3">الموثع</string>
+    <string name="see_location">رؤية الموقع</string>
+    <string name="hide_this_ad">اخفاء هذاالاعلان</string>
+    <string name="report_this_ad">الابلاغ عن هذا الاعلان</string>
+    <string name="your_safety_matters_to_us">سلامتك تهمنا!</string>
+    <string name="never_go_alone_to_meet_a_buyer_seller_always_take_someone_with_you">* لا تذهب أبدًا بمفردك لمقابلة المشتري / البائع، اصطحب دائمًا شخصًا معك. </string>
+    <string name="only_meet_in_public_crowded_places">*المقابله فقط في الأماكن العامة/المزدحمة.</string>
+    <string name="check_and_inspect_the_product_properly_before_purchasing_it">*فحص المنتج وتفقده بشكل صحيح قبل شرائه.</string>
+    <string name="never_pay_anything_in_advance_or_transfer_money_before_inspecting_the_proudct">* لا تدفع أبدًا أي شيء مقدمًا أو تحول أموالًا قبل معاينة المنتج.</string>
+    <string name="related_ads">الإعلانات ذات الصلة</string>
+    <string name="sms">رسالة قصيرة</string>
+    <string name="chat">محادثة</string>
+    <string name="call">مكالمة صوتية</string>
+    <string name="map_img">صورة الخريطه</string>
+
 
 </resources>

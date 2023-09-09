@@ -10,6 +10,7 @@
     <color name="button_bg_color">@color/white</color>
     <color name="button_bg_color2">@color/primaryColor</color>
     <color name="button_corner_color">@color/black</color>
+    <color name="button_corner_color2">@color/on_boarding_not_selected_color</color>
     <color name="text_color">@color/black</color>
     <color name="appModeBG">@color/white</color>
     <color name="appModeBG2">@color/grey</color>

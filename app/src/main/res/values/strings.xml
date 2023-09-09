@@ -109,10 +109,41 @@
     <string name="what_are_you_looking_for">What are you looking for?</string>
     <string name="region_name">region name</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ad_images">ad image</string>
     <string name="favorite">favorite</string>
     <string name="share">share</string>
+    <string name="location_icon">location icon</string>
+    <string name="details">Details</string>
+    <string name="brand">Brand:</string>
+    <string name="model_txt">Model:</string>
+    <string name="year">Year:</string>
+    <string name="kilometers">Kilometers:</string>
+    <string name="fuel_type_txt">Fuel Type:</string>
+    <string name="engine">Engine:</string>
+    <string name="seating_capacity_text">Seating Capacity:</string>
+    <string name="egp">EGP</string>
+    <string name="cargo_capacity_text">Cargo Capacity:</string>
+    <string name="engine_power_txt">Engine Power:</string>
+    <string name="engineTorque">Engine Torque:</string>
+    <string name="kerbWeight">Kerb Weight:</string>
+    <string name="transmission_txt">Transmission:</string>
+    <string name="description">Description</string>
+    <string name="weight_txt">Weight:</string>
+    <string name="see_profile"><![CDATA[See Profile >]]></string>
+    <string name="location3">Location</string>
+    <string name="see_location">See location</string>
+    <string name="hide_this_ad">hide this ad</string>
+    <string name="report_this_ad">Report this ad</string>
+    <string name="your_safety_matters_to_us">Your safety matters to us!</string>
+    <string name="never_go_alone_to_meet_a_buyer_seller_always_take_someone_with_you">* Never go alone to meet a buyer / seller, always take someone with you</string>
+    <string name="only_meet_in_public_crowded_places">* Only meet in public / crowded places.</string>
+    <string name="check_and_inspect_the_product_properly_before_purchasing_it">* Check and inspect the product properly before purchasing it.</string>
+    <string name="never_pay_anything_in_advance_or_transfer_money_before_inspecting_the_proudct">* Never pay anything in advance or transfer money before inspecting the proudct.</string>
+    <string name="related_ads">Related ads</string>
+    <string name="sms">SMS</string>
+    <string name="chat">Chat</string>
+    <string name="call">Call</string>
+    <string name="map_img">map img</string>
 
 
 </resources>

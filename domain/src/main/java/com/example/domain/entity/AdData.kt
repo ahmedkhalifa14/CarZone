@@ -1,5 +1,6 @@
 package com.example.domain.entity
 
+import java.io.Serializable
 import java.util.Date
 
 data class AdData(
@@ -9,4 +10,4 @@ data class AdData(
     val price: String = "",
     val location: String = "",
     val date:Date
-)
+):Serializable

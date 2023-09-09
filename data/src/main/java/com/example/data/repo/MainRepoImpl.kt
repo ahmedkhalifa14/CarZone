@@ -4,11 +4,10 @@ import android.net.Uri
 import com.example.data.local.DataStoreManager
 import com.example.data.network.FireBaseService
 import com.example.data.network.GeoNamesService
-import com.example.domain.entity.Ads
+import com.example.domain.entity.Ad
 import com.example.domain.entity.GeoNamesResponse
 import com.example.domain.entity.ImageEntity
 import com.example.domain.entity.User
-import com.example.domain.entity.VehicleData
 import com.example.domain.entity.VehiclesCategories
 import com.example.domain.repo.MainRepo
 import com.google.firebase.auth.AuthResult
@@ -50,8 +49,8 @@ class MainRepoImpl @Inject constructor(
     override suspend fun isFirstTimeLaunch(): Flow<Boolean> =
         dataStoreManager.isFirstTimeLaunch()
 
-    override suspend fun <T : VehicleData> addVehicleAds(ads: Ads<T>) {
-        firebaseService.addVehicleAds(ads)
+    override suspend fun addVehicleAds(ad: Ad) {
+        firebaseService.addVehicleAds(ad)
     }
 
 
@@ -80,7 +79,7 @@ class MainRepoImpl @Inject constructor(
         return imageUrls.map { ImageEntity(it) }
     }
 
-    override suspend fun getAllAds(): MutableList<Ads<VehicleData>> {
+    override suspend fun getAllAds(): MutableList<Ad> {
         return firebaseService.getAllAds()
     }
 

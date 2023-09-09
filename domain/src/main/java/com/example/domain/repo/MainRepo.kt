@@ -5,7 +5,6 @@ import com.example.domain.entity.Ad
 import com.example.domain.entity.GeoNamesResponse
 import com.example.domain.entity.ImageEntity
 import com.example.domain.entity.User
-import com.example.domain.entity.VehicleData
 import com.example.domain.entity.VehiclesCategories
 import com.google.firebase.auth.AuthResult
 import kotlinx.coroutines.flow.Flow
@@ -22,7 +21,7 @@ interface MainRepo {
     suspend fun isFirstTimeLaunch(): Flow<Boolean>
 
     // suspend fun addVehicleAds(vehicle: Vehicle<Car>)
-    suspend fun <T : VehicleData> addVehicleAds(ads: Ad<T>)
+    suspend fun  addVehicleAds(ads: Ad)
     suspend fun signInWithGoogle(idToken: String): AuthResult
     suspend fun sendVerificationCode(phoneNumber: String): String
     suspend fun verifyCode(verificationId: String, code: String)
@@ -31,7 +30,7 @@ interface MainRepo {
     suspend fun uploadImages(imageUris: List<Uri>): List<String>
     suspend fun saveImageUrl(imageUrl: String)
     suspend fun getImages(): List<ImageEntity>
-    suspend fun getAllAds(): MutableList<Ad<VehicleData>>
+    suspend fun getAllAds(): MutableList<Ad>
     suspend fun fetchRegionsInCountry(
         username: String,
         country: String,

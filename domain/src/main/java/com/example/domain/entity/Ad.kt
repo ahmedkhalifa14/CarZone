@@ -2,12 +2,12 @@ package com.example.domain.entity
 
 import java.io.Serializable
 
-data class Ad<T : VehicleData>(
-    val adsData: AdsData,
+data class Ad(
+    val adsData: AdData,
     val vehicle: Vehicle,
     val vehicleImages: List<String>,
     val seller: String,
-    val vehicleType: T?=null
+    val vehicleType: VehicleData?=null
 ):Serializable
 
 //data class Ads<T>(

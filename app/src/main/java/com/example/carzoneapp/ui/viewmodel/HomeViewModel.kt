@@ -7,7 +7,6 @@ import com.example.carzoneapp.utils.Event
 import com.example.carzoneapp.utils.Resource
 import com.example.domain.entity.Ad
 import com.example.domain.entity.GeoNamesResponse
-import com.example.domain.entity.VehicleData
 import com.example.domain.entity.VehiclesCategories
 import com.example.domain.usecase.AddVehicleAdUseCase
 import com.example.domain.usecase.FetchRegionsInCountryUseCase
@@ -63,8 +62,8 @@ class HomeViewModel @Inject constructor(
         _isFirstTimeLaunchState
 
     private val _allAdsState =
-        MutableStateFlow<Event<Resource<MutableList<Ad<VehicleData>>>>>(Event(Resource.Init()))
-    val allAdsState: StateFlow<Event<Resource<MutableList<Ad<VehicleData>>>>> =
+        MutableStateFlow<Event<Resource<MutableList<Ad>>>>(Event(Resource.Init()))
+    val allAdsState: StateFlow<Event<Resource<MutableList<Ad>>>> =
         _allAdsState
 
     private val _fetchRegionsInCountryState =
@@ -111,7 +110,7 @@ class HomeViewModel @Inject constructor(
 //    }
 
 
-    fun addVehicleAd(ads: Ad<VehicleData>) {
+    fun addVehicleAd(ads: Ad) {
         viewModelScope.launch(Dispatchers.Main) {
             _addVehicleAdsState.emit(Event(Resource.Loading()))
             try {
