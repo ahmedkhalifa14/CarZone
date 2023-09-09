@@ -4,22 +4,34 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.carzoneapp.adapters.AdImageAdapter
+import com.example.carzoneapp.adapters.AdsAdapter
 import com.example.carzoneapp.databinding.FragmentAdDetailsBinding
 import com.example.carzoneapp.helper.extractDateAndTime
+import com.example.carzoneapp.ui.viewmodel.HomeViewModel
+import com.example.carzoneapp.utils.EventObserver
 import com.example.domain.entity.Ad
 import com.example.domain.entity.CarData
 import com.example.domain.entity.MotorCycleData
 import com.example.domain.entity.TruckData
+import com.example.domain.entity.User
 import com.example.domain.entity.VanData
 import com.example.domain.entity.VehicleData
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
-
+@AndroidEntryPoint
 class AdDetailsFragment : Fragment() {
     private var _binding: FragmentAdDetailsBinding? = null
 
@@ -28,6 +40,10 @@ class AdDetailsFragment : Fragment() {
     private var ad: Ad? = null
     private lateinit var adImageAdapter: AdImageAdapter
     private lateinit var adImagesRecyclerView: RecyclerView
+    private val homeViewModel: HomeViewModel by viewModels()
+    private lateinit var adsAdapter: AdsAdapter
+    private lateinit var adsRecyclerView: RecyclerView
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +59,66 @@ class AdDetailsFragment : Fragment() {
         ad = args.ad
         displayAdData(ad!!)
         setupAdImagesRecyclerView(ad!!.vehicleImages)
+        setupAdsRecyclerView()
+        subscribeToObservables()
+        homeViewModel.getUserInfoByUserId(ad!!.seller)
+        homeViewModel.getAdsByVehicleType(ad!!.vehicle.vehicleType)
+
     }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    private fun subscribeToObservables() {
+        lifecycle.coroutineScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                homeViewModel.userInfoState.collect(
+                    EventObserver(
+                        onLoading = {
+                        },
+                        onSuccess = { user ->
+                            displayUserData(user)
+                        },
+                        onError = {
+                            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+                        }
+                    )
+                )
+            }
+        }
+        lifecycle.coroutineScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                homeViewModel.allAdsByVehicleTypeState.collect(
+                    EventObserver(
+                        onLoading = {
+                            binding!!.adsShimmerLayout.isVisible = true
+                            binding!!.adsShimmerLayout.startShimmerAnimation()
+                        },
+                        onSuccess = { adsList ->
+                            binding!!.adsShimmerLayout.stopShimmerAnimation()
+                            binding!!.adsShimmerLayout.isVisible = false
+                            adsAdapter.differ.submitList(adsList)
+                        },
+                        onError = {
+                            binding!!.adsShimmerLayout.stopShimmerAnimation()
+                            binding!!.adsShimmerLayout.isVisible = false
+                            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+                        }
+                    )
+                )
+            }
+
+        }
+
+
+    }
+
+    private fun displayUserData(user: User) {
+        binding!!.adDetailsSellerName.text = user.userName
+        Glide.with(requireContext()).load(user.image).into(binding!!.adDetailsSellerImg)
+    }
+
 
     private fun displayAdData(ad: Ad) {
         binding!!.adBrandTxt.text = ad.vehicle.manufacturer
@@ -56,9 +131,10 @@ class AdDetailsFragment : Fragment() {
         binding!!.priceTv.text = ad.adsData.price
         binding!!.adTitleTv.text = ad.adsData.title
         val firebaseDate = ad.adsData.date
-        val dateAndTime = extractDateAndTime(firebaseDate)
-        val date = dateAndTime.day + " " + dateAndTime.month +" "+dateAndTime.year+ " at " + dateAndTime.hour + ":" + dateAndTime.minute+" "+dateAndTime.amPm
-        binding!!.adDateTv.text =date
+        val dateAndTime = firebaseDate?.let { extractDateAndTime(it) }
+        val date =
+            dateAndTime!!.day + " " + dateAndTime.month + " " + dateAndTime.year + " at " + dateAndTime.hour + ":" + dateAndTime.minute + " " + dateAndTime.amPm
+        binding!!.adDateTv.text = date
         binding!!.adDescriptionText.text = ad.adsData.description
         binding!!.collapsingToolbar.title = ad.vehicle.vehicleName
         ad.vehicleType?.let { displayVehicleData(it) }
@@ -107,5 +183,12 @@ class AdDetailsFragment : Fragment() {
         adImagesRecyclerView.adapter = adImageAdapter
     }
 
+    private fun setupAdsRecyclerView() {
+        adsRecyclerView = binding!!.relatedAdsRv
+        adsAdapter = AdsAdapter()
+        adsRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        adsRecyclerView.adapter = adsAdapter
+    }
 
 }

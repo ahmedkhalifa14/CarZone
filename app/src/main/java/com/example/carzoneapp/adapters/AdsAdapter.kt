@@ -60,7 +60,7 @@ class AdsAdapter() :
             }
 
             val firebaseDate = ads.adsData.date
-            val dateAndTime = extractDateAndTime(firebaseDate)
+            val dateAndTime = extractDateAndTime(firebaseDate!!)
             val date = dateAndTime.day + " " + dateAndTime.month
             holder.binding.listedDate.text = date
             setOnClickListener {

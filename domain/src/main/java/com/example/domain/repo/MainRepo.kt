@@ -36,5 +36,7 @@ interface MainRepo {
         country: String,
         featureCode: String
     ): GeoNamesResponse
+    suspend fun getUserByUserId(userId: String): User
+    suspend fun getAllAdsByVehicleType(targetVehicleType: String): List<Ad>
 
-}
+    }

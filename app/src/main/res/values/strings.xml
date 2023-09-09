@@ -144,6 +144,8 @@
     <string name="chat">Chat</string>
     <string name="call">Call</string>
     <string name="map_img">map img</string>
+    <string name="seller_name">Seller Name</string>
+    <string name="joined">Joined</string>
 
 
 </resources>

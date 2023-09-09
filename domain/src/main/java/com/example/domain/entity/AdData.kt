@@ -9,5 +9,5 @@ data class AdData(
     val negotiable: Boolean = false,
     val price: String = "",
     val location: String = "",
-    val date:Date
+    val date:Date?= null
 ):Serializable

@@ -10,6 +10,7 @@ data class Ad(
     val vehicleType: VehicleData?=null
 ):Serializable
 
+
 //data class Ads<T>(
 //    val adsData: AdsData,
 //    val vehicle: Vehicle,

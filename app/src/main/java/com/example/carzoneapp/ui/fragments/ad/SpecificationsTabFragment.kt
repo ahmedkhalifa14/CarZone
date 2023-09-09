@@ -19,6 +19,7 @@ import com.example.domain.entity.VehiclesCategories
 class SpecificationsTabFragment : Fragment() {
     private var _binding: FragmentSpecificationsTabBinding? = null
     private val binding get() = _binding
+    private  var  category: VehiclesCategories?= null
 
     //to create a new instance of SpecificationsTabFragment with arguments
     companion object {
@@ -42,10 +43,10 @@ class SpecificationsTabFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val category = arguments?.getSerializable("category") as VehiclesCategories?
+         category = arguments?.getSerializable("category") as VehiclesCategories?
 
         if (category != null) {
-            when (category.categoryName) {
+            when (category!!.categoryName) {
                 "Cars" -> {
                     binding!!.inputTextLayoutTransmissionCar.isVisible = true
                 }
@@ -91,8 +92,9 @@ class SpecificationsTabFragment : Fragment() {
             vehicleFuelType,
             vehicleMileage,
             seatingCapacity.toInt(),
-            "",
+            category!!.categoryName
         )
+
     }
 
     fun getCarData(): Car {

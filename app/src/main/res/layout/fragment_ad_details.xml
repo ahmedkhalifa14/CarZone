@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/appModeBG2"
     tools:context=".ui.fragments.home.AdDetailsFragment">
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
@@ -38,6 +39,7 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -538,9 +540,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_5sdp"
-                    android:text="@string/see_profile"
+                    android:text="@string/seller_name"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_14ssp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/ad_details_seller_img"
                     app:layout_constraintTop_toBottomOf="@id/seller_profile_divider1" />
@@ -551,7 +553,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_3sdp"
-                    android:text="@string/see_profile"
+                    android:text="@string/joined"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_12ssp"
                     app:layout_constraintStart_toEndOf="@id/ad_details_seller_img"
@@ -611,7 +613,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:text="@string/location2"
+                    android:text="@string/location3"
                     app:layout_constraintStart_toEndOf="@id/location_icon2"
                     app:layout_constraintTop_toBottomOf="@id/location_2" />
 
@@ -631,21 +633,21 @@
                     android:id="@+id/see_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/button_bg_color"
+                    android:drawableLeft="@drawable/location_icon"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:paddingBottom="@dimen/_5sdp"
                     android:text="@string/see_location"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_10ssp"
-                    android:paddingStart="@dimen/_10sdp"
-                    android:paddingEnd="@dimen/_10sdp"
-                    android:paddingBottom="@dimen/_5sdp"
-                    android:paddingTop="@dimen/_5sdp"
-                    android:backgroundTint="@color/button_bg_color"
-                    app:strokeColor="@color/button_corner_color2"
-                    app:strokeWidth="@dimen/_1sdp"
-                    android:drawableLeft="@drawable/location_icon"
                     app:layout_constraintBottom_toBottomOf="@id/map_image"
                     app:layout_constraintEnd_toEndOf="@id/map_image"
                     app:layout_constraintStart_toStartOf="@id/map_image"
-                    app:layout_constraintTop_toTopOf="@id/map_image" />
+                    app:layout_constraintTop_toTopOf="@id/map_image"
+                    app:strokeColor="@color/button_corner_color2"
+                    app:strokeWidth="@dimen/_1sdp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/report_ad_btn"
@@ -653,11 +655,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:backgroundTint="@color/appModeBG2"
                     android:drawableLeft="@drawable/report"
                     android:text="@string/report_this_ad"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_10ssp"
-                    android:backgroundTint="@color/appModeBG2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/map_image" />
 
@@ -668,12 +670,13 @@
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
                     android:backgroundTint="@color/text_color"
                     app:dividerThickness="@dimen/_1sdp"
                     app:layout_constraintBottom_toTopOf="@id/divider4"
                     app:layout_constraintEnd_toStartOf="@id/hide_ad_btn"
                     app:layout_constraintStart_toEndOf="@id/report_ad_btn"
-                    app:layout_constraintTop_toTopOf="@id/report_ad_btn"
+                    app:layout_constraintTop_toBottomOf="@id/map_image"
 
                     />
 
@@ -684,11 +687,11 @@
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_marginEnd="@dimen/_15sdp"
+                    android:backgroundTint="@color/appModeBG2"
                     android:drawableLeft="@drawable/hide"
                     android:text="@string/hide_this_ad"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_10ssp"
-                    android:backgroundTint="@color/appModeBG2"
 
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/map_image" />
@@ -710,11 +713,12 @@
                     android:id="@+id/ad_safety_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
                     android:text="@string/your_safety_matters_to_us"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_14ssp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/divider4" />
@@ -723,8 +727,9 @@
                     android:id="@+id/ad_safety_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
                     android:text="@string/only_meet_in_public_crowded_places"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_12ssp"
@@ -735,8 +740,9 @@
                     android:id="@+id/ad_safety_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
                     android:text="@string/never_go_alone_to_meet_a_buyer_seller_always_take_someone_with_you"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_12ssp"
@@ -747,8 +753,9 @@
                     android:id="@+id/ad_safety_3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
                     android:text="@string/check_and_inspect_the_product_properly_before_purchasing_it"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_12ssp"
@@ -759,8 +766,9 @@
                     android:id="@+id/ad_safety_4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
                     android:text="@string/never_pay_anything_in_advance_or_transfer_money_before_inspecting_the_proudct"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_12ssp"
@@ -784,6 +792,8 @@
                     android:id="@+id/related_ads_txt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:text="@string/related_ads"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_14ssp"
@@ -799,8 +809,22 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/related_ads_txt"
-                    tools:listitem="@layout/account_item" />
+                    tools:listitem="@layout/ads_item" />
 
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/ads_shimmerLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:orientation="vertical"
+                    android:scrollbarThumbVertical="@color/colorPrimaryDark"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/related_ads_txt">
+                    <include layout="@layout/ads_item_placeholder" />
+                </com.facebook.shimmer.ShimmerFrameLayout>
                 <com.google.android.material.divider.MaterialDivider
                     android:id="@+id/divider6"
                     android:layout_width="match_parent"
@@ -816,20 +840,21 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/connections_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        app:layout_anchorGravity="center"
+        android:layout_gravity="end|bottom|center"
         android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginEnd="@dimen/_15sdp"
-        android:layout_marginBottom="@dimen/_7sdp"
-       >
+        android:layout_marginBottom="@dimen/_7sdp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/sms_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
             android:backgroundTint="@color/button_bg_color"
             android:drawableLeft="@drawable/sms"
             android:gravity="center"

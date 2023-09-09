@@ -90,5 +90,12 @@ class MainRepoImpl @Inject constructor(
     ): GeoNamesResponse =
         geoNamesService.getRegions(username, country, featureCode)
 
+    override suspend fun getUserByUserId(userId: String): User =
+        firebaseService.getUserByUserId(userId)!!
+
+    override suspend fun getAllAdsByVehicleType(targetVehicleType: String): List<Ad> =
+        firebaseService.getAllAdsByVehicleType(targetVehicleType)
+
+
 
 }

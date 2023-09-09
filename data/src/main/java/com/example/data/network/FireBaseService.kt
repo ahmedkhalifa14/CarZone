@@ -70,7 +70,7 @@ class FireBaseService @Inject constructor(
         return vehiclesCategoriesList
     }
 
-    suspend fun  addVehicleAds(ads: Ad) {
+    suspend fun addVehicleAds(ads: Ad) {
         val collectionReference = firebaseFireStore.collection("Ads")
         val documentReference = collectionReference.document()
         documentReference.set(ads).await()
@@ -78,31 +78,31 @@ class FireBaseService @Inject constructor(
 
 
     // Function to retrieve all data from Firestore
-    suspend fun <T : VehicleData> getAdsByVehicleType(): List<Ad> {
-        val collectionReference = firebaseFireStore.collection("Ads")
-        val querySnapshot = collectionReference.get().await()
-        val adsList = mutableListOf<Ad>()
-        for (documentSnapshot in querySnapshot.documents) {
-            val adsData = documentSnapshot.toObject(AdData::class.java) ?: continue
-            val vehicle = documentSnapshot.toObject(Vehicle::class.java) ?: continue
-            val vehicleImages = documentSnapshot.get("vehicleImages") as? List<String> ?: continue
-            val seller = documentSnapshot.getString("userId") ?: continue
-            // val seller = documentSnapshot.toObject(User::class.java) ?: continue
-            // Get the vehicleType from the document (assuming it is stored as a String)
-            val vehicleType = documentSnapshot.getString("vehicleType") ?: continue
-            // Map the vehicleType to the appropriate model class
-            val mappedVehicleType: T = when (vehicleType) {
-                "Car" -> documentSnapshot.toObject(Car::class.java) as? T
-                "Van" -> documentSnapshot.toObject(Van::class.java) as? T
-                "Truck" -> documentSnapshot.toObject(Truck::class.java) as? T
-                "Motorcycle" -> documentSnapshot.toObject(Motorcycle::class.java) as? T
-                else -> null
-            } ?: continue
-            val ad = Ad(adsData, vehicle, vehicleImages, seller, mappedVehicleType)
-            adsList.add(ad)
-        }
-        return adsList
-    }
+//    suspend fun <T : VehicleData> getAdsByVehicleType(): List<Ad> {
+//        val collectionReference = firebaseFireStore.collection("Ads")
+//        val querySnapshot = collectionReference.get().await()
+//        val adsList = mutableListOf<Ad>()
+//        for (documentSnapshot in querySnapshot.documents) {
+//            val adsData = documentSnapshot.toObject(AdData::class.java) ?: continue
+//            val vehicle = documentSnapshot.toObject(Vehicle::class.java) ?: continue
+//            val vehicleImages = documentSnapshot.get("vehicleImages") as? List<String> ?: continue
+//            val seller = documentSnapshot.getString("userId") ?: continue
+//            // val seller = documentSnapshot.toObject(User::class.java) ?: continue
+//            // Get the vehicleType from the document (assuming it is stored as a String)
+//            val vehicleType = documentSnapshot.getString("vehicleType") ?: continue
+//            // Map the vehicleType to the appropriate model class
+//            val mappedVehicleType: T = when (vehicleType) {
+//                "Car" -> documentSnapshot.toObject(Car::class.java) as? T
+//                "Van" -> documentSnapshot.toObject(Van::class.java) as? T
+//                "Truck" -> documentSnapshot.toObject(Truck::class.java) as? T
+//                "Motorcycle" -> documentSnapshot.toObject(Motorcycle::class.java) as? T
+//                else -> null
+//            } ?: continue
+//            val ad = Ad(adsData, vehicle, vehicleImages, seller, mappedVehicleType)
+//            adsList.add(ad)
+//        }
+//        return adsList
+//    }
 
     suspend fun sendVerificationCode(phoneNumber: String): String {
         val verificationIdDeferred =
@@ -203,7 +203,6 @@ class FireBaseService @Inject constructor(
 
 
     suspend fun getAllAds(): MutableList<Ad> {
-        val firebaseFireStore = FirebaseFirestore.getInstance()
         val collectionReference = firebaseFireStore.collection("Ads")
         val querySnapshot = collectionReference.get().await()
         val adsList = mutableListOf<Ad>()
@@ -212,7 +211,8 @@ class FireBaseService @Inject constructor(
                 val adsData = documentSnapshot.get("adsData") as? Map<String, Any>
                 val seller = documentSnapshot.getString("seller")
                 val vehicleImages = documentSnapshot.get("vehicleImages") as? List<String>
-                val vehicleTypeMap = documentSnapshot.get("vehicleType") as? Map<String, Map<String, Any>>
+                val vehicleTypeMap =
+                    documentSnapshot.get("vehicleType") as? Map<String, Map<String, Any>>
                 val vehicle = documentSnapshot.get("vehicle") as? Map<String, Any>
 
                 val adsDateTimestamp = adsData?.get("date") as? com.google.firebase.Timestamp
@@ -288,5 +288,137 @@ class FireBaseService @Inject constructor(
         return adsList
     }
 
+    suspend fun getUserByUserId(userId: String): User? {
+        val usersCollection = firebaseFireStore.collection("users")
+        try {
+            val documentSnapshot = usersCollection
+                .document(userId)
+                .get()
+                .await()
 
-}
+            if (documentSnapshot.exists()) {
+                return documentSnapshot.toObject(User::class.java)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return null
+    }
+        suspend fun getAllAdsByVehicleType(vehicleType: String): List<Ad> {
+            val collectionReference = firebaseFireStore.collection("Ads")
+            val querySnapshot = collectionReference.get().await()
+            val adsList = mutableListOf<Ad>()
+
+            for (documentSnapshot in querySnapshot.documents) {
+                try {
+                    val adsData = documentSnapshot.get("adsData") as? Map<String, Any>
+                    val seller = documentSnapshot.getString("seller")
+                    val vehicleImages = documentSnapshot.get("vehicleImages") as? List<String>
+                    val vehicleTypeMap =
+                        documentSnapshot.get("vehicleType") as? Map<String, Map<String, Any>>
+                    val vehicle = documentSnapshot.get("vehicle") as? Map<String, Any>
+
+                    val adsDateTimestamp = adsData?.get("date") as? com.google.firebase.Timestamp
+                    val adsDate = adsDateTimestamp?.toDate()
+
+                    val mappedVehicleType: VehicleData? = when {
+                        vehicleTypeMap != null -> {
+                            val typeKey = vehicleTypeMap.keys.firstOrNull()
+                            val typeData = vehicleTypeMap[typeKey]
+
+                            when (typeKey) {
+                                "van" -> {
+                                    val cargoCapacity = typeData?.get("cargoCapacity") as? Double
+                                    VanData(Van(cargoCapacity ?: 0.0))
+                                }
+
+                                "car" -> {
+                                    val transmission = typeData?.get("transmission") as? String ?: ""
+                                    CarData(Car(transmission))
+                                }
+                                "motorcycle" -> {
+                                    val enginePower = typeData?.get("enginePower") as? String ?: ""
+                                    val engineTorque = typeData?.get("engineTorque") as? String ?: ""
+                                    val kerbWeight = typeData?.get("kerbWeight") as? Double ?: 0.0
+                                    MotorCycleData(Motorcycle(enginePower, engineTorque, kerbWeight))
+                                }
+                                "truck" -> {
+                                    val weight = typeData?.get("weight") as? Double ?: 0.0
+                                    val enginePower = typeData?.get("enginePower") as? Int ?: 0
+                                    TruckData(Truck(weight, enginePower))
+                                }
+
+                                else -> null
+                            }
+                        }
+                        else -> null
+                    }
+                    if (adsData != null && vehicle != null && vehicleImages != null && seller != null && mappedVehicleType != null) {
+                        val adsDataObj = AdData(
+                            title = adsData["title"] as? String ?: "",
+                            description = adsData["description"] as? String ?: "",
+                            negotiable = adsData["negotiable"] as? Boolean ?: false,
+                            price = adsData["price"] as? String ?: "",
+                            location = adsData["location"] as? String ?: "",
+                            date = adsDate ?: Date()
+                        )
+
+                        val vehicleObj = Vehicle(
+                            vehicleId = vehicle["vehicleId"] as? String ?: "",
+                            vehicleModel = vehicle["vehicleModel"] as? String ?: "",
+                            manufacturer = vehicle["manufacturer"] as? String ?: "",
+                            vehicleName = vehicle["vehicleName"] as? String ?: "",
+                            vehicleEngine = vehicle["vehicleEngine"] as? String ?: "",
+                            vehicleFuelType = vehicle["vehicleFuelType"] as? String ?: "",
+                            vehicleMileage = vehicle["vehicleMileage"] as? String ?: "",
+                            seatingCapacity = (vehicle["seatingCapacity"] as? Long)?.toInt() ?: 0,
+                            vehicleType = vehicle["vehicleType"] as? String ?: ""
+                        )
+
+                        val ad = Ad(adsDataObj, vehicleObj, vehicleImages, seller, mappedVehicleType)
+
+                        // Check if the extracted vehicle type matches the desired type
+                        if (vehicleType.equals(ad.vehicle.vehicleType, ignoreCase = true)) {
+                            adsList.add(ad)
+                        }
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+
+            return adsList
+        }
+
+
+//    suspend fun getAllAdsByVehicleType(targetVehicleType: String): List<Ad> {
+//        val adsCollection = firebaseFireStore.collection("Ads")
+//
+//        try {
+//            val querySnapshot = adsCollection.get().await()
+//            val adsList = mutableListOf<Ad>()
+//
+//            for (documentSnapshot in querySnapshot.documents) {
+//                val ad = documentSnapshot.toObject(Ad::class.java)
+//                if (ad != null) {
+//                    if (ad.vehicle.vehicleType == targetVehicleType) {
+//                        adsList.add(ad)
+//                    }
+//                } else {
+//                    // Log a message if there's an issue with a document
+//                    Log.d("getAllAdsByVehicleType", "Failed to parse document: ${documentSnapshot.id}")
+//                }
+//            }
+//
+//            return adsList
+//        } catch (e: Exception) {
+//            // Handle exceptions here
+//            e.printStackTrace()
+//            Log.e("getAllAdsByVehicleType", "Error: ${e.message}")
+//        }
+//
+//        return emptyList()
+//    }
+    }
+
