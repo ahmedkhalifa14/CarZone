@@ -5,6 +5,7 @@ import com.example.data.local.DataStoreManager
 import com.example.data.network.FireBaseService
 import com.example.data.network.GeoNamesService
 import com.example.domain.entity.Ad
+import com.example.domain.entity.ChatMessage
 import com.example.domain.entity.GeoNamesResponse
 import com.example.domain.entity.ImageEntity
 import com.example.domain.entity.User
@@ -96,6 +97,12 @@ class MainRepoImpl @Inject constructor(
     override suspend fun getAllAdsByVehicleType(targetVehicleType: String): List<Ad> =
         firebaseService.getAllAdsByVehicleType(targetVehicleType)
 
+    override suspend fun getAllAdsByUserId(userId: String): List<Ad> =
+        firebaseService.getUserAds(userId)
+
+    override suspend fun sendMessage(message: ChatMessage) {
+        firebaseService.sendMessage(message)
+    }
 
 
 }

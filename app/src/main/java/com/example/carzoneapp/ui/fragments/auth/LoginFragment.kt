@@ -1,12 +1,13 @@
 package com.example.carzoneapp.ui.fragments.auth
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
@@ -61,12 +62,16 @@ class LoginFragment : Fragment() {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 authViewModel.loginWithEmailState.collect(
                     EventObserver(
-                        onLoading = {},
+                        onLoading = {
+                            binding!!.spinKitProgress.isVisible = true
+                        },
                         onSuccess = {
+                            binding!!.spinKitProgress.isVisible = false
                             findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                             Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
                         },
                         onError = {
+                            binding!!.spinKitProgress.isVisible = false
                             Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
                         }
                     )

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -17,8 +18,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.carzoneapp.R
 import com.example.carzoneapp.databinding.FragmentStartBinding
 import com.example.carzoneapp.ui.viewmodel.AuthViewModel
+import com.example.carzoneapp.ui.viewmodel.HomeViewModel
 import com.example.carzoneapp.utils.AuthState
 import com.example.carzoneapp.utils.EventObserver
+import com.example.domain.entity.ChatMessage
 import com.example.domain.entity.GoogleAccountInfo
 import com.example.domain.entity.User
 import com.google.firebase.auth.FirebaseAuth
@@ -31,6 +34,7 @@ class StartFragment : Fragment() {
     private var _binding: FragmentStartBinding? = null
     private val binding get() = _binding!!
     private val authViewModel by viewModels<AuthViewModel>()
+    private val homeViewModel by viewModels<HomeViewModel>()
 
     @Inject
     lateinit var firebaseAuth: FirebaseAuth
@@ -42,6 +46,7 @@ class StartFragment : Fragment() {
                 authViewModel.handleGoogleSignInResult(data)
             }
         }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,12 +59,17 @@ class StartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         subscribeToObservables()
+        binding.continueWithEmailBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_startFragment_to_registerFragment)
+        }
         binding.continueWithGoogleBtn.setOnClickListener {
             authViewModel.signInWithGoogle()
             googleSignInLauncher.launch(authViewModel.getGoogleSignInIntent())
         }
         binding.continueWithPhoneBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_startFragment_to_phoneAuthFragment)
+            val message =ChatMessage("6545","123","655654","dfg","sdgagas","agdasg")
+            homeViewModel.sendMessage(message)
+          //  findNavController().navigate(R.id.action_startFragment_to_phoneAuthFragment)
         }
     }
 
@@ -70,48 +80,47 @@ class StartFragment : Fragment() {
                 authViewModel.loginWithGoogleState.collect(
                     EventObserver(
                         onLoading = {
-
+                            binding.spinKitProgress.isVisible = true
                         },
                         onSuccess = {
                             when (it) {
                                 is AuthState.Success -> {
                                     val user = it.user
-                                    saveUserData(user)
-                                    findNavController().navigate(R.id.action_startFragment_to_homeFragment)
+                                    convertObjectAndNavigate(user)
                                 }
-
                                 else -> {}
                             }
                         },
                         onError = {
-
+                            binding.spinKitProgress.isVisible = false
                             Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
                         }
                     )
                 )
             }
+        }
+        lifecycle.coroutineScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                authViewModel.saveUserDataState.collect(
+                homeViewModel.sendMessageState.collect(
                     EventObserver(
                         onLoading = {
-
-                        },
-                        onError = {
-                            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+                            binding.spinKitProgress.isVisible = true
                         },
                         onSuccess = {
-
-                            Toast.makeText(requireContext(), "success", Toast.LENGTH_SHORT).show()
-
+                            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+                        },
+                        onError = {
+                            binding.spinKitProgress.isVisible = false
+                            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
                         }
                     )
                 )
             }
-
         }
+
     }
 
-    private fun saveUserData(user: GoogleAccountInfo) {
+    private fun convertObjectAndNavigate(user: GoogleAccountInfo) {
         val userId = firebaseAuth.currentUser?.uid
         val userInfo = User(
             userId!!,
@@ -123,10 +132,10 @@ class StartFragment : Fragment() {
             user.email!!,
             user.photoUrl!!
         )
-        authViewModel.saveUserData(userInfo)
+        binding.spinKitProgress.isVisible = false
+        val action = StartFragmentDirections.actionStartFragmentToSetupFragment(userInfo)
+        findNavController().navigate(action)
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()

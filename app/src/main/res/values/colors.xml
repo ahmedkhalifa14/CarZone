@@ -20,6 +20,7 @@
     <color name="icon_color">@color/white</color>
     <color name="pinViewBgColor">@color/white</color>
     <color name="shimmerColor">#dddddd</color>
+    <color name="textColorHint">#424242</color>
 
 
 </resources>

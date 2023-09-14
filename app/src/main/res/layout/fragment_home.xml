@@ -164,7 +164,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/category_layout"
         android:layout_marginTop="@dimen/_10sdp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
+        tools:listitem="@layout/home_ads_parent_layout"
         />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

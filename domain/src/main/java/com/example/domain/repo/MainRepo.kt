@@ -2,6 +2,7 @@ package com.example.domain.repo
 
 import android.net.Uri
 import com.example.domain.entity.Ad
+import com.example.domain.entity.ChatMessage
 import com.example.domain.entity.GeoNamesResponse
 import com.example.domain.entity.ImageEntity
 import com.example.domain.entity.User
@@ -38,5 +39,7 @@ interface MainRepo {
     ): GeoNamesResponse
     suspend fun getUserByUserId(userId: String): User
     suspend fun getAllAdsByVehicleType(targetVehicleType: String): List<Ad>
+    suspend fun getAllAdsByUserId(userId: String): List<Ad>
+    suspend fun sendMessage(message: ChatMessage)
 
-    }
+}

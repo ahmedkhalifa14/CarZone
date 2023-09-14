@@ -11,16 +11,19 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.carzoneapp.adapters.AdsAdapter
 import com.example.carzoneapp.adapters.CategoryAdapter
+import com.example.carzoneapp.adapters.ParentAdsAdapter
 import com.example.carzoneapp.databinding.FragmentHomeBinding
+import com.example.carzoneapp.entity.HomeAdsAdapterItem
 import com.example.carzoneapp.ui.viewmodel.HomeViewModel
 import com.example.carzoneapp.utils.EventObserver
+import com.example.domain.entity.Ad
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -28,9 +31,17 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var categoryRecyclerView: RecyclerView
-    private lateinit var adsAdapter: AdsAdapter
-    private lateinit var adsRecyclerView: RecyclerView
+    // private lateinit var adsAdapter: AdsAdapter
+    //private lateinit var adsRecyclerView: RecyclerView
+
+    private lateinit var parentAdsAdapter: ParentAdsAdapter
+    private lateinit var parentAdsRecyclerView: RecyclerView
     private val homeViewModel: HomeViewModel by viewModels()
+
+    @Inject
+    lateinit var firebaseAuth: FirebaseAuth
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,13 +54,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupCategoryRecyclerView()
-        setupAdsRecyclerView()
+        //setupAdsRecyclerView()
         subscribeToObservables()
-        adsAdapter.setOnItemClickListener { ad->
-            val action = HomeFragmentDirections.actionHomeFragmentToAdDetailsFragment(ad)
-            findNavController().navigate(action)
-        }
-
+//        adsAdapter.setOnItemClickListener { ad ->
+//            val action = HomeFragmentDirections.actionHomeFragmentToAdDetailsFragment(ad)
+//            findNavController().navigate(action)
+//        }
+        homeViewModel.getUserInfoByUserId(firebaseAuth.currentUser?.uid.toString())
 
     }
 
@@ -68,13 +79,13 @@ class HomeFragment : Fragment() {
         categoryRecyclerView.adapter = categoryAdapter
     }
 
-    private fun setupAdsRecyclerView() {
-        adsRecyclerView = binding!!.adsRv
-        adsAdapter = AdsAdapter()
-        adsRecyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        adsRecyclerView.adapter = adsAdapter
-    }
+//    private fun setupAdsRecyclerView() {
+//        adsRecyclerView = binding!!.adsRv
+//        adsAdapter = AdsAdapter(1)
+//        adsRecyclerView.layoutManager =
+//            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+//        adsRecyclerView.adapter = adsAdapter
+//    }
 
     private fun subscribeToObservables() {
         lifecycle.coroutineScope.launch {
@@ -110,7 +121,8 @@ class HomeFragment : Fragment() {
                         onSuccess = { adsList ->
                             binding!!.adsShimmerLayout.stopShimmerAnimation()
                             binding!!.adsShimmerLayout.isVisible = false
-                            adsAdapter.differ.submitList(adsList)
+                            displayData(adsList)
+                            // adsAdapter.differ.submitList(adsList)
                         },
                         onError = {
                             binding!!.adsShimmerLayout.stopShimmerAnimation()
@@ -122,6 +134,66 @@ class HomeFragment : Fragment() {
             }
 
         }
+        lifecycle.coroutineScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                homeViewModel.userInfoState.collect(
+                    EventObserver(
+                        onLoading = {
+
+                        }, onSuccess = { user ->
+                            binding!!.locationTv.text = user.location
+                        },
+                        onError = {
+                            Toast.makeText(
+                                requireContext(),
+                                "cannot find user data",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    )
+                )
+            }
+        }
+    }
+
+    private fun displayData(adsList: MutableList<Ad>) {
+        val vanList: MutableList<Ad> = mutableListOf()
+        val carList: MutableList<Ad> = mutableListOf()
+        val motoList: MutableList<Ad> = mutableListOf()
+        val truckList: MutableList<Ad> = mutableListOf()
+        for (ad in adsList) {
+            when (ad.vehicle.vehicleType) {
+                "Vans" -> {
+                    vanList.add(ad)
+                }
+
+                "Cars" -> {
+                    carList.add(ad)
+                }
+
+                "Motorcycles" -> {
+                    motoList.add(ad)
+                }
+
+                "Trucks" -> {
+                    truckList.add(ad)
+                }
+
+            }
+        }
+        val listOfAds = listOf(
+            carList.takeIf { it.isNotEmpty() }?.let { HomeAdsAdapterItem("Cars", it) },
+            vanList.takeIf { it.isNotEmpty() }?.let { HomeAdsAdapterItem("Vans", it) },
+            truckList.takeIf { it.isNotEmpty() }?.let { HomeAdsAdapterItem("Trucks", it) },
+            motoList.takeIf { it.isNotEmpty() }?.let { HomeAdsAdapterItem("Motorcycle", it) }
+        ).mapNotNull { it }
+        binding?.apply {
+            parentAdsRecyclerView = binding!!.adsRv
+            parentAdsAdapter = ParentAdsAdapter(listOfAds)
+            parentAdsRecyclerView.adapter = parentAdsAdapter
+
+        }
+
     }
 
 }

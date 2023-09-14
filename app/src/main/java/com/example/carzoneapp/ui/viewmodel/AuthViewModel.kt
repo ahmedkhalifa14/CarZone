@@ -189,8 +189,11 @@ class AuthViewModel @Inject constructor(
             _saveUserDataState.emit(Event(Resource.Loading()))
             try {
                 saveUserDataUseCase(user)
+                Log.d("authViewModel", "Data saved successfully")
                 _saveUserDataState.emit(Event(Resource.Success(user)))
             } catch (e: Exception) {
+                Log.e("authViewModel", "Error saving user data", e) // Log the exception with stack trace
+                Log.e("authViewModel", "Exception message: ${e.message}") // Log the exception message separately
                 _saveUserDataState.emit(Event(Resource.Error("Error occurred: ${e.message}")))
             }
         }

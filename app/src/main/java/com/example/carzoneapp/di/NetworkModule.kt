@@ -3,6 +3,7 @@ package com.example.carzoneapp.di
 import com.example.data.network.FireBaseService
 import com.example.data.network.GeoNamesService
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import dagger.Module
@@ -27,9 +28,9 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideFirebaseService(auth: FirebaseAuth, fireStore: FirebaseFirestore,firebaseStorage:FirebaseStorage)
+    fun provideFirebaseService(auth: FirebaseAuth, fireStore: FirebaseFirestore,firebaseStorage:FirebaseStorage,firebaseDatabase:FirebaseDatabase)
     : FireBaseService =
-        FireBaseService(auth, fireStore,firebaseStorage)
+        FireBaseService(auth, fireStore,firebaseStorage,firebaseDatabase)
 
     @Provides
     @Singleton
@@ -38,6 +39,11 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideFirebaseStorage()= FirebaseStorage.getInstance()
+
+
+    @Provides
+    @Singleton
+    fun provideFireBaseDataBase()= FirebaseDatabase.getInstance()
 
 
     @Provides

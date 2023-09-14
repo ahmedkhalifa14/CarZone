@@ -8,15 +8,22 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.carzoneapp.databinding.AdsItemBinding
+import com.example.carzoneapp.databinding.HomeAdItemBinding
+import com.example.carzoneapp.databinding.MyAdsItemBinding
 import com.example.carzoneapp.helper.extractDateAndTime
 import com.example.domain.entity.Ad
 
-class AdsAdapter() :
-    RecyclerView.Adapter<AdsAdapter.AdsAdapterViewHolder>() {
+class AdsAdapter(private val type: Int) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    enum class ViewType {
+        TYPE_ONE,
+        TYPE_TWO
+    }
 
-    inner class AdsAdapterViewHolder(val binding: AdsItemBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    inner class AdsAdapterViewHolder(val adsBinding: HomeAdItemBinding) :
+        RecyclerView.ViewHolder(adsBinding.root)
+
+    inner class MyAdsAdapterViewHolder(val myAdsBinding: MyAdsItemBinding) :
+        RecyclerView.ViewHolder(myAdsBinding.root)
 
     private val differCallBack = object : DiffUtil.ItemCallback<Ad>() {
         override fun areItemsTheSame(
@@ -35,45 +42,116 @@ class AdsAdapter() :
 
     }
     val differ = AsyncListDiffer(this, differCallBack)
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdsAdapterViewHolder {
-        return AdsAdapterViewHolder(
-            AdsItemBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
-            )
-        )
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            ViewType.TYPE_ONE.ordinal -> {
+                AdsAdapterViewHolder(
+                    HomeAdItemBinding.inflate(
+                        LayoutInflater.from(parent.context), parent, false
+                    )
+                )
+
+            }
+
+            ViewType.TYPE_TWO.ordinal -> {
+                MyAdsAdapterViewHolder(
+                    MyAdsItemBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
+                )
+            }
+
+            else -> throw IllegalArgumentException("Invalid view type")
+        }
 
 
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun onBindViewHolder(holder: AdsAdapterViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val ads = differ.currentList[position]
-        holder.itemView.apply {
-            Glide.with(this).load(ads.vehicleImages[0]).into(holder.binding.carImg)
-//            Glide.with(this).load(accountItem.iconTwo).into(holder.binding.accountItemIcon2)
-            holder.binding.carName.text = ads.adsData.title
-            holder.binding.carPrice.text = ads.adsData.price
-            if (ads.adsData.negotiable) {
-                holder.binding.negotiableTv.text = "Negotiable"
-            } else {
-                holder.binding.negotiableTv.text = "Not negotiable"
+
+        when (holder.itemViewType) {
+            ViewType.TYPE_ONE.ordinal -> {
+                val adsViewHolder = holder as AdsAdapter.AdsAdapterViewHolder
+                adsViewHolder.itemView.apply {
+
+                    Glide.with(this).load(ads.vehicleImages[0])
+                        .into(adsViewHolder.adsBinding.adImg)
+                    adsViewHolder.adsBinding.adName.text = ads.adsData.title
+                    adsViewHolder.adsBinding.adPrice.text = ads.adsData.price
+                    if (ads.adsData.negotiable) {
+                        adsViewHolder.adsBinding.negotiableTv.text = "Negotiable"
+                    } else {
+                        adsViewHolder.adsBinding.negotiableTv.text = "Not negotiable"
+                    }
+
+                    val firebaseDate = ads.adsData.date
+                    val dateAndTime = extractDateAndTime(firebaseDate!!)
+                    val date = dateAndTime.day + " " + dateAndTime.month
+                    adsViewHolder.adsBinding.listedDate.text = date
+                    setOnClickListener {
+                        onItemClickListener?.let { it(ads) }
+                    }
+                }
             }
 
-            val firebaseDate = ads.adsData.date
-            val dateAndTime = extractDateAndTime(firebaseDate!!)
-            val date = dateAndTime.day + " " + dateAndTime.month
-            holder.binding.listedDate.text = date
-            setOnClickListener {
-                onItemClickListener?.let { it(ads) }
-            }
+            ViewType.TYPE_TWO.ordinal -> {
+                val myAdsViewHolder = holder as AdsAdapter.MyAdsAdapterViewHolder
+                myAdsViewHolder.itemView.apply {
 
+                    Glide.with(this).load(ads.vehicleImages[0])
+                        .into(myAdsViewHolder.myAdsBinding.carImg)
+                    myAdsViewHolder.myAdsBinding.carName.text = ads.adsData.title
+                    myAdsViewHolder.myAdsBinding.carPrice.text = ads.adsData.price
+                    if (ads.adsData.negotiable) {
+                        myAdsViewHolder.myAdsBinding.negotiableTv.text = "Negotiable"
+                    } else {
+                        myAdsViewHolder.myAdsBinding.negotiableTv.text = "Not negotiable"
+                    }
+
+                    val firebaseDate = ads.adsData.date
+                    val dateAndTime = extractDateAndTime(firebaseDate!!)
+                    val date = dateAndTime.day + " " + dateAndTime.month
+                    myAdsViewHolder.myAdsBinding.listedDate.text = date
+                    setOnClickListener {
+                        onItemClickListener?.let { it(ads) }
+                    }
+                }
+
+            }
         }
+
     }
 
     override fun getItemCount(): Int = differ.currentList.size
 
+
     private var onItemClickListener: ((Ad) -> Unit)? = null
+
     fun setOnItemClickListener(listener: (Ad) -> Unit) {
         onItemClickListener = listener
     }
+
+
+    override fun getItemViewType(position: Int): Int {
+        //return if (position % 2 == 0) TYPE_VIEW_HOLDER_ONE else TYPE_VIEW_HOLDER_TWO
+        return when (type) {
+            1 -> {
+                ViewType.TYPE_ONE.ordinal
+            }
+
+            2 -> {
+                ViewType.TYPE_TWO.ordinal
+            }
+
+            else -> throw IllegalArgumentException("Invalid value")
+
+        }
+    }
+
+
 }

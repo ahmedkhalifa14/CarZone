@@ -18,6 +18,7 @@ import com.example.carzoneapp.ui.viewmodel.AuthViewModel
 import com.example.carzoneapp.utils.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 
 @AndroidEntryPoint
@@ -40,7 +41,7 @@ class PhoneAuthFragment : Fragment() {
         subscribeToObservables()
         binding!!.continueBtn.setOnClickListener {
             val phoneNumber = binding!!.inputTextPhone.text.toString()
-            if (!phoneNumber.isNullOrEmpty()) {
+            if (phoneNumber.isNotEmpty()) {
                 authViewModel.sendVerificationCode(phoneNumber)
             } else {
                 Toast.makeText(
@@ -58,16 +59,20 @@ class PhoneAuthFragment : Fragment() {
                 authViewModel.sendVerificationCodeState.collect(
                     EventObserver(
                         onLoading = {
+                            Log.d("sendVerificationCodeState","Bloading")
                             binding!!.spinKitProgress.isVisible = true
+                            Log.d("sendVerificationCodeState","Aloading")
                         },
-                        onSuccess = {
+                        onSuccess = {verificationId->
+                            Log.d("sendVerificationCodeState",verificationId)
                             binding!!.spinKitProgress.isVisible = false
-                            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-                            val action = PhoneAuthFragmentDirections.actionPhoneAuthFragmentToVerifyCodeFragment(it)
+                            Toast.makeText(requireContext(), verificationId, Toast.LENGTH_SHORT).show()
+                            val action = PhoneAuthFragmentDirections.actionPhoneAuthFragmentToVerifyCodeFragment(verificationId,binding!!.inputTextPhone.text.toString())
                             findNavController().navigate(action)
-                            Log.d("verification", it)
+                            Timber.tag("verification").d(verificationId)
                         },
                         onError = {
+                            Log.d("sendVerificationCodeState",it)
                             binding!!.spinKitProgress.isVisible = false
                             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
                         }

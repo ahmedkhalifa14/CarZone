@@ -78,11 +78,9 @@ class SpecificationsTabFragment : Fragment() {
         val vehicleName = binding!!.inputTextLayoutVehicleName.editText!!.text.toString()
         val vehicleEngine = binding!!.inputTextLayoutVehicleEngine.editText!!.text.toString()
         val vehicleFuelType = binding!!.inputTextLayoutVehicleFuelType.editText!!.text.toString()
-        val vehicleMileage = binding!!.inputTextLayoutMileageCar!!.editText!!.text.toString()
+        val vehicleMileage = binding!!.inputTextLayoutMileageCar.editText!!.text.toString()
         val seatingCapacity =
-            binding!!.inputTextLayoutSeatingCapacityCar!!.editText!!.text.toString()
-        val image = ""
-        val images = null
+            binding!!.inputTextLayoutSeatingCapacityCar.editText!!.text.toString()
         return Vehicle(
             "",
             vehicleModel,

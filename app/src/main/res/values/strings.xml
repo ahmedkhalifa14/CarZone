@@ -146,6 +146,17 @@
     <string name="map_img">map img</string>
     <string name="seller_name">Seller Name</string>
     <string name="joined">Joined</string>
+    <string name="filters">Filters</string>
+    <string name="you_don_t_have_ads_with_current_filters">You don\'t have ads with current filters</string>
+    <string name="all_ads">All Ads</string>
+    <string name="fav_icon">fav icon</string>
+    <string name="delete_icon">delete icon</string>
+    <string name="ads_type">Ads Type</string>
+    <string name="ic_attachment">ic_attachment</string>
+    <string name="send_message">Message...</string>
+    <string name="audio_btn">audio_btn</string>
+    <string name="video_btn">video_btn</string>
+    <string name="back_btn">back_btn</string>
 
 
 </resources>

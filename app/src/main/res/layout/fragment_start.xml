@@ -7,6 +7,20 @@
     tools:context=".ui.fragments.auth.StartFragment"
     android:background="@color/appModeBG"
     >
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/spinKitProgress"
+        style="@style/SpinKitView.Large.ChasingDots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="@dimen/_20sdp"
+        android:visibility="gone"
+        app:SpinKit_Color="@color/primaryColor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
     <ImageView
         android:id="@+id/cancel_button"
         android:layout_width="@dimen/_35sdp"

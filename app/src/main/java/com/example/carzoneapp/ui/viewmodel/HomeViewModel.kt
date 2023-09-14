@@ -6,17 +6,20 @@ import androidx.lifecycle.viewModelScope
 import com.example.carzoneapp.utils.Event
 import com.example.carzoneapp.utils.Resource
 import com.example.domain.entity.Ad
+import com.example.domain.entity.ChatMessage
 import com.example.domain.entity.GeoNamesResponse
 import com.example.domain.entity.User
 import com.example.domain.entity.VehiclesCategories
 import com.example.domain.usecase.AddVehicleAdUseCase
 import com.example.domain.usecase.FetchRegionsInCountryUseCase
+import com.example.domain.usecase.GetAllAdsByUserIdUseCase
 import com.example.domain.usecase.GetAllAdsByVehicleTypeUseCase
 import com.example.domain.usecase.GetAllAdsUseCase
 import com.example.domain.usecase.GetAllVehiclesCategoriesUseCase
 import com.example.domain.usecase.GetUserInfoUseCase
 import com.example.domain.usecase.IsFirstTimeLaunchUseCase
 import com.example.domain.usecase.SaveFirstTimeLaunchUseCase
+import com.example.domain.usecase.SendMessageUseCase
 import com.example.domain.usecase.UploadImagesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -37,7 +40,9 @@ class HomeViewModel @Inject constructor(
     private val getAllAdsUseCase: GetAllAdsUseCase,
     private val fetchRegionsInCountryUseCase: FetchRegionsInCountryUseCase,
     private val getUserInfoUseCase: GetUserInfoUseCase,
-    private val getAllAdsByVehicleTypeUseCase: GetAllAdsByVehicleTypeUseCase
+    private val getAllAdsByVehicleTypeUseCase: GetAllAdsByVehicleTypeUseCase,
+    private val getAllAdsByUserIdUseCase: GetAllAdsByUserIdUseCase,
+    private val sendMessageUseCase: SendMessageUseCase
 ) : ViewModel() {
 
     private val _vehiclesCategoriesState =
@@ -86,6 +91,20 @@ class HomeViewModel @Inject constructor(
     val allAdsByVehicleTypeState: StateFlow<Event<Resource<List<Ad>>>> =
         _allAdsByVehicleTypeState
 
+
+    private val _userAdsState =
+        MutableStateFlow<Event<Resource<List<Ad>>>>(Event(Resource.Init()))
+    val userAdsState: StateFlow<Event<Resource<List<Ad>>>> =
+        _userAdsState
+
+
+
+    private val _sendMessageState =
+        MutableStateFlow<Event<Resource<String>>>(Event(Resource.Init()))
+    val sendMessageState: StateFlow<Event<Resource<String>>> =
+        _sendMessageState
+
+
     fun isFirstTimeLaunch() {
         viewModelScope.launch(Dispatchers.Main) {
             _isFirstTimeLaunchState.emit(Event(Resource.Loading()))
@@ -95,6 +114,17 @@ class HomeViewModel @Inject constructor(
 
             } catch (e: Exception) {
                 _isFirstTimeLaunchState.emit(Event(Resource.Error(e.message.toString())))
+            }
+        }
+    }
+    fun sendMessage(message: ChatMessage){
+        viewModelScope.launch (Dispatchers.Main){
+            _sendMessageState.emit(Event(Resource.Loading()))
+            try {
+                sendMessageUseCase(message)
+                _sendMessageState.emit(Event(Resource.Success("send Successfully")))
+            }catch (e:Exception){
+                _sendMessageState.emit(Event(Resource.Error(e.message.toString())))
             }
         }
     }
@@ -146,6 +176,7 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
+
     fun getAllAds() {
         viewModelScope.launch(Dispatchers.Main) {
             _allAdsState.emit(Event(Resource.Loading()))
@@ -160,7 +191,7 @@ class HomeViewModel @Inject constructor(
     }
 
 
-    fun getAdsByVehicleType(vehicleType:String) {
+    fun getAdsByVehicleType(vehicleType: String) {
         viewModelScope.launch(Dispatchers.Main) {
             _allAdsByVehicleTypeState.emit(Event(Resource.Loading()))
             try {
@@ -172,6 +203,21 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
+
+
+    fun getUserAds(userId: String) {
+        viewModelScope.launch(Dispatchers.Main) {
+            _userAdsState.emit(Event(Resource.Loading()))
+            try {
+                val ads = getAllAdsByUserIdUseCase(userId)
+                _userAdsState.emit(Event(Resource.Success(ads)))
+            } catch (e: Exception) {
+                _userAdsState.emit(Event(Resource.Error(e.message.toString())))
+
+            }
+        }
+    }
+
     fun uploadImages(imageUris: List<Uri>) {
         viewModelScope.launch(Dispatchers.Main) {
             _uploadImagesState.emit(Event((Resource.Loading())))
@@ -185,6 +231,7 @@ class HomeViewModel @Inject constructor(
 
         }
     }
+
     fun getUserInfoByUserId(userId: String) {
         viewModelScope.launch(Dispatchers.Main) {
             _userInfoState.emit((Event(Resource.Loading())))

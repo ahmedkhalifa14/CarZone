@@ -3,6 +3,7 @@ package com.example.carzoneapp.di
 import com.example.domain.repo.MainRepo
 import com.example.domain.usecase.AddVehicleAdUseCase
 import com.example.domain.usecase.FetchRegionsInCountryUseCase
+import com.example.domain.usecase.GetAllAdsByUserIdUseCase
 import com.example.domain.usecase.GetAllAdsByVehicleTypeUseCase
 import com.example.domain.usecase.GetAllAdsUseCase
 import com.example.domain.usecase.GetAllVehiclesCategoriesUseCase
@@ -12,6 +13,7 @@ import com.example.domain.usecase.LoginWithEmailUseCase
 import com.example.domain.usecase.RegisterUseCase
 import com.example.domain.usecase.SaveFirstTimeLaunchUseCase
 import com.example.domain.usecase.SaveUserDataUseCase
+import com.example.domain.usecase.SendMessageUseCase
 import com.example.domain.usecase.SendVerificationCodeUseCase
 import com.example.domain.usecase.SignInWithGoogleUseCase
 import com.example.domain.usecase.UploadImagesUseCase
@@ -82,7 +84,17 @@ object UseCaseModule {
     @Provides
     fun provideGetUserInfoUseCase(mainRepo: MainRepo): GetUserInfoUseCase =
         GetUserInfoUseCase(mainRepo)
+
     @Provides
-    fun provideGetAllAdsByVehicleTypeUseCase(mainRepo: MainRepo):GetAllAdsByVehicleTypeUseCase=
+    fun provideGetAllAdsByVehicleTypeUseCase(mainRepo: MainRepo): GetAllAdsByVehicleTypeUseCase =
         GetAllAdsByVehicleTypeUseCase(mainRepo)
+
+    @Provides
+    fun provideGetAllAdsByUserIdUseCase(mainRepo: MainRepo): GetAllAdsByUserIdUseCase =
+        GetAllAdsByUserIdUseCase(mainRepo)
+
+
+    @Provides
+    fun provideSendMessageUseCase(mainRepo: MainRepo): SendMessageUseCase =
+        SendMessageUseCase(mainRepo)
 }

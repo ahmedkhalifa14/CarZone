@@ -3,7 +3,101 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.home.MyAdsFragment">
+<TextView
+    android:id="@+id/my_ads_fragment_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:text="@string/my_ads"
+    android:textColor="@color/text_color"
+    android:textSize="@dimen/_20ssp"
+    android:textStyle="bold"
+    android:layout_margin="@dimen/_15sdp"
+    />
 
+    <Button
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:id="@+id/filters_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filters"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/my_ads_fragment_title"
+        android:backgroundTint="@color/appModeBG2"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_7sdp"
+        app:icon="@drawable/filter_icon"
+        android:textColor="@color/text_color"
+        app:iconTint ="@color/text_color"
+        android:textSize="@dimen/_12ssp"
+        />
+
+    <Button
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:id="@+id/allAds_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/all_ads"
+        app:layout_constraintStart_toEndOf="@id/filters_btn"
+        app:layout_constraintTop_toBottomOf="@id/my_ads_fragment_title"
+        android:backgroundTint="@color/appModeBG2"
+        android:layout_marginStart="@dimen/_7sdp"
+        android:layout_marginTop="@dimen/_7sdp"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/text_color"
+        app:iconTint ="@color/text_color"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/my_ads_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filters_btn"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        tools:listitem="@layout/my_ads_item"
+        />
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/my_ads_shimmerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:orientation="vertical"
+        android:scrollbarThumbVertical="@color/colorPrimaryDark"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/filters_btn"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <include layout="@layout/ads_item_placeholder" />
+            <include layout="@layout/ads_item_placeholder" />
+            <include layout="@layout/ads_item_placeholder" />
+            <include layout="@layout/ads_item_placeholder" />
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+    <TextView
+        android:id="@+id/no_item_available"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/you_don_t_have_ads_with_current_filters"
+        android:textSize="@dimen/_16ssp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textColor="@color/text_color"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

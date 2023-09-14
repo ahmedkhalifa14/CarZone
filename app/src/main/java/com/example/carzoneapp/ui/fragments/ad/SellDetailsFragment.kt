@@ -159,7 +159,9 @@ class SellDetailsFragment : Fragment() {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.uploadImagesState.collect(
                     EventObserver(
-                        onLoading = {},
+                        onLoading = {
+
+                        },
                         onSuccess = {
                             addAds(it)
                             Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG)

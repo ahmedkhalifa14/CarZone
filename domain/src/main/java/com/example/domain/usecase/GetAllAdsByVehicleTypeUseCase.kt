@@ -6,5 +6,4 @@ class GetAllAdsByVehicleTypeUseCase(private val mainRepo: MainRepo) {
     suspend operator fun invoke(targetVehicleType: String) =
         mainRepo.getAllAdsByVehicleType(targetVehicleType)
 
-
 }

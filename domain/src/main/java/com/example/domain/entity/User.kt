@@ -1,5 +1,7 @@
 package com.example.domain.entity
 
+import java.io.Serializable
+
 data class User (
     val userId:String="",
     val userName:String="",
@@ -9,4 +11,4 @@ data class User (
     val phoneNumber:String="",
     val email:String="",
     val image: String=""
-)
+):Serializable

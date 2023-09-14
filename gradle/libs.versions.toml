@@ -15,6 +15,7 @@ play-services-auth = "20.5.0"
 google-play-services-auth = "20.6.0"
 firebase-crashlytics-buildtools = "2.9.6"
 firebase-storage-ktx = "20.2.1"
+firebase-database-ktx = "20.2.2"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -31,6 +32,7 @@ play-services-auth = { group = "com.google.android.gms", name = "play-services-a
 gms-play-services-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "google-play-services-auth" }
 firebase-crashlytics-buildtools = { group = "com.google.firebase", name = "firebase-crashlytics-buildtools", version.ref = "firebase-crashlytics-buildtools" }
 firebase-storage-ktx = { group = "com.google.firebase", name = "firebase-storage-ktx", version.ref = "firebase-storage-ktx" }
+firebase-database-ktx = { group = "com.google.firebase", name = "firebase-database-ktx", version.ref = "firebase-database-ktx" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

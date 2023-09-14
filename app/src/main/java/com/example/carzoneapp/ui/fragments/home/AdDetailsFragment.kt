@@ -185,7 +185,7 @@ class AdDetailsFragment : Fragment() {
 
     private fun setupAdsRecyclerView() {
         adsRecyclerView = binding!!.relatedAdsRv
-        adsAdapter = AdsAdapter()
+        adsAdapter = AdsAdapter(1)
         adsRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         adsRecyclerView.adapter = adsAdapter

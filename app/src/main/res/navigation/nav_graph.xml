@@ -8,10 +8,10 @@
         android:id="@+id/homeFragment"
         android:name="com.example.carzoneapp.ui.fragments.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_adDetailsFragment"
-            app:destination="@id/adDetailsFragment" />
+            app:destination="@id/adDetailsFragment"/>
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_registerFragment_to_startFragment"
             app:destination="@id/startFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_setupFragment"
+            app:destination="@id/setupFragment" />
     </fragment>
     <fragment
         android:id="@+id/onBoardingFragment"
@@ -60,6 +63,9 @@
         <action
             android:id="@+id/action_startFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_setupFragment"
+            app:destination="@id/setupFragment" />
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
@@ -146,6 +152,15 @@
         <argument
             android:name="verificationId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_verifyCodeFragment_to_setupFragment"
+            app:destination="@id/setupFragment" />
+        <argument
+            android:name="phoneNumber"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_verifyCodeFragment_to_setupFragment2"
+            app:destination="@id/setupFragment" />
     </fragment>
     <fragment
         android:id="@+id/chooseLocationFragment"
@@ -163,7 +178,18 @@
         android:id="@+id/setupFragment"
         android:name="com.example.carzoneapp.ui.fragments.auth.SetupFragment"
         android:label="fragment_setup"
-        tools:layout="@layout/fragment_setup" />
+        tools:layout="@layout/fragment_setup" >
+        <argument
+            android:name="userData"
+            app:argType="com.example.domain.entity.User" />
+        <action
+            android:id="@+id/action_setupFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_setupFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+
+    </fragment>
     <fragment
         android:id="@+id/adDetailsFragment"
         android:name="com.example.carzoneapp.ui.fragments.home.AdDetailsFragment"

@@ -40,8 +40,8 @@ class AccountItemAdapter() : RecyclerView.Adapter<AccountItemAdapter.AccountItem
         holder.itemView.apply {
             Glide.with(this).load(accountItem.iconOne).into(holder.binding.accountItemIcon)
             Glide.with(this).load(accountItem.iconTwo).into(holder.binding.accountItemIcon2)
-            holder.binding.accountItemTitle.text=accountItem.title.toString()
-            holder.binding.accountItemSubtitle.text=accountItem.subtitle.toString()
+            holder.binding.accountItemTitle.text = accountItem.title.toString()
+            holder.binding.accountItemSubtitle.text = accountItem.subtitle.toString()
             setOnClickListener {
                 onItemClickListener?.let { it(accountItem) }
             }

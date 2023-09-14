@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView android:layout_width="match_parent"
+<com.google.android.material.card.MaterialCardView
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/Widget.Material3.CardView.Elevated"
@@ -12,7 +13,6 @@
         android:layout_height="match_parent"
         android:backgroundTint="@color/appModeBG"
         >
-
         <ImageView
             android:id="@+id/car_img"
             android:layout_width="@dimen/_100sdp"
@@ -38,15 +38,15 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/save_icon"
+            android:id="@+id/delete_icon"
             android:layout_width="@dimen/_30sdp"
             android:layout_height="@dimen/_30sdp"
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_15sdp"
-            android:src="@drawable/bookmark"
+            android:src="@drawable/delete"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/fav_icon" />
+            android:contentDescription="@string/delete_icon" />
 
         <TextView
             android:id="@+id/currency_tv"
