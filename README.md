@@ -63,8 +63,6 @@ The domain layer is responsible for encapsulating complex business logic, or sim
 
 [Easy Permissions](https://github.com/vmadalin/easypermissions-ktx) EasyPermissions is a wrapper library to simplify basic system permissions logic when targeting Android M or higher.
 
-[StateFlow](https://developer.android.com/kotlin/flow/stateflow-and-sharedflow)  StateFlow is a state-holder observable flow that emits the current and new state updates to its collectors. The current state value can also be read through its value property. To update state and send it to the flow, assign a new value to the value property of the MutableStateFlow class.
-
 [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) LiveData is an observable data holder class. Unlike a regular observable, LiveData is lifecycle-aware, meaning it respects the lifecycle of other app components, such as activities, fragments, or services. This awareness ensures LiveData only updates app component observers that are in an active lifecycle state.
 
 [DataStore](https://developer.android.com/topic/libraries/architecture/datastore) Jetpack DataStore is a data storage solution that allows you to store key-value pairs or typed objects with protocol buffers. DataStore uses Kotlin coroutines and Flow to store data asynchronously, consistently, and transactionally.
