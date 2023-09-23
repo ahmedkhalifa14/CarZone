@@ -9,8 +9,28 @@ CarZone follows uncle pop clean architecture
 
 <img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/de5690e7-6532-4cd2-a501-64752a746b7e" width ="350" height="250">
 
+CarZone App Divided into three Layers 
+ui layer, data layer and domain layer
+
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/133967e9-4399-4cfe-a4ec-21950802f12d" width ="350" height="250">
+
+UI layer
+
+The role of the UI layer (or presentation layer) is to display the application data on the screen. Whenever the data changes, either due to user interaction (such as pressing a button) or external input (such as a network response), the UI should update to reflect the changes.
+
+Data layer
+
+The data layer of an app contains the business logic. The business logic is what gives value to your app—it's made of rules that determine how your app creates, stores, and changes data.
+
+Domain layer
+The domain layer is an optional layer that sits between the UI and data layers.
+
+The domain layer is responsible for encapsulating complex business logic, or simple business logic that is reused by multiple ViewModels. This layer is optional because not all apps will have these requirements. You should use it only when needed—for example, to handle complexity or favor reusability.
+
 # Tools And Techniques
 [Kotlin](https://kotlinlang.org/) As programming language
+
+[Clean Architecture](https://developer.android.com/topic/architecture) Clean Architecture is a software architectural pattern that promotes the separation of concerns and the creation of modular, maintainable, and testable software systems.
 
 [Model-View-ViewModel(MVVM)](https://developer.android.com/topic/architecture) Architecture Pattern,MVVM means a way to structure code. With MVVM, it is possible to keep the UI components of an application away from the business logic.
 
