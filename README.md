@@ -23,6 +23,7 @@ Data layer
 The data layer of an app contains the business logic. The business logic is what gives value to your app—it's made of rules that determine how your app creates, stores, and changes data.
 
 Domain layer
+
 The domain layer is an optional layer that sits between the UI and data layers.
 
 The domain layer is responsible for encapsulating complex business logic, or simple business logic that is reused by multiple ViewModels. This layer is optional because not all apps will have these requirements. You should use it only when needed—for example, to handle complexity or favor reusability.
