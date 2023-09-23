@@ -72,4 +72,14 @@ The domain layer is responsible for encapsulating complex business logic, or sim
 
 [SpinKit](https://github.com/ybq/Android-SpinKit) Android loading animations
 
+[Shimmer](https://github.com/facebookarchive/shimmer-android) is an Android library that provides an easy way to add a shimmer effect to any view in your Android app.
+
+[Pager Dots Indicator](https://github.com/tommybuonomo/dotsindicator#pager-dots-indicator)  is an Android Library that provide an easy way to add Dots Indicators for view pagers in Android
+
+[PinView](https://github.com/ChaosLeung/PinView) A PIN view library for Android. Use to enter PIN/OTP/password etc.
+
+[SplashScreen](https://developer.android.com/develop/ui/views/launch/splash-screen) Starting in Android 12, the SplashScreen API lets apps launch with animation, including an into-app motion at launch, a splash screen showing your app icon, and a transition to your app itself. A SplashScreen is a Window and therefore covers an Activity.
+
+[intuit](https://github.com/intuit/sdp) An android lib that provides a new size unit - sdp (scalable dp). This size unit scales with the screen size. It can help Android developers with supporting multiple screens.
+ 
 [Timber](https://github.com/JakeWharton/timber) This is a logger with a small, extensible API which provides utility on top of Android's normal Log class.
