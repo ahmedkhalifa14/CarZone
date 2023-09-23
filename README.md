@@ -51,6 +51,8 @@ The domain layer is responsible for encapsulating complex business logic, or sim
 
 [Retrofit](https://square.github.io/retrofit/) A type-safe HTTP client for Android and Java
 
+[OkHttp](https://square.github.io/okhttp/) HTTP is the way modern applications network. It’s how we exchange data & media. Doing HTTP efficiently makes your stuff load faster and saves bandwidth.
+
 [Kotlin Coroutines](https://developer.android.com/kotlin/coroutines) A coroutine is a concurrency design pattern that you can use on Android to simplify code that executes asynchronously. 
 
 [Flows](https://developer.android.com/kotlin/flow) In coroutines, a flow is a type that can emit multiple values sequentially, as opposed to suspend functions that return only a single value. For example, you can use a flow to receive live updates from a database.
