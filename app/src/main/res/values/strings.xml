@@ -15,7 +15,7 @@
     <string name="login_header_text1">Hello there!</string>
     <string name="login_header_text2">Login to your account</string>
     <string name="register_header_text1">Create your account!</string>
-    <string name="register_header_text2">Aleady have an account?</string>
+    <string name="register_header_text2">Already have an account?</string>
     <string name="username">Username\n</string>
     <string name="sign_up">Sign Up</string>
     <string name="browse_categories">Browse Categories</string>
@@ -30,7 +30,7 @@
     <string name="profile_sub_title">View and edit profile</string>
     <string name="carzone_wallet">CarZone Wallet</string>
     <string name="balance">Balance:</string>
-    <string name="account_item_title1">But Discount Packages</string>
+    <string name="account_item_title1">Buy Discount Packages</string>
     <string name="account_item_title2">Order and Billing Info</string>
     <string name="account_item_title3">Settings</string>
     <string name="account_item_title4">Help and Support</string>
@@ -149,14 +149,22 @@
     <string name="filters">Filters</string>
     <string name="you_don_t_have_ads_with_current_filters">You don\'t have ads with current filters</string>
     <string name="all_ads">All Ads</string>
-    <string name="fav_icon">fav icon</string>
-    <string name="delete_icon">delete icon</string>
+    <string name="fav_icon" translatable="false">fav icon</string>
+    <string name="delete_icon" translatable="false">delete icon</string>
     <string name="ads_type">Ads Type</string>
-    <string name="ic_attachment">ic_attachment</string>
+    <string name="ic_attachment" translatable="false">ic_attachment</string>
     <string name="send_message">Message...</string>
-    <string name="audio_btn">audio_btn</string>
-    <string name="video_btn">video_btn</string>
-    <string name="back_btn">back_btn</string>
+    <string name="audio_btn" translatable="false">audio_btn</string>
+    <string name="video_btn" translatable="false">video_btn</string>
+    <string name="back_btn" translatable="false">back_btn</string>
+    <string name="seen_img">seen_img</string>
+    <string name="receiver_message">ReceiverMessage</string>
+    <string name="sender_message">sender Message</string>
+    <string name="use_current_location">Use current location</string>
+    <string name="choose_region">Choose region</string>
+    <string name="egypt">Egypt</string>
+    <string name="see_all_in">see all in</string>
+    <string name="search_area_city_or_country">search area, city or country</string>
 
 
 </resources>

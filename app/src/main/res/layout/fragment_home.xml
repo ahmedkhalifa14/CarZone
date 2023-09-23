@@ -139,10 +139,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <include layout="@layout/ads_item_placeholder" />
-            <include layout="@layout/ads_item_placeholder" />
-            <include layout="@layout/ads_item_placeholder" />
-            <include layout="@layout/ads_item_placeholder" />
+            <include layout="@layout/ads_parent_layout_placeholder" />
+            <include layout="@layout/ads_parent_layout_placeholder" />
+            <include layout="@layout/ads_parent_layout_placeholder" />
+            <include layout="@layout/ads_parent_layout_placeholder" />
         </LinearLayout>
     </com.facebook.shimmer.ShimmerFrameLayout>
 

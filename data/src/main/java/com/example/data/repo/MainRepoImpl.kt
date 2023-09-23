@@ -1,6 +1,7 @@
 package com.example.data.repo
 
 import android.net.Uri
+import androidx.lifecycle.LiveData
 import com.example.data.local.DataStoreManager
 import com.example.data.network.FireBaseService
 import com.example.data.network.GeoNamesService
@@ -9,6 +10,7 @@ import com.example.domain.entity.ChatMessage
 import com.example.domain.entity.GeoNamesResponse
 import com.example.domain.entity.ImageEntity
 import com.example.domain.entity.User
+import com.example.domain.entity.UserChat
 import com.example.domain.entity.VehiclesCategories
 import com.example.domain.repo.MainRepo
 import com.google.firebase.auth.AuthResult
@@ -104,5 +106,14 @@ class MainRepoImpl @Inject constructor(
         firebaseService.sendMessage(message)
     }
 
+    override fun getMessages(receiverID: String, senderID: String): LiveData<List<ChatMessage>> =
+        firebaseService.getMessages(receiverID, senderID)
+
+    override suspend fun saveUserChats(userChat: UserChat) {
+        firebaseService.saveUserChats(userChat)
+    }
+
+    override suspend fun getChatMessages(userId: String): List<UserChat> =
+        firebaseService.getUserChats(userId)
 
 }

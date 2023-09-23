@@ -15,6 +15,8 @@
     <color name="icon_color">@color/black</color>
     <color name="pinViewBgColor">@color/grey</color>
     <color name="shimmerColor">#454545</color>
+    <color name="textColorHint">#DAD3D3</color>
+
 
 
 </resources>

@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.carzoneapp.R
 import com.example.carzoneapp.databinding.FragmentLoginBinding
@@ -27,6 +28,10 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding
     private val authViewModel: AuthViewModel by viewModels()
+    private val navOptions =
+        NavOptions.Builder()
+            .setPopUpTo(R.id.loginFragment, true)
+            .build()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -44,7 +49,6 @@ class LoginFragment : Fragment() {
             binding!!.inputTextLayoutPassword.isHelperTextEnabled = false
         }
         binding!!.loginBtn.setOnClickListener {
-            Toast.makeText(requireContext(), "login", Toast.LENGTH_SHORT).show()
             loginWithEmail()
         }
         subscribeToObservables()
@@ -67,7 +71,7 @@ class LoginFragment : Fragment() {
                         },
                         onSuccess = {
                             binding!!.spinKitProgress.isVisible = false
-                            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                            findNavController().navigate(R.id.homeFragment, null, navOptions)
                             Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
                         },
                         onError = {

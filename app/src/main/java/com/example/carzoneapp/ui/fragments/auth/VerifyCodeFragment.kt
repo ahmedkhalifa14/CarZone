@@ -97,6 +97,7 @@ class VerifyCodeFragment : Fragment() {
         binding!!.spinKitProgress.isVisible = false
         Toast.makeText(requireContext(), successMessage, Toast.LENGTH_SHORT).show()
         val action = VerifyCodeFragmentDirections.actionVerifyCodeFragmentToSetupFragment(user)
+        findNavController().popBackStack()
         findNavController().navigate(action)
     }
 

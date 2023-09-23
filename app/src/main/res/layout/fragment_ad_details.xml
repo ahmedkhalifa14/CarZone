@@ -42,16 +42,19 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/appModeBG2"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/topAppBarLayout">
+            app:layout_constraintTop_toBottomOf="@+id/topAppBarLayout"
+            app:layout_constraintBottom_toTopOf="@+id/connections_layout"
+           android:layout_marginBottom="@dimen/_50sdp"
+            >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout1"
@@ -139,6 +142,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/shimmerColor"
                 android:padding="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layout1">
@@ -804,12 +808,14 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/related_ads_rv"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_margin="@dimen/_15sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/related_ads_txt"
-                    tools:listitem="@layout/ads_item" />
+                    tools:listitem="@layout/ads_item"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    />
 
                 <com.facebook.shimmer.ShimmerFrameLayout
                     android:id="@+id/ads_shimmerLayout"
@@ -846,8 +852,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom|center"
-        android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginEnd="@dimen/_15sdp"
         android:layout_marginBottom="@dimen/_7sdp"
         >
 

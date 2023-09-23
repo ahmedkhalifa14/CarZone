@@ -71,7 +71,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header_text2"
-        app:startIconDrawable="@drawable/user">
+        app:startIconDrawable="@drawable/user"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inputTextUserName"
@@ -89,6 +90,7 @@
         android:hint="@string/email"
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_10sdp"
+        app:hintTextColor="@color/primaryColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inputTextLayoutUserName"
@@ -114,6 +116,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inputTextLayoutEmail"
         app:prefixText="+20"
+        app:hintTextColor="@color/primaryColor"
         app:prefixTextColor="@color/text_color"
         app:startIconDrawable="@drawable/phone">
 
@@ -129,6 +132,7 @@
         style="@style/text_input_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:hintTextColor="@color/primaryColor"
         android:layout_marginTop="@dimen/_15sdp"
         android:hint="@string/password"
         android:layout_marginEnd="@dimen/_10sdp"

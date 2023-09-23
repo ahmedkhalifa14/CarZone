@@ -17,8 +17,10 @@ import com.example.carzoneapp.adapters.CategoryAdapter
 import com.example.carzoneapp.databinding.FragmentSellBinding
 import com.example.carzoneapp.ui.viewmodel.HomeViewModel
 import com.example.carzoneapp.utils.EventObserver
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
@@ -28,6 +30,9 @@ class SellFragment : Fragment() {
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var categoryRecyclerView: RecyclerView
     private val homeViewModel: HomeViewModel by viewModels()
+    private var location: String? = null
+    @Inject
+    lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,15 +47,23 @@ class SellFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupCategoryRecyclerView()
         subscribeToObservables()
+
         categoryAdapter.setOnItemClickListener {
-            val action = SellFragmentDirections.actionSellFragmentToSellDetailsFragment(it)
-            findNavController().navigate(action)
+            val action = location?.let { it1 ->
+                SellFragmentDirections.actionSellFragmentToSellDetailsFragment(it,
+                    it1
+                )
+            }
+            if (action != null) {
+                findNavController().navigate(action)
+            }
         }
     }
 
     override fun onResume() {
         super.onResume()
         homeViewModel.getAllVehiclesCategories()
+        homeViewModel.getUserInfoByUserId(firebaseAuth.currentUser?.uid.toString())
     }
 
     private fun setupCategoryRecyclerView() {
@@ -69,6 +82,21 @@ class SellFragment : Fragment() {
                         onLoading = {},
                         onSuccess = { vehiclesCategoriesList ->
                             categoryAdapter.differ.submitList(vehiclesCategoriesList)
+                        },
+                        onError = {
+                            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+                        }
+                    )
+                )
+            }
+        }
+        lifecycle.coroutineScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                homeViewModel.userInfoState.collect(
+                    EventObserver(
+                        onLoading = {},
+                        onSuccess = { user ->
+                            location = user.location
                         },
                         onError = {
                             Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()

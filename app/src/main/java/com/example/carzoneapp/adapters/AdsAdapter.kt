@@ -13,7 +13,9 @@ import com.example.carzoneapp.databinding.MyAdsItemBinding
 import com.example.carzoneapp.helper.extractDateAndTime
 import com.example.domain.entity.Ad
 
-class AdsAdapter(private val type: Int) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+class AdsAdapter(private val type: Int, private val onItemClickListener: ((Ad) -> Unit)? = null) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     enum class ViewType {
         TYPE_ONE,
         TYPE_TWO
@@ -73,12 +75,10 @@ class AdsAdapter(private val type: Int) : RecyclerView.Adapter<RecyclerView.View
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val ads = differ.currentList[position]
-
         when (holder.itemViewType) {
             ViewType.TYPE_ONE.ordinal -> {
                 val adsViewHolder = holder as AdsAdapter.AdsAdapterViewHolder
                 adsViewHolder.itemView.apply {
-
                     Glide.with(this).load(ads.vehicleImages[0])
                         .into(adsViewHolder.adsBinding.adImg)
                     adsViewHolder.adsBinding.adName.text = ads.adsData.title
@@ -93,8 +93,11 @@ class AdsAdapter(private val type: Int) : RecyclerView.Adapter<RecyclerView.View
                     val dateAndTime = extractDateAndTime(firebaseDate!!)
                     val date = dateAndTime.day + " " + dateAndTime.month
                     adsViewHolder.adsBinding.listedDate.text = date
+//                    setOnClickListener {
+//                        onItemClickListener?.let { it(ads,position) }
+//                    }
                     setOnClickListener {
-                        onItemClickListener?.let { it(ads) }
+                        onItemClickListener?.invoke(ads)
                     }
                 }
             }
@@ -102,7 +105,6 @@ class AdsAdapter(private val type: Int) : RecyclerView.Adapter<RecyclerView.View
             ViewType.TYPE_TWO.ordinal -> {
                 val myAdsViewHolder = holder as AdsAdapter.MyAdsAdapterViewHolder
                 myAdsViewHolder.itemView.apply {
-
                     Glide.with(this).load(ads.vehicleImages[0])
                         .into(myAdsViewHolder.myAdsBinding.carImg)
                     myAdsViewHolder.myAdsBinding.carName.text = ads.adsData.title
@@ -112,29 +114,35 @@ class AdsAdapter(private val type: Int) : RecyclerView.Adapter<RecyclerView.View
                     } else {
                         myAdsViewHolder.myAdsBinding.negotiableTv.text = "Not negotiable"
                     }
-
                     val firebaseDate = ads.adsData.date
                     val dateAndTime = extractDateAndTime(firebaseDate!!)
                     val date = dateAndTime.day + " " + dateAndTime.month
                     myAdsViewHolder.myAdsBinding.listedDate.text = date
                     setOnClickListener {
-                        onItemClickListener?.let { it(ads) }
+                        onItemClickListener?.invoke(ads)
                     }
                 }
-
             }
         }
-
     }
 
     override fun getItemCount(): Int = differ.currentList.size
 
-
-    private var onItemClickListener: ((Ad) -> Unit)? = null
-
-    fun setOnItemClickListener(listener: (Ad) -> Unit) {
-        onItemClickListener = listener
+    interface OnItemClickListener {
+        fun onItemClick(childPosition: Int)
     }
+
+    //    private var onItemClickListener: ((Ad) -> Unit)? = null
+//
+//    fun setOnItemClickListener(listener: (Ad) -> Unit) {
+//        onItemClickListener = listener
+//    }
+
+//    private var onItemClickListener: ((Ad, Int) -> Unit)? = null
+//
+//    fun setOnItemClickListener(listener: (Ad, Int) -> Unit) {
+//        onItemClickListener = listener
+//    }
 
 
     override fun getItemViewType(position: Int): Int {
@@ -143,11 +151,9 @@ class AdsAdapter(private val type: Int) : RecyclerView.Adapter<RecyclerView.View
             1 -> {
                 ViewType.TYPE_ONE.ordinal
             }
-
             2 -> {
                 ViewType.TYPE_TWO.ordinal
             }
-
             else -> throw IllegalArgumentException("Invalid value")
 
         }

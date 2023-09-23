@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_5sdp"
+    >
+
+    <TextView
+        android:id="@+id/ads_parent_layout_ads_type_tv"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="wrap_content"
+        android:background="@color/shimmerColor"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/_18ssp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ads_parent_layout_see_all_tv"
+        android:layout_width="@dimen/_75sdp"
+        android:layout_height="wrap_content"
+        android:background="@color/shimmerColor"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/ads_parent_layout_see_all_tv">
+
+        <include layout="@layout/ads_item_placeholder"
+            android:id="@+id/layout1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content" />
+        <include layout="@layout/ads_item_placeholder"
+            app:layout_constraintStart_toEndOf="@id/layout1"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_height="wrap_content"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

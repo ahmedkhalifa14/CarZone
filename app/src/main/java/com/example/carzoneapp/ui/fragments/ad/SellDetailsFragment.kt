@@ -2,7 +2,6 @@ package com.example.carzoneapp.ui.fragments.ad
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.carzoneapp.adapters.TabAdapter
@@ -82,6 +82,7 @@ class SellDetailsFragment : Fragment() {
         _binding = FragmentSellDetailsBinding.inflate(inflater, container, false)
         val adapter = TabAdapter(requireActivity())
         category = args.category
+
         tab1Fragment = PriceTabFragment()
         tab2Fragment = SpecificationsTabFragment.newInstance(category!!)
         adapter.addFragment(tab1Fragment, "Price")
@@ -106,8 +107,15 @@ class SellDetailsFragment : Fragment() {
         binding!!.nextBtn.setOnClickListener {
             uriArray?.toList()?.let { imagesList -> homeViewModel.uploadImages(imagesList) }
         }
-
-
+        tab1Fragment.priceTabFragmentBinding!!.locationCard.setOnClickListener {
+            val action =
+                SellDetailsFragmentDirections.actionSellDetailsFragmentToChooseLocationFragment(
+                    args.location,
+                    args.category
+                )
+            findNavController().navigate(action)
+        }
+        tab1Fragment.priceTabFragmentBinding!!.locationTv.text = args.location
     }
 
 
@@ -115,6 +123,7 @@ class SellDetailsFragment : Fragment() {
 
         val adsData = tab1Fragment.getPriceTabData()
         val vehicle = tab2Fragment.getVehicleData()
+
         val vehicleType: VehicleData = when (category?.categoryName) {
             "Cars" -> CarData(tab2Fragment.getCarData())
             "Vans" -> VanData(tab2Fragment.getVanData())
@@ -138,20 +147,12 @@ class SellDetailsFragment : Fragment() {
 
 
     private fun openGallery() {
-        if (Build.VERSION.SDK_INT < 19) {
-            val intent = Intent()
-            intent.type = "image/*"
-            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-            intent.action = Intent.ACTION_GET_CONTENT
-            val chooserIntent = Intent.createChooser(intent, "Choose Pictures")
-            imageSelectionContract.launch(chooserIntent.type)
-        } else { // For latest versions API LEVEL 19+
-            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-            intent.addCategory(Intent.CATEGORY_OPENABLE)
-            intent.type = "image/*"
-            imageSelectionContract.launch(intent.type)
-        }
+        // For latest versions API LEVEL 19+
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+        intent.addCategory(Intent.CATEGORY_OPENABLE)
+        intent.type = "image/*"
+        imageSelectionContract.launch(intent.type)
     }
 
     private fun subscribeToObservables() {

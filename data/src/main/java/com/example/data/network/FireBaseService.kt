@@ -2,6 +2,8 @@ package com.example.data.network
 
 import android.net.Uri
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.domain.entity.Ad
 import com.example.domain.entity.AdData
 import com.example.domain.entity.Car
@@ -12,6 +14,7 @@ import com.example.domain.entity.Motorcycle
 import com.example.domain.entity.Truck
 import com.example.domain.entity.TruckData
 import com.example.domain.entity.User
+import com.example.domain.entity.UserChat
 import com.example.domain.entity.Van
 import com.example.domain.entity.VanData
 import com.example.domain.entity.Vehicle
@@ -25,8 +28,11 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.CompletableDeferred
@@ -34,6 +40,7 @@ import kotlinx.coroutines.tasks.await
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
+import java.util.Locale
 import java.util.UUID
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -59,14 +66,12 @@ class FireBaseService @Inject constructor(
         firebaseAuth.signInWithEmailAndPassword(email, password).await()!!
 
     suspend fun saveUserData(user: User) {
-        Log.d("authViewModel", "in FirebaseService user= " + user.toString())
+        Log.d("authViewModel", "in FirebaseService user= $user")
         val documentReference = firebaseFireStore.collection("users").document(user.userId)
         try {
             documentReference.set(user).await()
         } catch (e: Exception) {
             Log.d("authViewModel", "in FirebaseService error is " + e.message)
-
-            // Handle the exception appropriately
         }
     }
 
@@ -127,7 +132,6 @@ class FireBaseService @Inject constructor(
         task.await()
     }
 
-
     suspend fun uploadImages(imageUris: List<Uri>): List<String> {
         val imageUrls = mutableListOf<String>()
         val tasks = imageUris.map { imageUri ->
@@ -143,7 +147,7 @@ class FireBaseService @Inject constructor(
 
         try {
             val uploadResults = Tasks.whenAllComplete(tasks).await()
-            uploadResults.forEachIndexed { index, taskResult ->
+            uploadResults.forEachIndexed { _, taskResult ->
                 if (taskResult.isSuccessful) {
                     val downloadUrl = (taskResult.result as Uri).toString()
                     imageUrls.add(downloadUrl)
@@ -183,7 +187,6 @@ class FireBaseService @Inject constructor(
 
         return images
     }
-
 
     suspend fun getAllAds(): MutableList<Ad> {
         val collectionReference = firebaseFireStore.collection("Ads")
@@ -270,7 +273,6 @@ class FireBaseService @Inject constructor(
 
         return adsList
     }
-
     suspend fun getUserByUserId(userId: String): User? {
         val usersCollection = firebaseFireStore.collection("users")
         try {
@@ -285,7 +287,6 @@ class FireBaseService @Inject constructor(
 
         return null
     }
-
     suspend fun getAllAdsByVehicleType(vehicleType: String): List<Ad> {
         val collectionReference = firebaseFireStore.collection("Ads")
         val querySnapshot = collectionReference.get().await()
@@ -299,10 +300,8 @@ class FireBaseService @Inject constructor(
                 val vehicleTypeMap =
                     documentSnapshot.get("vehicleType") as? Map<String, Map<String, Any>>
                 val vehicle = documentSnapshot.get("vehicle") as? Map<String, Any>
-
                 val adsDateTimestamp = adsData?.get("date") as? com.google.firebase.Timestamp
                 val adsDate = adsDateTimestamp?.toDate()
-
                 val mappedVehicleType: VehicleData? = when {
                     vehicleTypeMap != null -> {
                         val typeKey = vehicleTypeMap.keys.firstOrNull()
@@ -374,7 +373,6 @@ class FireBaseService @Inject constructor(
 
         return adsList
     }
-
     suspend fun getUserAds(userId: String): List<Ad> {
         val collectionReference = firebaseFireStore.collection("Ads")
         val querySnapshot = collectionReference.get().await()
@@ -455,33 +453,104 @@ class FireBaseService @Inject constructor(
 
         return adsList
     }
-
     suspend fun sendMessage(message: ChatMessage) {
-        //val messageText: String = binding.messageBox.getText().toString()
         val messageSenderRef = "Message/${message.messageSenderId}/${message.messageReceiverId}"
         val messageReceiverRef = "Message/${message.messageReceiverId}/${message.messageSenderId}"
         val messagesRef = firebaseDataBase.reference
-        val user_message_key: DatabaseReference =
+        val userMessageKey: DatabaseReference =
             messagesRef.child("Messages").child(message.messageSenderId)
                 .child(message.messageReceiverId).push()
-        val message_push_id = user_message_key.key
+        val messagePushId = userMessageKey.key
         val calFordDate = Calendar.getInstance()
-        val currentDate = SimpleDateFormat("dd-MMMM-yyyy")
+        val currentDate = SimpleDateFormat("dd-MMMM-yyyy", Locale.getDefault())
         val saveCurrentDate = currentDate.format(calFordDate.time)
-        val calFordTime = Calendar.getInstance()
-        val currentTime = SimpleDateFormat("HH:mm aa")
+        val currentTime = SimpleDateFormat("HH:mm aa",Locale.getDefault())
         val saveCurrentTime = currentTime.format(calFordDate.time)
-        val messageTextBody: HashMap<String, String> = HashMap()
+        val currentTimestamp = System.currentTimeMillis()
+        val messageTextBody: HashMap<String, Any> = HashMap()
         messageTextBody["message"] = message.message
         messageTextBody["time"] = saveCurrentTime
         messageTextBody["date"] = saveCurrentDate
         messageTextBody["messageReceiverId"] = message.messageReceiverId
         messageTextBody["messageSenderId"] = message.messageSenderId
+        messageTextBody["timestamp"] = currentTimestamp
         val messageBodyDetails: HashMap<String, Any?> = HashMap()
-        messageBodyDetails["$messageSenderRef/$message_push_id"] = messageTextBody
-        messageBodyDetails["$messageReceiverRef/$message_push_id"] = messageTextBody
+        messageBodyDetails["$messageSenderRef/$messagePushId"] = messageTextBody
+        messageBodyDetails["$messageReceiverRef/$messagePushId"] = messageTextBody
         messagesRef.updateChildren(messageBodyDetails).await()
     }
+    fun getMessages(receiverID: String, senderID: String): LiveData<List<ChatMessage>> {
+        val messagesRef = firebaseDataBase.reference
+        val query = messagesRef.child("Message").child(receiverID).child(senderID)
+        val liveData = MutableLiveData<List<ChatMessage>>()
+        query.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val messages = mutableListOf<ChatMessage>()
+                for (childSnapshot in dataSnapshot.children) {
+                    val message = childSnapshot.getValue(ChatMessage::class.java)
+                    message?.let { messages.add(it) }
+                }
+                liveData.postValue(messages)
+                // Add logging to check for data presence
+                if (messages.isNotEmpty()) {
+                    Log.d("getMessagesState", "Data is present")
+                } else {
+                    Log.d("getMessagesState", "No data found")
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Handle error if needed
+            }
+        })
+
+        return liveData
+    }
+    suspend fun saveUserChats(userChat: UserChat) {
+        try {
+            val batch = firebaseFireStore.batch()
+            val documentRef1 = firebaseFireStore.collection("Chats")
+                .document(userChat.userId + userChat.otherUserId)
+            batch.set(documentRef1, userChat)
+            val documentRef2 = firebaseFireStore.collection("Chats")
+                .document(userChat.otherUserId + userChat.userId)
+            batch.set(documentRef2, userChat)
+            batch.commit().await()
+            Log.d("saveUserChats", "Saved")
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+    suspend fun getUserChats(userId: String): List<UserChat> {
+        val userChats = mutableListOf<UserChat>()
+        try {
+            val querySnapshot = firebaseFireStore.collection("Chats").get().await()
+            for (document in querySnapshot.documents) {
+                val userID = document.getString("userId")!!
+                val chatId = document.getString("chatId")!!
+                val otherUserId = document.getString("otherUserId")!!
+                val otherUserName = document.getString("otherUserName")!!
+                val userName = document.getString("userName")!!
+                val userImg = document.getString("userImg")!!
+                val otherUserImg = document.getString("otherUserImg")!!
+                val latestMessage = document.getString("latestMessage")!!
+                val timestamp = document.getLong("timestamp")!!
+                val chat =
+                    UserChat(userID, chatId, otherUserId, otherUserName, userName,userImg,otherUserImg,latestMessage, timestamp)
+                if (userId == userID || userId == otherUserId) userChats.add(chat)
+            }
+        } catch (e: Exception) {
+            throw e
+        }
+        return userChats
+    }
+
 
 }
+
+
+
+
+
+
 

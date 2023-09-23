@@ -10,6 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carzoneapp.adapters.ChooseLocationAdapter
@@ -27,6 +29,11 @@ class ChooseLocationFragment : Fragment() {
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var chooseLocationAdapter: ChooseLocationAdapter
     private lateinit var chooseLocationRecyclerView: RecyclerView
+    private val args: ChooseLocationFragmentArgs by navArgs()
+
+    private var location: String? = null
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,7 +47,26 @@ class ChooseLocationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         subscribeToObservables()
         setupChooseLocationRecyclerView()
+        location = args.location
         homeViewModel.fetchRegionsInCountry("ahmedkhalifa14", "Eg", "ADM1")
+        chooseLocationAdapter.setOnItemClickListener { location ->
+            val action =
+                ChooseLocationFragmentDirections.actionChooseLocationFragmentToSellDetailsFragment(
+                    args.category,
+                    location.adminName1
+                )
+            findNavController().navigate(action)
+        }
+
+        binding!!.useCurrentLocationTv.setOnClickListener {
+            val action =
+                ChooseLocationFragmentDirections.actionChooseLocationFragmentToSellDetailsFragment(
+                    args.category,
+                    location!!
+                )
+            findNavController().navigate(action)
+        }
+
     }
 
     private fun subscribeToObservables() {

@@ -110,6 +110,7 @@ class SetupFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         //checkLocationSettings()
         subscribeToObservables()
         binding!!.LetsGoBtn.setOnClickListener {
+            findNavController().popBackStack()
             findNavController().navigate(R.id.action_setupFragment_to_homeFragment)
         }
         binding!!.locationCard.setOnClickListener {

@@ -1,6 +1,7 @@
 package com.example.carzoneapp.ui.viewmodel
 
 import android.net.Uri
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.carzoneapp.utils.Event
@@ -9,6 +10,7 @@ import com.example.domain.entity.Ad
 import com.example.domain.entity.ChatMessage
 import com.example.domain.entity.GeoNamesResponse
 import com.example.domain.entity.User
+import com.example.domain.entity.UserChat
 import com.example.domain.entity.VehiclesCategories
 import com.example.domain.usecase.AddVehicleAdUseCase
 import com.example.domain.usecase.FetchRegionsInCountryUseCase
@@ -16,9 +18,12 @@ import com.example.domain.usecase.GetAllAdsByUserIdUseCase
 import com.example.domain.usecase.GetAllAdsByVehicleTypeUseCase
 import com.example.domain.usecase.GetAllAdsUseCase
 import com.example.domain.usecase.GetAllVehiclesCategoriesUseCase
+import com.example.domain.usecase.GetMessagesUseCase
+import com.example.domain.usecase.GetUserChatListUseCase
 import com.example.domain.usecase.GetUserInfoUseCase
 import com.example.domain.usecase.IsFirstTimeLaunchUseCase
 import com.example.domain.usecase.SaveFirstTimeLaunchUseCase
+import com.example.domain.usecase.SaveUserChatListUseCase
 import com.example.domain.usecase.SendMessageUseCase
 import com.example.domain.usecase.UploadImagesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -42,7 +47,10 @@ class HomeViewModel @Inject constructor(
     private val getUserInfoUseCase: GetUserInfoUseCase,
     private val getAllAdsByVehicleTypeUseCase: GetAllAdsByVehicleTypeUseCase,
     private val getAllAdsByUserIdUseCase: GetAllAdsByUserIdUseCase,
-    private val sendMessageUseCase: SendMessageUseCase
+    private val sendMessageUseCase: SendMessageUseCase,
+    private val getMessagesUseCase: GetMessagesUseCase,
+    private val getUserChatListUseCase: GetUserChatListUseCase,
+    private val saveUserChatListUseCase: SaveUserChatListUseCase
 ) : ViewModel() {
 
     private val _vehiclesCategoriesState =
@@ -98,11 +106,31 @@ class HomeViewModel @Inject constructor(
         _userAdsState
 
 
-
     private val _sendMessageState =
         MutableStateFlow<Event<Resource<String>>>(Event(Resource.Init()))
     val sendMessageState: StateFlow<Event<Resource<String>>> =
         _sendMessageState
+
+    private val _getMessagesState =
+        MutableStateFlow<Event<Resource<LiveData<List<ChatMessage>>>>>(Event(Resource.Init()))
+    val getMessagesState: StateFlow<Event<Resource<LiveData<List<ChatMessage>>>>> =
+        _getMessagesState
+
+
+//    suspend fun saveUserChats(userChat: UserChat)
+//    suspend fun getChatMessages(userId: String): List<UserChat>
+
+
+    private val _saveUserChatListState =
+        MutableStateFlow<Event<Resource<String>>>(Event(Resource.Init()))
+    val saveUserChatListState:StateFlow<Event<Resource<String>>> =
+        _saveUserChatListState
+
+    private val _getUserChatListState =
+        MutableStateFlow<Event<Resource<List<UserChat>>>>(Event(Resource.Init()))
+    val getUserChatListState:StateFlow<Event<Resource<List<UserChat>>>> =
+        _getUserChatListState
+
 
 
     fun isFirstTimeLaunch() {
@@ -117,17 +145,58 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
-    fun sendMessage(message: ChatMessage){
-        viewModelScope.launch (Dispatchers.Main){
+
+    fun sendMessage(message: ChatMessage) {
+        viewModelScope.launch(Dispatchers.Main) {
             _sendMessageState.emit(Event(Resource.Loading()))
             try {
                 sendMessageUseCase(message)
                 _sendMessageState.emit(Event(Resource.Success("send Successfully")))
-            }catch (e:Exception){
+            } catch (e: Exception) {
                 _sendMessageState.emit(Event(Resource.Error(e.message.toString())))
             }
         }
     }
+
+    fun getMessages(receiverID: String, senderID: String) {
+        viewModelScope.launch(Dispatchers.Main) {
+            _getMessagesState.emit(Event(Resource.Loading()))
+            try {
+                val messages = getMessagesUseCase(receiverID, senderID)
+                _getMessagesState.emit(Event(Resource.Success(messages)))
+            } catch (e: Exception) {
+                _getMessagesState.emit(Event(Resource.Error(e.message.toString())))
+            }
+        }
+    }
+
+
+    fun saveUserChatList(userChat: UserChat) {
+        viewModelScope.launch(Dispatchers.Main) {
+            _saveUserChatListState.emit(Event(Resource.Loading()))
+            try {
+                saveUserChatListUseCase(userChat)
+                _saveUserChatListState.emit(Event(Resource.Success("saved Successfully")))
+            } catch (e: Exception) {
+                _saveUserChatListState.emit(Event(Resource.Error(e.message.toString())))
+            }
+        }
+    }
+
+    fun getUserChatList( userId: String) {
+        viewModelScope.launch(Dispatchers.Main) {
+            _getUserChatListState.emit(Event(Resource.Loading()))
+            try {
+                val chats = getUserChatListUseCase(userId)
+                _getUserChatListState.emit(Event(Resource.Success(chats)))
+            } catch (e: Exception) {
+                _getUserChatListState.emit(Event(Resource.Error(e.message.toString())))
+            }
+        }
+    }
+
+
+
 
     fun saveFirstTimeLaunch(isFirstTimeLaunch: Boolean) {
         viewModelScope.launch(Dispatchers.Main) {

@@ -53,6 +53,10 @@ class PhoneAuthFragment : Fragment() {
         }
     }
 
+
+
+
+
     private fun subscribeToObservables() {
         lifecycle.coroutineScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {

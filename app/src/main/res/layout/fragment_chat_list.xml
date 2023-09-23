@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_5sdp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/appModeBG"
         android:hint="@string/search_message"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,8 +26,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_et"
         android:layout_marginTop="@dimen/_5sdp"
-        android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
         tools:listitem="@layout/chat_list_item"
 
         />

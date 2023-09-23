@@ -4,20 +4,33 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.carzoneapp.adapters.AccountItemAdapter
 import com.example.carzoneapp.databinding.FragmentAccountBinding
+import com.example.carzoneapp.ui.viewmodel.HomeViewModel
 import com.example.carzoneapp.utils.Constants
+import com.example.carzoneapp.utils.EventObserver
+import com.example.domain.entity.User
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
-
+@AndroidEntryPoint
 class AccountFragment : Fragment() {
 
     private var _binding: FragmentAccountBinding? = null
     private val binding get() = _binding
     private lateinit var accountItemAdapter: AccountItemAdapter
     private lateinit var accountItemRV: RecyclerView
+    private val homeViewModel: HomeViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,6 +44,30 @@ class AccountFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupAccountItemRecyclerView()
         setAccountItemData()
+        subscribeToObservables()
+    }
+
+    private fun subscribeToObservables() {
+        lifecycle.coroutineScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                homeViewModel.userInfoState.collect(
+                    EventObserver(
+                        onLoading = {},
+                        onSuccess = { user -> displayUserData(user) },
+                        onError = {
+                            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+                        }
+                    )
+                )
+            }
+        }
+    }
+
+    private fun displayUserData(user: User) {
+        binding?.apply {
+            userName.text = user.userName
+            Glide.with(requireContext()).load(user.image).into(profileImg)
+        }
     }
 
     private fun setAccountItemData() {

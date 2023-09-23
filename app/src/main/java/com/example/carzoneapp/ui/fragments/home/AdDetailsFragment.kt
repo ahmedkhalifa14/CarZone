@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,8 +29,10 @@ import com.example.domain.entity.TruckData
 import com.example.domain.entity.User
 import com.example.domain.entity.VanData
 import com.example.domain.entity.VehicleData
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class AdDetailsFragment : Fragment() {
@@ -43,6 +46,9 @@ class AdDetailsFragment : Fragment() {
     private val homeViewModel: HomeViewModel by viewModels()
     private lateinit var adsAdapter: AdsAdapter
     private lateinit var adsRecyclerView: RecyclerView
+
+    @Inject
+    lateinit var firebaseAuth: FirebaseAuth
 
 
     override fun onCreateView(
@@ -63,12 +69,11 @@ class AdDetailsFragment : Fragment() {
         subscribeToObservables()
         homeViewModel.getUserInfoByUserId(ad!!.seller)
         homeViewModel.getAdsByVehicleType(ad!!.vehicle.vehicleType)
+        binding!!.adDetailsSellerSeeProfile.setOnClickListener {
 
+        }
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
 
     private fun subscribeToObservables() {
         lifecycle.coroutineScope.launch {
@@ -117,6 +122,23 @@ class AdDetailsFragment : Fragment() {
     private fun displayUserData(user: User) {
         binding!!.adDetailsSellerName.text = user.userName
         Glide.with(requireContext()).load(user.image).into(binding!!.adDetailsSellerImg)
+        binding!!.location2Txt.text = user.location
+        binding.apply {
+            binding!!.chatBtn.setOnClickListener {
+                if (user.userId == firebaseAuth.currentUser?.uid) {
+                    Toast.makeText(
+                        requireContext(),
+                        "يصحبى انت عبيط هتبعت رساله لنفسك",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    val action =
+                        AdDetailsFragmentDirections.actionAdDetailsFragmentToChatFragment(user)
+                    findNavController().navigate(action)
+                }
+
+            }
+        }
     }
 
 
@@ -130,6 +152,7 @@ class AdDetailsFragment : Fragment() {
         binding!!.adModelTxt.text = ad.vehicle.vehicleName
         binding!!.priceTv.text = ad.adsData.price
         binding!!.adTitleTv.text = ad.adsData.title
+
         val firebaseDate = ad.adsData.date
         val dateAndTime = firebaseDate?.let { extractDateAndTime(it) }
         val date =

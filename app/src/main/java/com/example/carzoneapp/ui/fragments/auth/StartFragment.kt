@@ -21,13 +21,14 @@ import com.example.carzoneapp.ui.viewmodel.AuthViewModel
 import com.example.carzoneapp.ui.viewmodel.HomeViewModel
 import com.example.carzoneapp.utils.AuthState
 import com.example.carzoneapp.utils.EventObserver
-import com.example.domain.entity.ChatMessage
 import com.example.domain.entity.GoogleAccountInfo
 import com.example.domain.entity.User
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class StartFragment : Fragment() {
@@ -67,9 +68,8 @@ class StartFragment : Fragment() {
             googleSignInLauncher.launch(authViewModel.getGoogleSignInIntent())
         }
         binding.continueWithPhoneBtn.setOnClickListener {
-            val message =ChatMessage("6545","123","655654","dfg","sdgagas","agdasg")
-            homeViewModel.sendMessage(message)
-          //  findNavController().navigate(R.id.action_startFragment_to_phoneAuthFragment)
+            // val currentTimestamp = System.currentTimeMillis()
+            findNavController().navigate(R.id.action_startFragment_to_phoneAuthFragment)
         }
     }
 
@@ -88,6 +88,7 @@ class StartFragment : Fragment() {
                                     val user = it.user
                                     convertObjectAndNavigate(user)
                                 }
+
                                 else -> {}
                             }
                         },
@@ -101,13 +102,14 @@ class StartFragment : Fragment() {
         }
         lifecycle.coroutineScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                homeViewModel.sendMessageState.collect(
+                homeViewModel.saveUserChatListState.collect(
                     EventObserver(
                         onLoading = {
                             binding.spinKitProgress.isVisible = true
                         },
                         onSuccess = {
-                            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+                            binding.spinKitProgress.isVisible = false
+                            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
                         },
                         onError = {
                             binding.spinKitProgress.isVisible = false
@@ -117,7 +119,25 @@ class StartFragment : Fragment() {
                 )
             }
         }
-
+        lifecycle.coroutineScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                homeViewModel.getUserChatListState.collect(
+                    EventObserver(
+                        onLoading = {
+                            binding.spinKitProgress.isVisible = true
+                        },
+                        onSuccess = { chatList ->
+                            binding.spinKitProgress.isVisible = false
+                            Timber.tag("chatList").d(chatList.toString())
+                        },
+                        onError = {
+                            binding.spinKitProgress.isVisible = false
+                            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
+                        }
+                    )
+                )
+            }
+        }
     }
 
     private fun convertObjectAndNavigate(user: GoogleAccountInfo) {

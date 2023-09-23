@@ -109,6 +109,7 @@ class RegisterFragment : Fragment() {
             )
         }
         if (action != null) {
+            findNavController().popBackStack()
             findNavController().navigate(action)
         }
     }

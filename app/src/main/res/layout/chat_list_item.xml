@@ -3,31 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="@dimen/_5sdp"
-    app:cardElevation="@dimen/_5sdp"
-    android:layout_margin="@dimen/_5sdp"
+    app:cardCornerRadius="@dimen/_3sdp"
+    app:cardElevation="@dimen/_10sdp"
+    android:backgroundTint="@color/appModeBG"
     >
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/_10sdp">
+        android:padding="@dimen/_5sdp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/chat_user_img"
-            android:layout_width="@dimen/_75sdp"
-            android:layout_height="@dimen/_75sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_3sdp"
             android:src="@drawable/avatar_profile"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/chat_username_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_18sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_8sdp"
             android:text="@string/user_name"
             android:textColor="@color/text_color"
             android:textSize="@dimen/_18ssp"
@@ -40,7 +38,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:text="@string/time"
             android:textColor="@color/text_color"
@@ -52,19 +50,22 @@
             android:id="@+id/seen_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:src="@drawable/audio_icon"
+            android:layout_marginStart="@dimen/_7sdp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/chat_user_img" />
+            app:layout_constraintStart_toEndOf="@id/chat_user_img"
+            app:layout_constraintTop_toBottomOf="@+id/chat_username_tv"
+            android:contentDescription="@string/seen_img" />
 
         <TextView
+            android:id="@+id/lastMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/_3sdp"
             android:text="@string/message"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/seen_img" />
+            app:layout_constraintStart_toEndOf="@id/seen_img"
+            app:layout_constraintTop_toBottomOf="@+id/chat_username_tv" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

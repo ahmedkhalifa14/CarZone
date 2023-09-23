@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
         android:backgroundTint="@color/appModeBG"
-        android:hint="search area, city or country"
+        android:hint="@string/search_area_city_or_country"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topAppBarLayout" />
 
@@ -56,10 +56,11 @@
         app:layout_constraintTop_toBottomOf="@id/search_et" />
 
     <TextView
+        android:id="@+id/use_current_location_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_5sdp"
-        android:text="Use current location"
+        android:text="@string/use_current_location"
         android:textColor="@color/text_color"
         android:textSize="@dimen/_14ssp"
         app:layout_constraintBottom_toBottomOf="@+id/location_icon"
@@ -84,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_5sdp"
-        android:text="Choose region"
+        android:text="@string/choose_region"
         android:textSize="@dimen/_16ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +110,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_5sdp"
-        android:text="see all in "
+        android:text="@string/see_all_in"
         android:textColor="@color/primaryColor"
         android:textSize="@dimen/_14ssp"
         app:layout_constraintStart_toStartOf="parent"
@@ -120,7 +121,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_5sdp"
-        android:text="Egypt"
+        android:text="@string/egypt"
         android:textColor="@color/primaryColor"
         android:textSize="@dimen/_14ssp"
         app:layout_constraintEnd_toEndOf="parent"
