@@ -33,6 +33,8 @@ The domain layer is responsible for encapsulating complex business logic, or sim
 
 [Clean Architecture](https://developer.android.com/topic/architecture) Clean Architecture is a software architectural pattern that promotes the separation of concerns and the creation of modular, maintainable, and testable software systems.
 
+[Modularization](https://developer.android.com/topic/modularization) Modularization is a practice of organizing a codebase into loosely coupled and self contained parts. Each part is a module. Each module is independent and serves a clear purpose. By dividing a problem into smaller and easier to solve subproblems, you reduce the complexity of designing and maintaining a large system.
+
 [Model-View-ViewModel(MVVM)](https://developer.android.com/topic/architecture) Architecture Pattern,MVVM means a way to structure code. With MVVM, it is possible to keep the UI components of an application away from the business logic.
 
 [Repository Pattern](https://developer.android.com/codelabs/basic-android-kotlin-training-repository-pattern#3) The repository pattern is a design pattern that isolates the data layer from the rest of the app
