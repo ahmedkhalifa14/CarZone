@@ -9,20 +9,21 @@ CarZone follows uncle pop clean architecture
 
 <img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/de5690e7-6532-4cd2-a501-64752a746b7e" width ="350" height="250">
 
-CarZone App is Multi Module App Divided into three modules 
-ui module or app module, data module and domain module
+*CarZone App is Multi Module App Divided into three modules 
+
+-ui module or app module, data module and domain module
 
 <img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/133967e9-4399-4cfe-a4ec-21950802f12d" width ="350" height="250">
 
-UI module
+-UI module
 
 The role of the UI module (or presentation module) is to display the application data on the screen. Whenever the data changes, either due to user interaction (such as pressing a button) or external input (such as a network response), the UI should update to reflect the changes.
 
-Data module
+-Data module
 
 The data layer of an app contains the business logic. The business logic is what gives value to your app—it's made of rules that determine how your app creates, stores, and changes data.
 
-Domain module
+-Domain module
 
 The domain module is an optional module that sits between the UI and data module.
 
