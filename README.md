@@ -30,7 +30,7 @@ CarZone is an Android Application like OLX app for buy and sell cars
 <div>
 <img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/997fa016-8ccb-4317-bd7f-a661aa376f7c" width ="180" height="350">
 <img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/1bedebf3-3e0d-41ec-8a81-3765be29f501" width "250" height="350">
-<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/1bedebf3-3e0d-41ec-8a81-3765be29f501" width "250" height="350">
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/b00ee948-22c4-4d1a-b4f0-351548ff7309" width "250" height="350">
 <img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/90c859fc-372e-499e-9a05-31c48708907c" width "250" height="350">
 <img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/9c20653f-4fb7-461f-8fb9-475e4a91be49" width "250" height="350">
 </div>
@@ -47,10 +47,24 @@ CarZone is an Android Application like OLX app for buy and sell cars
 <div>
 <img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/502a0e17-a60e-453b-9df3-c95db9339dea" width ="180" height="350">
 <img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/981de61e-07c7-4e8c-bf8a-1d9fa40a403c" width "250" height="350">
-<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/36dea824-8a1c-4a1a-a4de-529afa36255f)" width "250" height="350">
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/36dea824-8a1c-4a1a-a4de-529afa36255f" width "250" height="350">
 <img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/a4bea154-00f5-478a-a916-c6c2b92dfdbd" width "250" height="350">
 </div>
 
+
+## Chat Screens
+<div>
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/fcda13ca-c361-4685-b0d4-65a848a2d302" width ="180" height="350">
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/eb970547-27e3-42a9-84e3-27ad513b0313" width "250" height="350">
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/b8d73de3-125d-46a0-9ec0-faa0415a406f" width "250" height="350">
+</div>
+
+## Profile & SavedItems & MyAds
+<div>
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/86222b69-dc95-4c2e-9a6a-f6b7ea4fe4a4" width ="180" height="350">
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/1f559e24-703c-4e8c-9835-96e86cc55430" width "250" height="350">
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/55ecde64-9dab-43b2-81bb-ca92de365133" width "250" height="350">
+</div>
 
 
 # App Architecture
