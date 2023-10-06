@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carzoneapp.adapters.ChatListAdapter
 import com.example.carzoneapp.databinding.FragmentChatListBinding
-import com.example.carzoneapp.ui.viewmodel.HomeViewModel
+import com.example.carzoneapp.ui.viewmodel.MainViewModel
 import com.example.carzoneapp.utils.EventObserver
 import com.example.domain.entity.User
 import com.google.firebase.auth.FirebaseAuth
@@ -28,7 +28,7 @@ import javax.inject.Inject
 class ChatListFragment : Fragment() {
     private var _binding: FragmentChatListBinding? = null
     private val binding get() = _binding!!
-    private val homeViewModel by viewModels<HomeViewModel>()
+    private val homeViewModel by viewModels<MainViewModel>()
 
     @Inject
     lateinit var firebaseAuth: FirebaseAuth

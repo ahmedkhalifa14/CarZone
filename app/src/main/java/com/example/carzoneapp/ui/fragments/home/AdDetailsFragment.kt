@@ -16,11 +16,13 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.carzoneapp.R
 import com.example.carzoneapp.adapters.AdImageAdapter
 import com.example.carzoneapp.adapters.AdsAdapter
 import com.example.carzoneapp.databinding.FragmentAdDetailsBinding
 import com.example.carzoneapp.helper.extractDateAndTime
-import com.example.carzoneapp.ui.viewmodel.HomeViewModel
+import com.example.carzoneapp.helper.extractFormattedDate
+import com.example.carzoneapp.ui.viewmodel.MainViewModel
 import com.example.carzoneapp.utils.EventObserver
 import com.example.domain.entity.Ad
 import com.example.domain.entity.CarData
@@ -43,7 +45,7 @@ class AdDetailsFragment : Fragment() {
     private var ad: Ad? = null
     private lateinit var adImageAdapter: AdImageAdapter
     private lateinit var adImagesRecyclerView: RecyclerView
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val homeViewModel: MainViewModel by viewModels()
     private lateinit var adsAdapter: AdsAdapter
     private lateinit var adsRecyclerView: RecyclerView
 
@@ -64,7 +66,7 @@ class AdDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         ad = args.ad
         displayAdData(ad!!)
-        setupAdImagesRecyclerView(ad!!.vehicleImages)
+        setupAdImagesRecyclerView(ad!!.vehicleImages!!)
         setupAdsRecyclerView()
         subscribeToObservables()
         homeViewModel.getUserInfoByUserId(ad!!.seller)
@@ -123,12 +125,14 @@ class AdDetailsFragment : Fragment() {
         binding!!.adDetailsSellerName.text = user.userName
         Glide.with(requireContext()).load(user.image).into(binding!!.adDetailsSellerImg)
         binding!!.location2Txt.text = user.location
+        val joinedAt = getString(R.string.joined_at)+ extractFormattedDate(user.joinedAt)
+         binding!!.adDetailsSellerJoinedSince.text= joinedAt
         binding.apply {
             binding!!.chatBtn.setOnClickListener {
                 if (user.userId == firebaseAuth.currentUser?.uid) {
                     Toast.makeText(
                         requireContext(),
-                        "يصحبى انت عبيط هتبعت رساله لنفسك",
+                        getString(R.string.my_friend_you_are_stupid_you_will_send_a_message_to_yourself),
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
@@ -152,6 +156,8 @@ class AdDetailsFragment : Fragment() {
         binding!!.adModelTxt.text = ad.vehicle.vehicleName
         binding!!.priceTv.text = ad.adsData.price
         binding!!.adTitleTv.text = ad.adsData.title
+        binding!!.adLocationTv.text = ad.adsData.location
+
 
         val firebaseDate = ad.adsData.date
         val dateAndTime = firebaseDate?.let { extractDateAndTime(it) }

@@ -5,35 +5,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carzoneapp.adapters.ChooseLocationAdapter
 import com.example.carzoneapp.databinding.FragmentChooseLocationBinding
-import com.example.carzoneapp.ui.viewmodel.HomeViewModel
+import com.example.carzoneapp.ui.viewmodel.MainViewModel
+import com.example.carzoneapp.ui.viewmodel.SharedLocationViewModel
 import com.example.carzoneapp.utils.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class ChooseLocationFragment : Fragment() {
+class ChooseLocationFragment : DialogFragment() {
     private var _binding: FragmentChooseLocationBinding? = null
     private val binding get() = _binding
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val homeViewModel: MainViewModel by viewModels()
     private lateinit var chooseLocationAdapter: ChooseLocationAdapter
     private lateinit var chooseLocationRecyclerView: RecyclerView
-    private val args: ChooseLocationFragmentArgs by navArgs()
-
-    private var location: String? = null
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,31 +42,30 @@ class ChooseLocationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         subscribeToObservables()
         setupChooseLocationRecyclerView()
-        location = args.location
         homeViewModel.fetchRegionsInCountry("ahmedkhalifa14", "Eg", "ADM1")
-        chooseLocationAdapter.setOnItemClickListener { location ->
-            val action =
-                ChooseLocationFragmentDirections.actionChooseLocationFragmentToSellDetailsFragment(
-                    args.category,
-                    location.adminName1
-                )
-            findNavController().navigate(action)
+        chooseLocationAdapter.setOnItemClickListener { selectedLocation ->
+            val sharedLocationViewModel = ViewModelProvider(requireActivity())[SharedLocationViewModel::class.java]
+            sharedLocationViewModel.setSelectedLocation(selectedLocation.adminName1)
+            dismiss()
         }
 
         binding!!.useCurrentLocationTv.setOnClickListener {
-            val action =
-                ChooseLocationFragmentDirections.actionChooseLocationFragmentToSellDetailsFragment(
-                    args.category,
-                    location!!
-                )
-            findNavController().navigate(action)
+            val sharedLocationViewModel = ViewModelProvider(requireActivity())[SharedLocationViewModel::class.java]
+            sharedLocationViewModel.setSelectedLocation("current location")
+            dismiss()
         }
 
     }
 
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun subscribeToObservables() {
         lifecycle.coroutineScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.fetchRegionsInCountryState.collect(
                     EventObserver(
                         onLoading = {

@@ -4,7 +4,7 @@ import kotlinx.coroutines.flow.FlowCollector
 
 class Event<out T>(private val content: T) {
 
-    var hasBeenHandled = false
+     var hasBeenHandled = false
         private set
 
     fun getContentIfNotHandled(): T? {
@@ -25,7 +25,7 @@ class EventObserver<T>(
 
 
     override suspend fun emit(value: Event<Resource<T>>) {
-        when(val content = value?.peekContent()) {
+        when(val content = value.peekContent()) {
             is Resource.Success -> {
                 content.data?.let(onSuccess)
             }

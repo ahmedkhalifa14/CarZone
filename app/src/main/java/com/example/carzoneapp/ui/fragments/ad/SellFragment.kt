@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carzoneapp.adapters.CategoryAdapter
 import com.example.carzoneapp.databinding.FragmentSellBinding
-import com.example.carzoneapp.ui.viewmodel.HomeViewModel
+import com.example.carzoneapp.ui.viewmodel.MainViewModel
 import com.example.carzoneapp.utils.EventObserver
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,8 +29,9 @@ class SellFragment : Fragment() {
     private val binding get() = _binding
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var categoryRecyclerView: RecyclerView
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val homeViewModel: MainViewModel by viewModels()
     private var location: String? = null
+
     @Inject
     lateinit var firebaseAuth: FirebaseAuth
 
@@ -49,14 +50,9 @@ class SellFragment : Fragment() {
         subscribeToObservables()
 
         categoryAdapter.setOnItemClickListener {
-            val action = location?.let { it1 ->
-                SellFragmentDirections.actionSellFragmentToSellDetailsFragment(it,
-                    it1
-                )
-            }
-            if (action != null) {
-                findNavController().navigate(action)
-            }
+            val action = SellFragmentDirections.actionSellFragmentToSellDetailsFragment(it)
+            findNavController().navigate(action)
+
         }
     }
 

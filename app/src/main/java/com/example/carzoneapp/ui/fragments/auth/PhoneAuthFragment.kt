@@ -1,7 +1,6 @@
 package com.example.carzoneapp.ui.fragments.auth
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,12 +62,9 @@ class PhoneAuthFragment : Fragment() {
                 authViewModel.sendVerificationCodeState.collect(
                     EventObserver(
                         onLoading = {
-                            Log.d("sendVerificationCodeState","Bloading")
                             binding!!.spinKitProgress.isVisible = true
-                            Log.d("sendVerificationCodeState","Aloading")
                         },
                         onSuccess = {verificationId->
-                            Log.d("sendVerificationCodeState",verificationId)
                             binding!!.spinKitProgress.isVisible = false
                             Toast.makeText(requireContext(), verificationId, Toast.LENGTH_SHORT).show()
                             val action = PhoneAuthFragmentDirections.actionPhoneAuthFragmentToVerifyCodeFragment(verificationId,binding!!.inputTextPhone.text.toString())
@@ -76,7 +72,6 @@ class PhoneAuthFragment : Fragment() {
                             Timber.tag("verification").d(verificationId)
                         },
                         onError = {
-                            Log.d("sendVerificationCodeState",it)
                             binding!!.spinKitProgress.isVisible = false
                             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
                         }

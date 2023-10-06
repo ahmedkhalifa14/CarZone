@@ -18,7 +18,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.carzoneapp.R
 import com.example.carzoneapp.databinding.FragmentStartBinding
 import com.example.carzoneapp.ui.viewmodel.AuthViewModel
-import com.example.carzoneapp.ui.viewmodel.HomeViewModel
 import com.example.carzoneapp.utils.AuthState
 import com.example.carzoneapp.utils.EventObserver
 import com.example.domain.entity.GoogleAccountInfo
@@ -26,7 +25,6 @@ import com.example.domain.entity.User
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -35,7 +33,6 @@ class StartFragment : Fragment() {
     private var _binding: FragmentStartBinding? = null
     private val binding get() = _binding!!
     private val authViewModel by viewModels<AuthViewModel>()
-    private val homeViewModel by viewModels<HomeViewModel>()
 
     @Inject
     lateinit var firebaseAuth: FirebaseAuth
@@ -68,11 +65,9 @@ class StartFragment : Fragment() {
             googleSignInLauncher.launch(authViewModel.getGoogleSignInIntent())
         }
         binding.continueWithPhoneBtn.setOnClickListener {
-            // val currentTimestamp = System.currentTimeMillis()
             findNavController().navigate(R.id.action_startFragment_to_phoneAuthFragment)
         }
     }
-
 
     private fun subscribeToObservables() {
         lifecycle.coroutineScope.launch {
@@ -81,6 +76,7 @@ class StartFragment : Fragment() {
                     EventObserver(
                         onLoading = {
                             binding.spinKitProgress.isVisible = true
+
                         },
                         onSuccess = {
                             when (it) {
@@ -89,46 +85,10 @@ class StartFragment : Fragment() {
                                     convertObjectAndNavigate(user)
                                 }
 
-                                else -> {}
+                                else -> {
+
+                                }
                             }
-                        },
-                        onError = {
-                            binding.spinKitProgress.isVisible = false
-                            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
-                        }
-                    )
-                )
-            }
-        }
-        lifecycle.coroutineScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                homeViewModel.saveUserChatListState.collect(
-                    EventObserver(
-                        onLoading = {
-                            binding.spinKitProgress.isVisible = true
-                        },
-                        onSuccess = {
-                            binding.spinKitProgress.isVisible = false
-                            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-                        },
-                        onError = {
-                            binding.spinKitProgress.isVisible = false
-                            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
-                        }
-                    )
-                )
-            }
-        }
-        lifecycle.coroutineScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                homeViewModel.getUserChatListState.collect(
-                    EventObserver(
-                        onLoading = {
-                            binding.spinKitProgress.isVisible = true
-                        },
-                        onSuccess = { chatList ->
-                            binding.spinKitProgress.isVisible = false
-                            Timber.tag("chatList").d(chatList.toString())
                         },
                         onError = {
                             binding.spinKitProgress.isVisible = false

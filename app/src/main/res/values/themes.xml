@@ -27,6 +27,7 @@
         <item name="boxStrokeColor">@color/primaryColor</item>
         <item name="boxStrokeWidth">1dp</item>
         <item name="maxLines">1</item>
+        <item name="cursorColor">@color/primaryColor</item>
         <item name="helperTextTextColor">@android:color/holo_red_dark</item>
     </style>
 

@@ -12,11 +12,23 @@
         android:layout_height="match_parent"
         android:backgroundTint="@color/appModeBG"
         >
+        <ImageView
+            android:id="@+id/save_icon"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:contentDescription="@string/fav_icon"
+            android:padding="@dimen/_3sdp"
+            android:src="@drawable/delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <ImageView
             android:id="@+id/car_img"
             android:layout_width="@dimen/_100sdp"
-            android:layout_height="@dimen/_150sdp"
+            android:layout_height="@dimen/_120sdp"
             android:scaleType="fitXY"
             android:src="@drawable/car"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -32,30 +44,23 @@
             android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_15sdp"
             android:text="@string/car_name"
-            android:textSize="@dimen/_14ssp"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/text_color"
+            android:fontFamily="@font/raleway_semi_bold"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/car_img"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/save_icon"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginEnd="@dimen/_15sdp"
-            android:src="@drawable/bookmark"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/fav_icon" />
 
         <TextView
             android:id="@+id/currency_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:text="@string/currency"
-            android:textSize="@dimen/_14ssp"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/text_color"
+            android:fontFamily="@font/raleway_bold"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/car_img"
             app:layout_constraintTop_toBottomOf="@id/car_name" />
@@ -65,9 +70,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:textSize="@dimen/_14ssp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:textSize="@dimen/_12ssp"
             android:textStyle="bold"
+            android:textColor="@color/text_color"
+            android:fontFamily="@font/raleway_semi_bold"
             android:text="@string/price"
             app:layout_constraintStart_toEndOf="@+id/currency_tv"
             app:layout_constraintTop_toBottomOf="@id/car_name" />
@@ -77,9 +84,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:textSize="@dimen/_10ssp"
+            android:layout_marginTop="@dimen/_7sdp"
+            android:textSize="@dimen/_8ssp"
             android:text="@string/negotiable"
+            android:textColor="@color/text_color"
+            android:fontFamily="@font/raleway_light"
             app:layout_constraintStart_toEndOf="@id/car_img"
             app:layout_constraintTop_toBottomOf="@+id/car_price" />
 
@@ -88,10 +97,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_10sdp"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/text_color"
             android:text="@string/location"
+            android:fontFamily="@font/raleway_medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/car_img" />
 
@@ -103,7 +114,9 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_10sdp"
             android:text="@string/_7_may"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/text_color"
+            android:fontFamily="@font/raleway_medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="@dimen/_15sdp"

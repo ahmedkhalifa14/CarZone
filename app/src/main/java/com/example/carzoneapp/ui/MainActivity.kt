@@ -15,7 +15,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.carzoneapp.R
 import com.example.carzoneapp.databinding.ActivityMainBinding
-import com.example.carzoneapp.ui.viewmodel.HomeViewModel
+import com.example.carzoneapp.ui.viewmodel.MainViewModel
 import com.example.carzoneapp.utils.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -25,20 +25,20 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val homeViewModel: MainViewModel by viewModels()
     private var launch: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
         super.onCreate(savedInstanceState)
-//        splashScreen.setKeepOnScreenCondition {
-//            launch
-//        }
+        splashScreen.setKeepOnScreenCondition {
+            launch
+        }
+        subscribeToObservables()
+        homeViewModel.isFirstTimeLaunch()
 
         binding = ActivityMainBinding.inflate(layoutInflater, null, false)
         setContentView(binding.root)
-        // homeViewModel.isFirstTimeLaunch()
-        // subscribeToObservables()
         navController = findNavController(R.id.navHostFragment)
         binding.bottomNavigation.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -47,12 +47,12 @@ class MainActivity : AppCompatActivity() {
                 R.id.myAdsFragment,
                 R.id.accountFragment
                 -> binding.bottomNavigation.isVisible = true
+
                 else -> binding.bottomNavigation.isVisible = false
             }
         }
 
     }
-
 
     private fun subscribeToObservables() {
         lifecycle.coroutineScope.launch {
@@ -60,14 +60,17 @@ class MainActivity : AppCompatActivity() {
                 homeViewModel.isFirstTimeLaunchState.collect(
                     EventObserver(onLoading = {},
                         onSuccess = { flow ->
-                            flow.asLiveData().observe(this@MainActivity) {
-                                if (it) {
+                            flow.asLiveData().observe(this@MainActivity) {launchInfo->
+                                if (launchInfo.isFirstTimeLaunch&&launchInfo.isLogin) {
                                     launch = true
                                     navController.navigate(R.id.homeFragment)
-
-                                } else if (it == false) {
+                                } else if (!launchInfo.isFirstTimeLaunch && !launchInfo.isLogin) {
                                     launch = true
                                     navController.navigate(R.id.onBoardingFragment)
+                                }
+                                else{
+                                    launch = true
+                                    navController.navigate(R.id.startFragment)
                                 }
                             }
 
@@ -78,6 +81,9 @@ class MainActivity : AppCompatActivity() {
                 )
             }
         }
-
     }
+
+
+
+
 }

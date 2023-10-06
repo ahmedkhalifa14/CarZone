@@ -49,12 +49,11 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/_50sdp"
+            app:layout_constraintBottom_toTopOf="@+id/connections_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/topAppBarLayout"
-            app:layout_constraintBottom_toTopOf="@+id/connections_layout"
-           android:layout_marginBottom="@dimen/_50sdp"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/topAppBarLayout">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout1"
@@ -69,6 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_15sdp"
+                    android:fontFamily="@font/raleway_bold"
                     android:text="@string/egp"
                     android:textColor="@color/text_color"
                     android:textSize="@dimen/_14ssp"
@@ -82,8 +82,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
                     android:layout_marginTop="@dimen/_15sdp"
+                    android:fontFamily="@font/raleway_bold"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/currency_tv"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -94,9 +95,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_extra_bold"
                     android:maxLines="2"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/currency_tv" />
@@ -118,8 +120,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_bold"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/location_icon"
                     app:layout_constraintTop_toBottomOf="@id/ad_title_tv" />
@@ -130,8 +133,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_marginEnd="@dimen/_15sdp"
+                    android:fontFamily="@font/raleway_medium"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_10ssp"
+                    android:textSize="@dimen/_8ssp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ad_title_tv" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -140,9 +144,9 @@
                 android:id="@+id/details_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:background="@color/shimmerColor"
                 android:padding="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_5sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layout1">
@@ -153,9 +157,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_extra_bold"
                     android:text="@string/details"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_20ssp"
+                    android:textSize="@dimen/_18ssp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -166,9 +171,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_bold"
                     android:text="@string/brand"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ad_details_tv" />
 
@@ -178,9 +184,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_bold"
                     android:text="@string/model_txt"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ad_brand_tv" />
 
@@ -190,9 +197,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_bold"
                     android:text="@string/year"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ad_model_tv" />
 
@@ -202,9 +210,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_bold"
                     android:text="@string/kilometers"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ad_year_tv" />
 
@@ -214,9 +223,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_bold"
                     android:text="@string/fuel_type_txt"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ad_kilometers_tv" />
 
@@ -226,9 +236,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_bold"
                     android:text="@string/engine"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ad_fuelType_tv" />
 
@@ -238,9 +249,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_bold"
                     android:text="@string/seating_capacity_text"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
+
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ad_engine_tv" />
 
@@ -250,8 +263,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_semi_bold"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/ad_seatingCapacity_tv"
                     app:layout_constraintTop_toBottomOf="@id/ad_details_tv" />
@@ -262,8 +276,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_semi_bold"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/ad_seatingCapacity_tv"
                     app:layout_constraintTop_toBottomOf="@id/ad_brand_tv" />
@@ -274,8 +289,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_semi_bold"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/ad_seatingCapacity_tv"
                     app:layout_constraintTop_toBottomOf="@id/ad_model_tv" />
@@ -286,8 +302,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_semi_bold"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/ad_seatingCapacity_tv"
                     app:layout_constraintTop_toBottomOf="@id/ad_year_tv" />
@@ -298,8 +315,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_semi_bold"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/ad_seatingCapacity_tv"
                     app:layout_constraintTop_toBottomOf="@id/ad_kilometers_tv" />
@@ -310,8 +328,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_semi_bold"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/ad_seatingCapacity_tv"
                     app:layout_constraintTop_toBottomOf="@id/ad_fuelType_tv" />
@@ -322,8 +341,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_semi_bold"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/ad_seatingCapacity_tv"
                     app:layout_constraintTop_toBottomOf="@id/ad_engine_tv" />
@@ -334,9 +354,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_bold"
                     android:text="@string/cargo_capacity_text"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ad_seatingCapacity_tv" />
@@ -347,9 +368,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_bold"
                     android:text="@string/weight_txt"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ad_van_cargoCapacity_tv" />
@@ -360,9 +382,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_bold"
                     android:text="@string/engine_power_txt"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ad_truck_weight_tv" />
@@ -373,11 +396,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_bold"
                     android:text="@string/engineTorque"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:visibility="gone"
-
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ad_truck_enginePower_tv" />
 
@@ -389,7 +412,8 @@
                     android:layout_marginTop="@dimen/_5sdp"
                     android:text="@string/kerbWeight"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
+                    android:fontFamily="@font/raleway_bold"
                     android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ad_motorcycle_engineTorque_tv" />
@@ -402,7 +426,8 @@
                     android:layout_marginTop="@dimen/_5sdp"
                     android:text="@string/transmission_txt"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
+                    android:fontFamily="@font/raleway_bold"
                     android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ad_motorcycle_kerbWeight_tv" />
@@ -414,8 +439,9 @@
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
+                    android:fontFamily="@font/raleway_semi_bold"
                     app:layout_constraintStart_toEndOf="@+id/ad_seatingCapacity_tv"
                     app:layout_constraintTop_toBottomOf="@id/ad_seatingCapacity_tv" />
 
@@ -426,8 +452,9 @@
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
+                    android:fontFamily="@font/raleway_semi_bold"
                     app:layout_constraintStart_toEndOf="@+id/ad_seatingCapacity_tv"
                     app:layout_constraintTop_toBottomOf="@id/ad_van_cargoCapacity_tv" />
 
@@ -438,8 +465,9 @@
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
+                    android:fontFamily="@font/raleway_semi_bold"
                     android:visibility="gone"
                     app:layout_constraintStart_toEndOf="@+id/ad_seatingCapacity_tv"
                     app:layout_constraintTop_toBottomOf="@id/ad_truck_weight_tv" />
@@ -451,8 +479,9 @@
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
+                    android:fontFamily="@font/raleway_semi_bold"
                     app:layout_constraintStart_toEndOf="@+id/ad_seatingCapacity_tv"
                     app:layout_constraintTop_toBottomOf="@id/ad_truck_enginePower_tv" />
 
@@ -463,8 +492,9 @@
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
+                    android:fontFamily="@font/raleway_semi_bold"
                     app:layout_constraintStart_toEndOf="@+id/ad_seatingCapacity_tv"
                     app:layout_constraintTop_toBottomOf="@id/ad_motorcycle_engineTorque_tv" />
 
@@ -475,7 +505,8 @@
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
+                    android:fontFamily="@font/raleway_semi_bold"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/ad_seatingCapacity_tv"
                     app:layout_constraintTop_toBottomOf="@id/ad_motorcycle_kerbWeight_tv" />
@@ -496,8 +527,9 @@
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:text="@string/description"
+                    android:fontFamily="@font/raleway_extra_bold"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_20ssp"
+                    android:textSize="@dimen/_18ssp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -510,8 +542,9 @@
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_marginEnd="@dimen/_15sdp"
                     android:text="@string/description"
+                    android:fontFamily="@font/raleway_semi_bold"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_10ssp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ad_description_tv" />
@@ -546,7 +579,8 @@
                     android:layout_margin="@dimen/_5sdp"
                     android:text="@string/seller_name"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
+                    android:fontFamily="@font/raleway_semi_bold"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@id/ad_details_seller_img"
                     app:layout_constraintTop_toBottomOf="@id/seller_profile_divider1" />
@@ -558,8 +592,9 @@
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_3sdp"
                     android:text="@string/joined"
+                    android:fontFamily="@font/raleway_bold"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_10ssp"
                     app:layout_constraintStart_toEndOf="@id/ad_details_seller_img"
                     app:layout_constraintTop_toBottomOf="@id/ad_details_seller_name" />
 
@@ -570,8 +605,9 @@
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_3sdp"
                     android:text="@string/see_profile"
+                    android:fontFamily="@font/raleway_semi_bold"
                     android:textColor="@color/primaryColor"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_10ssp"
                     app:layout_constraintStart_toEndOf="@id/ad_details_seller_img"
                     app:layout_constraintTop_toBottomOf="@id/ad_details_seller_joined_Since" />
 
@@ -596,7 +632,8 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:text="@string/location3"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_16ssp"
+                    android:textSize="@dimen/_14ssp"
+                    android:fontFamily="@font/raleway_semi_bold"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/seller_profile_divider2" />
@@ -618,6 +655,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:text="@string/location3"
+                    android:textSize="@dimen/_10sdp"
+                    android:fontFamily="@font/raleway_bold"
                     app:layout_constraintStart_toEndOf="@id/location_icon2"
                     app:layout_constraintTop_toBottomOf="@id/location_2" />
 
@@ -641,11 +680,12 @@
                     android:drawableLeft="@drawable/location_icon"
                     android:paddingStart="@dimen/_10sdp"
                     android:paddingTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_semi_bold"
                     android:paddingEnd="@dimen/_10sdp"
                     android:paddingBottom="@dimen/_5sdp"
                     android:text="@string/see_location"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_10ssp"
+                    android:textSize="@dimen/_8ssp"
                     app:layout_constraintBottom_toBottomOf="@id/map_image"
                     app:layout_constraintEnd_toEndOf="@id/map_image"
                     app:layout_constraintStart_toStartOf="@id/map_image"
@@ -662,8 +702,9 @@
                     android:backgroundTint="@color/appModeBG2"
                     android:drawableLeft="@drawable/report"
                     android:text="@string/report_this_ad"
+                    android:fontFamily="@font/raleway_semi_bold"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_10ssp"
+                    android:textSize="@dimen/_8ssp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/map_image" />
 
@@ -694,8 +735,9 @@
                     android:backgroundTint="@color/appModeBG2"
                     android:drawableLeft="@drawable/hide"
                     android:text="@string/hide_this_ad"
+                    android:fontFamily="@font/raleway_semi_bold"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_10ssp"
+                    android:textSize="@dimen/_8ssp"
 
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/map_image" />
@@ -722,7 +764,8 @@
                     android:layout_marginEnd="@dimen/_15sdp"
                     android:text="@string/your_safety_matters_to_us"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
+                    android:fontFamily="@font/raleway_bold"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/divider4" />
@@ -733,10 +776,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/raleway_semi_bold"
                     android:layout_marginEnd="@dimen/_15sdp"
                     android:text="@string/only_meet_in_public_crowded_places"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_10ssp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ad_safety_title" />
 
@@ -749,7 +793,8 @@
                     android:layout_marginEnd="@dimen/_15sdp"
                     android:text="@string/never_go_alone_to_meet_a_buyer_seller_always_take_someone_with_you"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_10ssp"
+                    android:fontFamily="@font/raleway_semi_bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ad_safety_1" />
 
@@ -762,7 +807,8 @@
                     android:layout_marginEnd="@dimen/_15sdp"
                     android:text="@string/check_and_inspect_the_product_properly_before_purchasing_it"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_10ssp"
+                    android:fontFamily="@font/raleway_semi_bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ad_safety_2" />
 
@@ -775,7 +821,8 @@
                     android:layout_marginEnd="@dimen/_15sdp"
                     android:text="@string/never_pay_anything_in_advance_or_transfer_money_before_inspecting_the_proudct"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_10ssp"
+                    android:fontFamily="@font/raleway_semi_bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ad_safety_3" />
 
@@ -800,8 +847,9 @@
                     android:layout_marginTop="@dimen/_5sdp"
                     android:text="@string/related_ads"
                     android:textColor="@color/text_color"
-                    android:textSize="@dimen/_14ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
+                    android:fontFamily="@font/raleway_bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/divider5" />
 
@@ -810,12 +858,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_margin="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/related_ads_txt"
-                    tools:listitem="@layout/ads_item"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    />
+                    tools:listitem="@layout/ads_item" />
 
                 <com.facebook.shimmer.ShimmerFrameLayout
                     android:id="@+id/ads_shimmerLayout"
@@ -829,8 +876,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/related_ads_txt">
+
                     <include layout="@layout/ads_item_placeholder" />
                 </com.facebook.shimmer.ShimmerFrameLayout>
+
                 <com.google.android.material.divider.MaterialDivider
                     android:id="@+id/divider6"
                     android:layout_width="match_parent"
@@ -852,8 +901,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom|center"
-        android:layout_marginBottom="@dimen/_7sdp"
-        >
+        android:layout_marginBottom="@dimen/_7sdp">
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/sms_btn"
@@ -863,13 +911,14 @@
             android:backgroundTint="@color/button_bg_color"
             android:drawableLeft="@drawable/sms"
             android:gravity="center"
-            android:paddingTop="@dimen/_10sdp"
-            android:paddingBottom="@dimen/_10sdp"
             android:paddingStart="@dimen/_20sdp"
+            android:paddingTop="@dimen/_10sdp"
             android:paddingEnd="@dimen/_20sdp"
+            android:paddingBottom="@dimen/_10sdp"
             android:text="@string/sms"
+            android:fontFamily="@font/raleway_semi_bold"
             android:textColor="@color/text_color"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_10ssp"
             android:textStyle="bold"
             app:cornerRadius="@dimen/_5sdp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -884,13 +933,14 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/button_bg_color"
             android:drawableLeft="@drawable/telephone_icon"
-            android:paddingTop="@dimen/_10sdp"
-            android:paddingBottom="@dimen/_10sdp"
             android:paddingStart="@dimen/_20sdp"
+            android:paddingTop="@dimen/_10sdp"
             android:paddingEnd="@dimen/_20sdp"
+            android:paddingBottom="@dimen/_10sdp"
             android:text="@string/call"
+            android:fontFamily="@font/raleway_semi_bold"
             android:textColor="@color/text_color"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_10ssp"
             android:textStyle="bold"
             app:cornerRadius="@dimen/_5sdp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -905,13 +955,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/chat_icon"
-            android:paddingTop="@dimen/_10sdp"
-            android:paddingBottom="@dimen/_10sdp"
             android:paddingStart="@dimen/_20sdp"
+            android:paddingTop="@dimen/_10sdp"
             android:paddingEnd="@dimen/_20sdp"
+            android:paddingBottom="@dimen/_10sdp"
             android:text="@string/chat"
+            android:fontFamily="@font/raleway_semi_bold"
             android:textColor="@color/white"
-            android:textSize="@dimen/_12ssp"
+            android:textSize="@dimen/_10ssp"
             android:textStyle="bold"
             app:cornerRadius="@dimen/_5sdp"
             app:layout_constraintBottom_toBottomOf="parent"

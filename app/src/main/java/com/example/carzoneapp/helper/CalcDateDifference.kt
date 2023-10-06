@@ -21,21 +21,4 @@ fun calculateDateDifference(startDate: Date, endDate: Date) {
     println(
         "$elapsedDays days, $elapsedHours hours, $elapsedMinutes minutes, $elapsedSeconds seconds"
     )
-
 }
-//
-//        fun main() {
-//            val simpleDateFormat = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
-//
-//            try {
-//                val date1 = simpleDateFormat.parse("10/10/2013 11:30:10")
-//                val date2 = simpleDateFormat.parse("13/10/2013 20:35:55")
-//
-//                val dateTimeUtils = DateTimeUtils()
-//                dateTimeUtils.printDifference(date1, date2)
-//
-//            } catch (e: Exception) {
-//                e.printStackTrace()
-//            }
-//        }
-

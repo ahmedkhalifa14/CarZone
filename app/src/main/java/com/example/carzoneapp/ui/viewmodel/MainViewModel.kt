@@ -9,9 +9,12 @@ import com.example.carzoneapp.utils.Resource
 import com.example.domain.entity.Ad
 import com.example.domain.entity.ChatMessage
 import com.example.domain.entity.GeoNamesResponse
+import com.example.domain.entity.LaunchInfo
+import com.example.domain.entity.SavedItem
 import com.example.domain.entity.User
 import com.example.domain.entity.UserChat
 import com.example.domain.entity.VehiclesCategories
+import com.example.domain.usecase.AddToSavedItemsUseCase
 import com.example.domain.usecase.AddVehicleAdUseCase
 import com.example.domain.usecase.FetchRegionsInCountryUseCase
 import com.example.domain.usecase.GetAllAdsByUserIdUseCase
@@ -19,9 +22,11 @@ import com.example.domain.usecase.GetAllAdsByVehicleTypeUseCase
 import com.example.domain.usecase.GetAllAdsUseCase
 import com.example.domain.usecase.GetAllVehiclesCategoriesUseCase
 import com.example.domain.usecase.GetMessagesUseCase
+import com.example.domain.usecase.GetSavedItemsByUserIdUseCase
 import com.example.domain.usecase.GetUserChatListUseCase
 import com.example.domain.usecase.GetUserInfoUseCase
 import com.example.domain.usecase.IsFirstTimeLaunchUseCase
+import com.example.domain.usecase.RemoveFromSavedItemsByUserIdUseCase
 import com.example.domain.usecase.SaveFirstTimeLaunchUseCase
 import com.example.domain.usecase.SaveUserChatListUseCase
 import com.example.domain.usecase.SendMessageUseCase
@@ -36,7 +41,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class MainViewModel @Inject constructor(
     private val getAllVehiclesCategoriesUseCase: GetAllVehiclesCategoriesUseCase,
     private val saveFirstTimeLaunchUseCase: SaveFirstTimeLaunchUseCase,
     private val isFirstTimeLaunchUseCase: IsFirstTimeLaunchUseCase,
@@ -50,7 +55,10 @@ class HomeViewModel @Inject constructor(
     private val sendMessageUseCase: SendMessageUseCase,
     private val getMessagesUseCase: GetMessagesUseCase,
     private val getUserChatListUseCase: GetUserChatListUseCase,
-    private val saveUserChatListUseCase: SaveUserChatListUseCase
+    private val saveUserChatListUseCase: SaveUserChatListUseCase,
+    private val removeFromSavedItemsByUserIdUseCase: RemoveFromSavedItemsByUserIdUseCase,
+    private val addToSavedItemsUseCase: AddToSavedItemsUseCase,
+    private val getSavedItemsByUserIdUseCase: GetSavedItemsByUserIdUseCase
 ) : ViewModel() {
 
     private val _vehiclesCategoriesState =
@@ -75,8 +83,8 @@ class HomeViewModel @Inject constructor(
         _saveFirstTimeLaunchState
 
     private val _isFirstTimeLaunchState =
-        MutableStateFlow<Event<Resource<Flow<Boolean>>>>(Event(Resource.Init()))
-    val isFirstTimeLaunchState: StateFlow<Event<Resource<Flow<Boolean>>>> =
+        MutableStateFlow<Event<Resource<Flow<LaunchInfo>>>>(Event(Resource.Init()))
+    val isFirstTimeLaunchState: StateFlow<Event<Resource<Flow<LaunchInfo>>>> =
         _isFirstTimeLaunchState
 
     private val _allAdsState =
@@ -116,21 +124,30 @@ class HomeViewModel @Inject constructor(
     val getMessagesState: StateFlow<Event<Resource<LiveData<List<ChatMessage>>>>> =
         _getMessagesState
 
-
-//    suspend fun saveUserChats(userChat: UserChat)
-//    suspend fun getChatMessages(userId: String): List<UserChat>
-
-
     private val _saveUserChatListState =
         MutableStateFlow<Event<Resource<String>>>(Event(Resource.Init()))
-    val saveUserChatListState:StateFlow<Event<Resource<String>>> =
+    val saveUserChatListState: StateFlow<Event<Resource<String>>> =
         _saveUserChatListState
 
     private val _getUserChatListState =
         MutableStateFlow<Event<Resource<List<UserChat>>>>(Event(Resource.Init()))
-    val getUserChatListState:StateFlow<Event<Resource<List<UserChat>>>> =
+    val getUserChatListState: StateFlow<Event<Resource<List<UserChat>>>> =
         _getUserChatListState
 
+    private val _addToSavedItemsState =
+        MutableStateFlow<Event<Resource<String>>>(Event(Resource.Init()))
+    val addToSavedItemsState: StateFlow<Event<Resource<String>>> =
+        _addToSavedItemsState
+
+    private val _removeSavedItemsState =
+        MutableStateFlow<Event<Resource<String>>>(Event(Resource.Init()))
+    val removeSavedItemsState: StateFlow<Event<Resource<String>>> =
+        _removeSavedItemsState
+
+    private val _getSavedItemsState =
+        MutableStateFlow<Event<Resource<List<SavedItem>>>>(Event(Resource.Init()))
+    val getSavedItemsState: StateFlow<Event<Resource<List<SavedItem>>>> =
+        _getSavedItemsState
 
 
     fun isFirstTimeLaunch() {
@@ -183,7 +200,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getUserChatList( userId: String) {
+    fun getUserChatList(userId: String) {
         viewModelScope.launch(Dispatchers.Main) {
             _getUserChatListState.emit(Event(Resource.Loading()))
             try {
@@ -195,14 +212,11 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-
-
-
-    fun saveFirstTimeLaunch(isFirstTimeLaunch: Boolean) {
+    fun saveFirstTimeLaunch(launchInfo: LaunchInfo) {
         viewModelScope.launch(Dispatchers.Main) {
             _saveFirstTimeLaunchState.emit(Event(Resource.Loading()))
             try {
-                saveFirstTimeLaunchUseCase(isFirstTimeLaunch)
+                saveFirstTimeLaunchUseCase(launchInfo)
                 _saveFirstTimeLaunchState.emit(Event(Resource.Success("Success")))
             } catch (e: Exception) {
                 _saveFirstTimeLaunchState.emit(Event(Resource.Error(e.message.toString())))
@@ -246,9 +260,9 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun getAllAds() {
+    fun getAllAds(loading: Boolean) {
         viewModelScope.launch(Dispatchers.Main) {
-            _allAdsState.emit(Event(Resource.Loading()))
+            if (loading) _allAdsState.emit(Event(Resource.Loading()))
             try {
                 val allAds = getAllAdsUseCase()
                 _allAdsState.emit(Event(Resource.Success(allAds)))
@@ -258,7 +272,6 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
-
 
     fun getAdsByVehicleType(vehicleType: String) {
         viewModelScope.launch(Dispatchers.Main) {
@@ -272,7 +285,6 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
-
 
     fun getUserAds(userId: String) {
         viewModelScope.launch(Dispatchers.Main) {
@@ -312,4 +324,42 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
+
+    fun addToSavedItems(savedItem: SavedItem) {
+        viewModelScope.launch(Dispatchers.Main) {
+            _addToSavedItemsState.emit((Event(Resource.Loading())))
+            try {
+                addToSavedItemsUseCase(savedItem)
+                _addToSavedItemsState.emit(Event(Resource.Success(savedItem.itemId)))
+            } catch (e: Exception) {
+                _addToSavedItemsState.emit(Event(Resource.Error(e.message.toString())))
+            }
+        }
+    }
+
+    fun getSavedItemsByUserId(userId: String, loading: Boolean) {
+        viewModelScope.launch(Dispatchers.Main) {
+            if (loading) _getSavedItemsState.emit((Event(Resource.Loading())))
+            try {
+                val savedItems = getSavedItemsByUserIdUseCase(userId)
+                _getSavedItemsState.emit(Event(Resource.Success(savedItems)))
+            } catch (e: Exception) {
+                _getSavedItemsState.emit(Event(Resource.Error(e.message.toString())))
+            }
+        }
+    }
+
+    fun removeFromSavedItemsByUserId(userId: String, itemId: String) {
+        viewModelScope.launch(Dispatchers.Main) {
+            _removeSavedItemsState.emit((Event(Resource.Loading())))
+            try {
+                removeFromSavedItemsByUserIdUseCase(userId, itemId)
+                _removeSavedItemsState.emit(Event(Resource.Success(itemId)))
+            } catch (e: Exception) {
+                _removeSavedItemsState.emit(Event(Resource.Error(e.message.toString())))
+            }
+        }
+    }
+
+
 }

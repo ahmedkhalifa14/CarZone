@@ -27,6 +27,7 @@
         android:text="@string/user_name"
         android:textSize="@dimen/_20ssp"
         android:textStyle="bold"
+        android:fontFamily="@font/raleway_bold"
         android:textColor="@color/text_color"
         app:layout_constraintStart_toEndOf="@+id/profile_img"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,6 +40,7 @@
         android:text="@string/profile_sub_title"
         android:textSize="@dimen/_14ssp"
         android:textStyle="bold"
+        android:fontFamily="@font/raleway_medium"
         android:textColor="@color/text_color"
         app:layout_constraintStart_toEndOf="@id/profile_img"
         app:layout_constraintTop_toBottomOf="@+id/user_name" />
@@ -61,7 +63,7 @@
                 android:id="@+id/card_img"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_45sdp"
-                android:contentDescription=""
+                android:contentDescription="@string/card_img"
                 android:src="@drawable/credit_card"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -73,8 +75,9 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@id/card_img"
                 android:text="@string/carzone_wallet"
+                android:fontFamily="@font/raleway_bold"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:textSize="@dimen/_14ssp"
+                android:textSize="@dimen/_12ssp"
                 android:textStyle="bold"
                 android:textColor="@color/text_color"
                 />
@@ -86,8 +89,10 @@
                 app:layout_constraintStart_toEndOf="@id/card_img"
                 app:layout_constraintTop_toBottomOf="@id/carZoneWallet"
                 android:text="@string/balance"
+                android:fontFamily="@font/raleway_medium"
                 android:layout_marginTop="@dimen/_3sdp"
                 android:textSize="@dimen/_12ssp"
+                android:textColor="@color/text_color"
 
                 />
 
@@ -109,8 +114,10 @@
                 app:layout_constraintStart_toEndOf="@id/balance_tv"
                 app:layout_constraintTop_toBottomOf="@id/carZoneWallet"
                 android:text="@string/currency"
+                android:fontFamily="@font/raleway_medium"
                 android:layout_marginTop="@dimen/_3sdp"
                 android:textSize="@dimen/_12ssp"
+                android:textColor="@color/text_color"
                 android:layout_marginStart="@dimen/_3sdp" />
             <ImageView
                 android:layout_width="@dimen/_25sdp"
@@ -119,18 +126,58 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:src="@drawable/info"
                 android:layout_margin="@dimen/_15sdp"
-                />
+                android:contentDescription="@string/info" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/saved_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_20sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/wallet_card">
 
-<androidx.recyclerview.widget.RecyclerView
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/_10sdp">
+
+            <ImageView
+                android:id="@+id/saved_item_img"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:contentDescription="@string/saved_item_img"
+                android:src="@drawable/bookmark"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/saved_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/saved_item_img"
+                android:text="@string/saved_items"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold"
+                android:fontFamily="@font/raleway_bold"
+                android:textColor="@color/text_color"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/account_item_rv"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/wallet_card"
+    app:layout_constraintTop_toBottomOf="@id/saved_card"
     tools:listitem="@layout/account_item"
     android:layout_margin="@dimen/_15sdp"
     />

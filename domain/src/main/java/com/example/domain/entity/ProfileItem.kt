@@ -1,4 +1,4 @@
-package com.example.carzoneapp.entity
+package com.example.domain.entity
 
 data class ProfileItem(
     val id:Int,

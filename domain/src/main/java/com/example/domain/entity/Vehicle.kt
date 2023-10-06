@@ -3,7 +3,6 @@ package com.example.domain.entity
 import java.io.Serializable
 
 data class Vehicle(
-    val vehicleId: String = "",
     val vehicleModel: String = "",
     val manufacturer: String = "",
     val vehicleName: String = "",

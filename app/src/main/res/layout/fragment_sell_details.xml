@@ -61,6 +61,9 @@
                         android:text="@string/upload_up_to_7_photos"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                       android:fontFamily="@font/raleway_semi_bold"
+                       android:textColor="@color/text_color"
+                      android:textSize="@dimen/_12ssp"
                         />
                     <ImageView
                         android:id="@+id/arrow_img"
@@ -69,8 +72,7 @@
                         android:src="@drawable/right_arrow"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-
-                        />
+                        android:contentDescription="@string/right_arrow" />
                     <ImageView
                         android:id="@+id/add_img"
                         android:layout_width="match_parent"
@@ -79,7 +81,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/arrow_img"
-                        />
+                        android:contentDescription="@string/add_images" />
 
                     <TextView
                         android:id="@+id/textView"
@@ -89,8 +91,9 @@
                         android:gravity="center"
                         android:text="@string/add_images"
                         android:textColor="@color/icon_color"
-                        android:textSize="@dimen/_20ssp"
+                        android:textSize="@dimen/_16ssp"
                         android:textStyle="bold"
+                        android:fontFamily="@font/raleway_semi_bold"
                         app:layout_constraintBottom_toBottomOf="@+id/add_img"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -103,7 +106,7 @@
                         app:layout_constraintTop_toTopOf="@+id/add_img"
                         app:layout_constraintEnd_toStartOf="@+id/textView"
                         app:layout_constraintBottom_toBottomOf="@id/add_img"
-                        />
+                        android:contentDescription="@string/ad_images" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
             <com.google.android.material.card.MaterialCardView
@@ -125,9 +128,10 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_10sdp"
                         android:padding="@dimen/_5sdp"
-                        android:text="Category *"
+                        android:text="@string/category"
+                        android:fontFamily="@font/raleway_semi_bold"
                         android:textColor="@color/text_color"
-                        android:textSize="@dimen/_16ssp"
+                        android:textSize="@dimen/_14ssp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
 
@@ -149,7 +153,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10sdp"
                         android:text="@string/category_name"
-                        android:textSize="@dimen/_14ssp"
+                        android:textSize="@dimen/_12ssp"
+                        android:textColor="@color/text_color"
+                        android:fontFamily="@font/raleway_semi_bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/category_img"
                         app:layout_constraintTop_toBottomOf="@id/category_tv" />
@@ -185,10 +191,11 @@
         android:text="@string/next"
         android:backgroundTint="@color/primaryColor"
         android:textColor="@color/icon_color"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_12ssp"
         android:textStyle="bold"
         app:cornerRadius="@dimen/_3sdp"
         android:padding="@dimen/_10sdp"
+        android:fontFamily="@font/raleway_semi_bold"
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -8,20 +8,22 @@
         android:id="@+id/region_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_3sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:text="@string/region_name"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/_16ssp"
+        android:textSize="@dimen/_12ssp"
+        android:fontFamily="@font/raleway_bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:layout_width="@dimen/_20sdp"
-        android:layout_height="@dimen/_20sdp"
+        android:layout_width="@dimen/_15sdp"
+        android:layout_height="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:src="@drawable/right_arrow"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/right_arrow" />
 </androidx.constraintlayout.widget.ConstraintLayout>

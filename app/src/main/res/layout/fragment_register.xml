@@ -28,7 +28,8 @@
         android:layout_marginTop="@dimen/_50sdp"
         android:text="@string/register_header_text1"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/_20ssp"
+        android:textSize="@dimen/_18ssp"
+        android:fontFamily="@font/raleway_bold"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +41,8 @@
         android:layout_marginTop="@dimen/_5sdp"
         android:text="@string/register_header_text2"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/_16ssp"
+        android:textSize="@dimen/_14ssp"
+        android:fontFamily="@font/raleway_medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header_text"
 
@@ -52,8 +54,9 @@
         android:layout_marginTop="@dimen/_5sdp"
         android:text="@string/login"
         android:textColor="@color/primaryColor"
-        android:textSize="@dimen/_16ssp"
+        android:textSize="@dimen/_14ssp"
         android:textStyle="bold"
+        android:fontFamily="@font/raleway_bold"
         android:layout_marginStart="@dimen/_2sdp"
         app:layout_constraintStart_toEndOf="@id/header_text2"
         app:layout_constraintTop_toBottomOf="@id/header_text"/>
@@ -79,7 +82,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:padding="@dimen/_18sdp" />
+            android:padding="@dimen/_18sdp"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/text_color"
+            android:fontFamily="@font/raleway_medium"
+            />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputTextLayoutEmail"
@@ -101,7 +108,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:padding="@dimen/_18sdp" />
+            android:padding="@dimen/_18sdp"
+            android:textSize="@dimen/_12ssp"
+
+            android:textColor="@color/text_color"
+            android:fontFamily="@font/raleway_medium"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputTextLayoutPhone"
@@ -125,7 +136,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
-            android:padding="@dimen/_18sdp" />
+            android:padding="@dimen/_18sdp"
+            android:textSize="@dimen/_12ssp"
+
+            android:textColor="@color/text_color"
+            android:fontFamily="@font/raleway_medium"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputTextLayoutPassword"
@@ -148,6 +163,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:textSize="@dimen/_12ssp"
             android:padding="@dimen/_18sdp" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.button.MaterialButton
@@ -158,8 +174,9 @@
         android:layout_marginTop="@dimen/_15sdp"
         android:text="@string/sign_up"
         android:backgroundTint="@color/primaryColor"
-        android:textColor="@color/button_text_color2"
-        android:textSize="@dimen/_14ssp"
+        android:textColor="@color/text_color"
+        android:fontFamily="@font/raleway_semi_bold"
+        android:textSize="@dimen/_12ssp"
         android:textStyle="bold"
         app:cornerRadius="@dimen/_3sdp"
         android:padding="@dimen/_10sdp"

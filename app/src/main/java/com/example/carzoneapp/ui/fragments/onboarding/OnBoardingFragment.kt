@@ -16,8 +16,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.carzoneapp.R
 import com.example.carzoneapp.adapters.OnBoardingViewPagerAdapter
 import com.example.carzoneapp.databinding.FragmentOnBoardingBinding
-import com.example.carzoneapp.ui.viewmodel.HomeViewModel
+import com.example.carzoneapp.ui.viewmodel.MainViewModel
 import com.example.carzoneapp.utils.EventObserver
+import com.example.domain.entity.LaunchInfo
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -27,7 +28,7 @@ class OnBoardingFragment : Fragment() {
     private var _binding: FragmentOnBoardingBinding? = null
     private val binding get() = _binding
 
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val homeViewModel: MainViewModel by viewModels()
 
     companion object {
         const val MAX_STEP = 4
@@ -52,8 +53,6 @@ class OnBoardingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         subscribeToObservables()
         binding!!.viewPager.adapter = OnBoardingViewPagerAdapter()
-        // TabLayoutMediator(binding!!.tabLayout, binding!!.viewPager2) { tab, position -> }.attach()
-        // binding!!.viewPager.setPageTransformer(ZoomOutPageTransformer())
         binding!!.dotsIndicator.attachTo(binding!!.viewPager)
         binding!!.viewPager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
@@ -64,8 +63,12 @@ class OnBoardingFragment : Fragment() {
                     binding!!.nextBtn.contentDescription =
                         getString(R.string.get_started)
                     binding!!.nextBtn.setOnClickListener {
-                        homeViewModel.saveFirstTimeLaunch(true)
-                       // findNavController().navigate(R.id.registerFragment, null, navOptions)
+                        homeViewModel.saveFirstTimeLaunch(
+                            LaunchInfo(
+                                isFirstTimeLaunch = true,
+                                isLogin = false
+                            )
+                        )
 
                     }
                 } else {
@@ -75,15 +78,23 @@ class OnBoardingFragment : Fragment() {
             }
         })
         binding!!.skipBtn.setOnClickListener {
-            homeViewModel.saveFirstTimeLaunch(true)
-           // findNavController().navigate(R.id.registerFragment, null, navOptions)
+            homeViewModel.saveFirstTimeLaunch(
+                LaunchInfo(
+                    isFirstTimeLaunch = true,
+                    isLogin = false
+                )
+            )
 
 
         }
         binding!!.nextBtn.setOnClickListener {
             if (binding!!.nextBtn.text.toString() == getString(R.string.get_started)) {
-                homeViewModel.saveFirstTimeLaunch(true)
-               // findNavController().navigate(R.id.registerFragment)
+                homeViewModel.saveFirstTimeLaunch(
+                    LaunchInfo(
+                        isFirstTimeLaunch = true,
+                        isLogin = false
+                    )
+                )
 
             } else {
                 val current = (binding!!.viewPager.currentItem) + 1
@@ -93,8 +104,12 @@ class OnBoardingFragment : Fragment() {
                     binding!!.nextBtn.contentDescription =
                         getString(R.string.get_started)
                     binding!!.nextBtn.setOnClickListener {
-                        homeViewModel.saveFirstTimeLaunch(true)
-                        //findNavController().navigate(R.id.registerFragment, null, navOptions)
+                        homeViewModel.saveFirstTimeLaunch(
+                            LaunchInfo(
+                                isFirstTimeLaunch = true,
+                                isLogin = false
+                            )
+                        )
                     }
                 } else {
                     binding!!.nextBtn.text = getString(R.string.next)
@@ -108,13 +123,12 @@ class OnBoardingFragment : Fragment() {
 
     private fun subscribeToObservables() {
         lifecycle.coroutineScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED) {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.saveFirstTimeLaunchState.collect(
                     EventObserver(
                         onLoading = {},
                         onSuccess = {
-                            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
-                            findNavController().navigate(R.id.registerFragment, null, navOptions)
+                            findNavController().navigate(R.id.startFragment, null, navOptions)
                         },
                         onError = {
                             Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()

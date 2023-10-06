@@ -13,7 +13,7 @@
         android:src="@drawable/credit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        android:contentDescription="@string/account_item_icon" />
 
     <TextView
         android:id="@+id/account_item_title"
@@ -22,7 +22,8 @@
         android:layout_marginStart="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:text=""
-        android:textSize="@dimen/_14ssp"
+        android:fontFamily="@font/raleway_bold"
+        android:textSize="@dimen/_10ssp"
         android:backgroundTint="@color/text_color"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/account_item_icon"
@@ -34,8 +35,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_5sdp"
         android:maxLines="2"
+        android:fontFamily="@font/raleway_medium"
+
         android:backgroundTint="@color/text_color"
-        android:textSize="@dimen/_12ssp"
+        android:textSize="@dimen/_8ssp"
         app:layout_constraintStart_toEndOf="@id/account_item_icon"
         app:layout_constraintTop_toBottomOf="@id/account_item_title" />
 
@@ -47,7 +50,7 @@
         android:src="@drawable/right_arrow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        android:contentDescription="@string/account_item_icon2" />
 
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"

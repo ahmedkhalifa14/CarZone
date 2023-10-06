@@ -39,8 +39,9 @@
         android:layout_margin="@dimen/_15sdp"
         android:text="@string/next"
         android:textColor="@color/white"
-        android:textSize="@dimen/_12ssp"
+        android:textSize="@dimen/_10ssp"
         android:textStyle="bold"
+        android:fontFamily="@font/raleway_semi_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -54,6 +55,7 @@
         android:layout_margin="@dimen/_5sdp"
         android:gravity="center"
         android:text="@string/skip"
+        android:fontFamily="@font/raleway_semi_bold"
         android:textAllCaps="true"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textColor="@color/primaryColor"

@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carzoneapp.databinding.HomeAdsParentLayoutBinding
-import com.example.carzoneapp.entity.HomeAdsAdapterItem
 import com.example.domain.entity.Ad
+import com.example.domain.entity.HomeAdsAdapterItem
 
 
 class ParentAdsAdapter(private val homeAdsAdapterItem: List<HomeAdsAdapterItem>) :
@@ -19,6 +19,13 @@ class ParentAdsAdapter(private val homeAdsAdapterItem: List<HomeAdsAdapterItem>)
     fun setOnItemClickListener(listener: (HomeAdsAdapterItem, Ad) -> Unit) {
         onItemClickListener = listener
     }
+
+
+    private var onSaveIconClickListener: ((HomeAdsAdapterItem, Ad) -> Unit)? = null
+    fun setOnSaveIconClickListener(listener: (HomeAdsAdapterItem, Ad) -> Unit) {
+        onSaveIconClickListener = listener
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdsAdapterViewHolder {
         return AdsAdapterViewHolder(
@@ -34,10 +41,13 @@ class ParentAdsAdapter(private val homeAdsAdapterItem: List<HomeAdsAdapterItem>)
         holder.binding.apply {
             val adsItem = homeAdsAdapterItem[position]
             adsParentLayoutAdsTypeTv.text = adsItem.title
-            val adsAdapter = AdsAdapter(1) { childItem ->
-                // Forward the click event to the parent's click listener
-                onItemClickListener?.invoke(adsItem, childItem)
-            }
+
+            val adsAdapter = AdsAdapter(1,
+                onItemClickListener = { ad -> onItemClickListener?.invoke(adsItem, ad) },
+                onSaveIconClickListener = { ad -> onSaveIconClickListener?.invoke(adsItem, ad) }
+            )
+
+
             adsAdapter.differ.submitList(adsItem.adsList)
             adsParentLayoutRv.adapter = adsAdapter
         }
@@ -45,9 +55,4 @@ class ParentAdsAdapter(private val homeAdsAdapterItem: List<HomeAdsAdapterItem>)
 }
 
 
-//    private var onItemClickListener: ((Ad) -> Unit)? = null
-//
-//    fun setOnItemClickListener(listener: (Ad) -> Unit) {
-//        onItemClickListener = listener
-//    }
 

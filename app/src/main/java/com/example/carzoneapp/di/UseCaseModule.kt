@@ -1,6 +1,7 @@
 package com.example.carzoneapp.di
 
 import com.example.domain.repo.MainRepo
+import com.example.domain.usecase.AddToSavedItemsUseCase
 import com.example.domain.usecase.AddVehicleAdUseCase
 import com.example.domain.usecase.FetchRegionsInCountryUseCase
 import com.example.domain.usecase.GetAllAdsByUserIdUseCase
@@ -8,11 +9,13 @@ import com.example.domain.usecase.GetAllAdsByVehicleTypeUseCase
 import com.example.domain.usecase.GetAllAdsUseCase
 import com.example.domain.usecase.GetAllVehiclesCategoriesUseCase
 import com.example.domain.usecase.GetMessagesUseCase
+import com.example.domain.usecase.GetSavedItemsByUserIdUseCase
 import com.example.domain.usecase.GetUserChatListUseCase
 import com.example.domain.usecase.GetUserInfoUseCase
 import com.example.domain.usecase.IsFirstTimeLaunchUseCase
 import com.example.domain.usecase.LoginWithEmailUseCase
 import com.example.domain.usecase.RegisterUseCase
+import com.example.domain.usecase.RemoveFromSavedItemsByUserIdUseCase
 import com.example.domain.usecase.SaveFirstTimeLaunchUseCase
 import com.example.domain.usecase.SaveUserChatListUseCase
 import com.example.domain.usecase.SaveUserDataUseCase
@@ -112,4 +115,17 @@ object UseCaseModule {
     @Provides
     fun provideSaveUserChatListUseCase(mainRepo: MainRepo): SaveUserChatListUseCase =
         SaveUserChatListUseCase(mainRepo)
+
+    @Provides
+    fun provideRemoveFromSavedItemsByUserIdUseCase(mainRepo: MainRepo): RemoveFromSavedItemsByUserIdUseCase =
+        RemoveFromSavedItemsByUserIdUseCase(mainRepo)
+
+    @Provides
+    fun provideAddToSavedItemsUseCase(mainRepo: MainRepo): AddToSavedItemsUseCase =
+        AddToSavedItemsUseCase(mainRepo)
+
+    @Provides
+    fun provideGetSavedItemsByUserIdUseCase(mainRepo: MainRepo): GetSavedItemsByUserIdUseCase =
+        GetSavedItemsByUserIdUseCase(mainRepo)
+
 }

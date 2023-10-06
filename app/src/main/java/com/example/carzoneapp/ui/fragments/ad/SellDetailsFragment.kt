@@ -1,12 +1,12 @@
 package com.example.carzoneapp.ui.fragments.ad
 
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -16,9 +16,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.example.carzoneapp.R
 import com.example.carzoneapp.adapters.TabAdapter
 import com.example.carzoneapp.databinding.FragmentSellDetailsBinding
-import com.example.carzoneapp.ui.viewmodel.HomeViewModel
+import com.example.carzoneapp.ui.viewmodel.MainViewModel
 import com.example.carzoneapp.utils.EventObserver
 import com.example.domain.entity.Ad
 import com.example.domain.entity.CarData
@@ -43,36 +44,34 @@ class SellDetailsFragment : Fragment() {
     private val binding get() = _binding
     private val args: SellDetailsFragmentArgs by navArgs()
     private var category: VehiclesCategories? = null
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val homeViewModel: MainViewModel by viewModels()
     private var uriArray: ArrayList<Uri>? = null
 
     @Inject
     lateinit var firebaseAuth: FirebaseAuth
 
-    private val imageSelectionContract =
-        registerForActivityResult(ActivityResultContracts.GetMultipleContents()) { uris: List<Uri>? ->
-            // Initialize uriArray
-            uriArray = ArrayList()
-            if (!uris.isNullOrEmpty()) {
-                val imageUri: Uri?
-                if (uris.size > 1) {
-                    // Multiple images selected
-                    for (uri in uris) {
-                        uriArray?.add(uri)
-                    }
-                    imageUri = uris[0]
-                } else {
-                    // Single image selected
-                    imageUri = uris[0]
-                    uriArray?.add(imageUri)
+    private val pickMultipleMedia = registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(7)) { uris ->
+        uriArray = ArrayList()
+        if (!uris.isNullOrEmpty()) {
+            val imageUri: Uri?
+            if (uris.size > 1) {
+                // Multiple images selected
+                for (uri in uris) {
+                    uriArray?.add(uri)
                 }
-                binding!!.addImg.setImageURI(imageUri)
-
+                imageUri = uris[0]
             } else {
-                Toast.makeText(requireContext(), "unknown error occurred", Toast.LENGTH_SHORT)
-                    .show()
+                // Single image selected
+                imageUri = uris[0]
+                uriArray?.add(imageUri)
             }
+            binding!!.addImg.setImageURI(imageUri)
+
+        } else {
+            Toast.makeText(requireContext(), "unknown error occurred", Toast.LENGTH_SHORT)
+                .show()
         }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -107,15 +106,6 @@ class SellDetailsFragment : Fragment() {
         binding!!.nextBtn.setOnClickListener {
             uriArray?.toList()?.let { imagesList -> homeViewModel.uploadImages(imagesList) }
         }
-        tab1Fragment.priceTabFragmentBinding!!.locationCard.setOnClickListener {
-            val action =
-                SellDetailsFragmentDirections.actionSellDetailsFragmentToChooseLocationFragment(
-                    args.location,
-                    args.category
-                )
-            findNavController().navigate(action)
-        }
-        tab1Fragment.priceTabFragmentBinding!!.locationTv.text = args.location
     }
 
 
@@ -135,6 +125,7 @@ class SellDetailsFragment : Fragment() {
         val uid = currentUser?.uid
 
         val ad = Ad(
+            firebaseAuth.currentUser?.uid.toString() + System.currentTimeMillis(),
             adsData,
             vehicle,
             imageList,
@@ -147,12 +138,8 @@ class SellDetailsFragment : Fragment() {
 
 
     private fun openGallery() {
-        // For latest versions API LEVEL 19+
-        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-        intent.addCategory(Intent.CATEGORY_OPENABLE)
-        intent.type = "image/*"
-        imageSelectionContract.launch(intent.type)
+        pickMultipleMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageAndVideo))
+
     }
 
     private fun subscribeToObservables() {
@@ -165,8 +152,7 @@ class SellDetailsFragment : Fragment() {
                         },
                         onSuccess = {
                             addAds(it)
-                            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_LONG)
-                                .show()
+
                         },
                         onError = {
                             Toast.makeText(requireContext(), it, Toast.LENGTH_LONG)
@@ -181,8 +167,8 @@ class SellDetailsFragment : Fragment() {
                     EventObserver(
                         onLoading = {},
                         onSuccess = {
+                            findNavController().navigate(R.id.action_sellDetailsFragment_to_homeFragment)
                             Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
-
                         },
                         onError = {
                             Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()

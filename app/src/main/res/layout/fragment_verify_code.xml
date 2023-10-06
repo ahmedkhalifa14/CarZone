@@ -33,7 +33,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@drawable/arrow_back_icon"
-            app:title="@string/verification_code" />
+            app:title="@string/verification_code"
+            app:titleTextColor="@color/text_color"
+            />
     </com.google.android.material.appbar.AppBarLayout>
 
 
@@ -48,7 +50,8 @@
         android:layout_marginEnd="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topAppBarLayout"/>
+        app:layout_constraintTop_toBottomOf="@id/topAppBarLayout"
+        android:contentDescription="@string/otp_img" />
 
     <com.chaos.view.PinView
         android:id="@+id/verifyCodeView"
@@ -61,7 +64,7 @@
         android:itemBackground="@color/pinViewBgColor"
         android:padding="@dimen/_5sdp"
         android:textColor="@color/black"
-        android:textSize="@dimen/_18ssp"
+        android:textSize="@dimen/_16ssp"
         android:textStyle="bold"
         app:cursorWidth="@dimen/_1sdp"
         app:itemCount="6"
@@ -69,6 +72,7 @@
         app:itemRadius="@dimen/_10sdp"
         app:itemSpacing="@dimen/_5sdp"
         app:itemWidth="@dimen/_40sdp"
+        android:fontFamily="@font/raleway_semi_bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/otp_img"
@@ -87,8 +91,9 @@
         android:layout_marginEnd="@dimen/_15sdp"
         android:layout_marginStart="@dimen/_15sdp"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_12ssp"
         android:textStyle="bold"
+        android:fontFamily="@font/raleway_semi_bold"
         app:cornerRadius="@dimen/_3sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -12,8 +12,9 @@
         android:layout_margin="@dimen/_15sdp"
         android:text="@string/ads_type"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/_18ssp"
+        android:textSize="@dimen/_12ssp"
         android:textStyle="bold"
+        android:fontFamily="@font/raleway_bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,8 +27,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="@dimen/_15sdp"
         android:text="@string/see_all"
+        android:fontFamily="@font/raleway_semi_bold"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/_16ssp" />
+        android:textSize="@dimen/_12ssp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ads_parent_layout_rv"
@@ -38,8 +40,8 @@
         app:layout_constraintTop_toBottomOf="@id/ads_parent_layout_ads_type_tv"
         tools:listitem="@layout/home_ad_item"
         android:layout_marginTop="@dimen/_7sdp"
-        android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="horizontal" />
 

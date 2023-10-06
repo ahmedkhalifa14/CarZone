@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carzoneapp.adapters.AdsAdapter
 import com.example.carzoneapp.databinding.FragmentMyAdsBinding
-import com.example.carzoneapp.ui.viewmodel.HomeViewModel
+import com.example.carzoneapp.ui.viewmodel.MainViewModel
 import com.example.carzoneapp.utils.EventObserver
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -29,7 +29,7 @@ class MyAdsFragment : Fragment() {
     private val binding get() = _binding
     private lateinit var adsAdapter: AdsAdapter
     private lateinit var adsRecyclerView: RecyclerView
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val homeViewModel: MainViewModel by viewModels()
 
     @Inject
     lateinit var firebaseAuth: FirebaseAuth

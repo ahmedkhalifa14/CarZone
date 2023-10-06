@@ -2,7 +2,6 @@ package com.example.carzoneapp.ui.viewmodel
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.carzoneapp.R
@@ -40,7 +39,7 @@ class AuthViewModel @Inject constructor(
     private val signInWithGoogleUseCase: SignInWithGoogleUseCase,
     private val sendVerificationCodeUseCase: SendVerificationCodeUseCase,
     private val verifyCodeUseCase: VerifyCodeUseCase,
-    @ApplicationContext val context: Context,
+    @ApplicationContext  val context: Context,
     private val firebaseAuth: FirebaseAuth
 ) : ViewModel() {
 
@@ -74,9 +73,7 @@ class AuthViewModel @Inject constructor(
             _sendVerificationCodeState.emit(Event(Resource.Loading()))
             try {
                 val verificationId= sendVerificationCodeUseCase(phoneNumber)
-                Log.d("verification",verificationId)
                 _sendVerificationCodeState.emit(Event(Resource.Success(verificationId)))
-
 
             }catch (e:Exception){
                 _sendVerificationCodeState.emit(Event(Resource.Error("Phone Number sign-in failed: ${e.message}")))
@@ -88,13 +85,12 @@ class AuthViewModel @Inject constructor(
 
     fun verifyCode(verificationId:String,code:String){
         viewModelScope.launch (Dispatchers.Main){
-            _sendVerificationCodeState.emit(Event(Resource.Loading()))
+            _verifyCodeState.emit(Event(Resource.Loading()))
             try {
                 verifyCodeUseCase(verificationId,code)
-                _sendVerificationCodeState.emit(Event(Resource.Success(" Sign in success")))
-
+                _verifyCodeState.emit(Event(Resource.Success(" Sign in success")))
             }catch (e:Exception){
-                _sendVerificationCodeState.emit(Event(Resource.Error("Phone Number sign-in failed: ${e.message}")))
+                _verifyCodeState.emit(Event(Resource.Error("Phone Number sign-in failed: ${e.message}")))
 
             }
         }
@@ -138,7 +134,7 @@ class AuthViewModel @Inject constructor(
     private fun firebaseAuthWithGoogle(idToken: String?) {
        viewModelScope.launch(Dispatchers.Main) {
             try {
-                var authResult = signInWithGoogleUseCase(idToken!!)
+                signInWithGoogleUseCase(idToken!!)
                 val firebaseUser = firebaseAuth.currentUser
                 val user = GoogleAccountInfo(
                     firebaseUser!!.uid,
@@ -189,16 +185,16 @@ class AuthViewModel @Inject constructor(
             _saveUserDataState.emit(Event(Resource.Loading()))
             try {
                 saveUserDataUseCase(user)
-                Log.d("authViewModel", "Data saved successfully")
                 _saveUserDataState.emit(Event(Resource.Success(user)))
             } catch (e: Exception) {
-                Log.e("authViewModel", "Error saving user data", e) // Log the exception with stack trace
-                Log.e("authViewModel", "Exception message: ${e.message}") // Log the exception message separately
                 _saveUserDataState.emit(Event(Resource.Error("Error occurred: ${e.message}")))
             }
         }
     }
-    fun loginWithEmail(inputTextLayoutEmail: TextInputLayout, inputTextLayoutPassword: TextInputLayout, ) {
+    fun loginWithEmail(
+        inputTextLayoutEmail: TextInputLayout,
+        inputTextLayoutPassword: TextInputLayout,
+    ) {
         viewModelScope.launch(Dispatchers.Main) {
             val email = inputTextLayoutEmail.editText!!.text.toString()
             val password = inputTextLayoutPassword.editText!!.text.toString()

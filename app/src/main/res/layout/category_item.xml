@@ -30,7 +30,8 @@
             android:text="@string/category_name"
             android:textAlignment="center"
             android:textColor="@color/text_color"
-            android:textSize="@dimen/_12ssp"
+            android:fontFamily="@font/raleway_extra_bold"
+            android:textSize="@dimen/_10ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/category_img" />

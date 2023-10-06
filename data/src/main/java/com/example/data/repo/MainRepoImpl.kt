@@ -9,6 +9,8 @@ import com.example.domain.entity.Ad
 import com.example.domain.entity.ChatMessage
 import com.example.domain.entity.GeoNamesResponse
 import com.example.domain.entity.ImageEntity
+import com.example.domain.entity.LaunchInfo
+import com.example.domain.entity.SavedItem
 import com.example.domain.entity.User
 import com.example.domain.entity.UserChat
 import com.example.domain.entity.VehiclesCategories
@@ -30,10 +32,6 @@ class MainRepoImpl @Inject constructor(
         firebaseService.loginWithEmail(email, password)
     }
 
-//    override suspend fun signInWithGoogle(): Result<GoogleAccountInfo> =
-//        firebaseService.signInWithGoogle()
-
-
     override suspend fun saveUserData(user: User) {
         firebaseService.saveUserData(user)
     }
@@ -45,11 +43,11 @@ class MainRepoImpl @Inject constructor(
         firebaseService.getAllVehiclesCategories()
 
 
-    override suspend fun saveAsFirstTimeLaunch(isFirstTime: Boolean) {
-        dataStoreManager.saveAsFirstTimeLaunch(isFirstTime)
+    override suspend fun saveAsFirstTimeLaunch(launchInfo: LaunchInfo) {
+        dataStoreManager.saveAsFirstTimeLaunch(launchInfo)
     }
 
-    override suspend fun isFirstTimeLaunch(): Flow<Boolean> =
+    override suspend fun isFirstTimeLaunch(): Flow<LaunchInfo> =
         dataStoreManager.isFirstTimeLaunch()
 
     override suspend fun addVehicleAds(ad: Ad) {
@@ -115,5 +113,14 @@ class MainRepoImpl @Inject constructor(
 
     override suspend fun getChatMessages(userId: String): List<UserChat> =
         firebaseService.getUserChats(userId)
+
+    override suspend fun addToSavedItems(savedItem: SavedItem) =
+        firebaseService.addToSavedItems(savedItem)
+
+    override suspend fun getSavedItemsByUserId(userId: String): List<SavedItem> =
+        firebaseService.getSavedItemsByUserId(userId)
+
+    override suspend fun removeFromSavedItemsByUserId(userId: String, itemId: String) =
+        firebaseService.removeFromSavedItemsByUserId(userId, itemId)
 
 }

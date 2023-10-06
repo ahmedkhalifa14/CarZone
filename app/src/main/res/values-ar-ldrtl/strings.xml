@@ -28,6 +28,7 @@
     <string name="location">القاهره</string>
     <string name="price">500000</string>
     <string name="negotiable">قابل للتفاوض</string>
+    <string name="not_negotiable">غير قابل للتفاوض</string>
     <string name="user_name">اسم المستخدم</string>
     <string name="profile_sub_title">عرض وتحرير الملف الشخصي</string>
     <string name="carzone_wallet">محفظة كارزون</string>
@@ -131,8 +132,10 @@
     <string name="transmission_txt">الانتقال:</string>
     <string name="description">الوصف</string>
     <string name="weight_txt">الوزن</string>
+    <string name="let_s_go">هيا بنا</string>
+
     <string name="see_profile"><![CDATA[رؤية الملف الشخصى>]]></string>
-    <string name="location3">الموثع</string>
+    <string name="location3">الموقع</string>
     <string name="see_location">رؤية الموقع</string>
     <string name="hide_this_ad">اخفاء هذاالاعلان</string>
     <string name="report_this_ad">الابلاغ عن هذا الاعلان</string>
@@ -146,6 +149,35 @@
     <string name="chat">محادثة</string>
     <string name="call">مكالمة صوتية</string>
     <string name="map_img">صورة الخريطه</string>
+    <string name="receiver_message">رساله المستلم</string>
+    <string name="sender_message">رساله الراسل</string>
+    <string name="use_current_location">استخدام الموقع الحالى</string>
+    <string name="choose_region">اختيار المنطقة</string>
+    <string name="egypt">مصر </string>
+    <string name="see_all_in">رؤية الكل فى </string>
+    <string name="search_area_city_or_country">ابحث عن منطقه، مدينه او دوله</string>
+    <string name="right_arrow">right_arrow</string>
+    <string name="no_saved_item_available">لسيت هناك اى عناصر محفوظه</string>
+    <string name="saved_items">العناصر المحفوظه</string>
+    <string name="saved_item_img">saved_item_img</string>
+    <string name="account_item_icon">account_item_icon</string>
+    <string name="account_item_icon2">account_item_icon2</string>
+    <string name="card_img">card_img</string>
+    <string name="info">info</string>
+    <string name="send_message">رساله…</string>
+    <string name="ads_type">نوع الاعلان</string>
+    <string name="all_ads">كل الاعلانات</string>
+    <string name="seller_name">اسم البائع</string>
+    <string name="joined">انضم</string>
+    <string name="filters">الفلاتر</string>
+    <string name="you_don_t_have_ads_with_current_filters">ليس لديك اى اعلانات بالفلاتر الحاليه</string>
+    <string name="please_enter_your_phone_number">من فصلك ادخل رقم الهاتف</string>
+    <string name="category">التصنيف *</string>
+    <string name="phone">رقم الهاتف</string>
+    <string name="my_friend_you_are_stupid_you_will_send_a_message_to_yourself">يصحبى انت عبيط هتبعت رساله لنفسك</string>
+    <string name="joined_at">انضم: </string>
+
+
 
 
 </resources>

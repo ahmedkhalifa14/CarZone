@@ -13,8 +13,9 @@
     app:layout_constraintTop_toTopOf="parent"
     android:text="@string/my_ads"
     android:textColor="@color/text_color"
-    android:textSize="@dimen/_20ssp"
+    android:textSize="@dimen/_18ssp"
     android:textStyle="bold"
+    android:fontFamily="@font/raleway_extra_bold"
     android:layout_margin="@dimen/_15sdp"
     />
 
@@ -32,7 +33,8 @@
         app:icon="@drawable/filter_icon"
         android:textColor="@color/text_color"
         app:iconTint ="@color/text_color"
-        android:textSize="@dimen/_12ssp"
+        android:textSize="@dimen/_10ssp"
+        android:fontFamily="@font/raleway_medium"
         />
 
     <Button
@@ -41,12 +43,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/all_ads"
+        android:fontFamily="@font/raleway_medium"
         app:layout_constraintStart_toEndOf="@id/filters_btn"
         app:layout_constraintTop_toBottomOf="@id/my_ads_fragment_title"
         android:backgroundTint="@color/appModeBG2"
         android:layout_marginStart="@dimen/_7sdp"
         android:layout_marginTop="@dimen/_7sdp"
-        android:textSize="@dimen/_12ssp"
+        android:textSize="@dimen/_10ssp"
         android:textColor="@color/text_color"
         app:iconTint ="@color/text_color"
         />
@@ -94,10 +97,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="@string/you_don_t_have_ads_with_current_filters"
-        android:textSize="@dimen/_16ssp"
+        android:textSize="@dimen/_14ssp"
         android:textAlignment="center"
         android:textStyle="bold"
         android:textColor="@color/text_color"
+        android:fontFamily="@font/raleway_semi_bold"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

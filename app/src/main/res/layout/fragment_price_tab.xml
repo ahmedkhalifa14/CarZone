@@ -14,7 +14,8 @@
         android:padding="@dimen/_5sdp"
         android:text="@string/price2"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_12ssp"
+        android:fontFamily="@font/raleway_semi_bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,6 +28,7 @@
         android:layout_marginEnd="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toBottomOf="@+id/price_tv">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -34,7 +36,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:padding="@dimen/_18sdp" />
+            android:padding="@dimen/_18sdp"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/_12ssp"
+            android:fontFamily="@font/raleway_medium"
+
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <CheckBox
@@ -43,6 +50,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
         android:text="@string/negotiable"
+        android:textSize="@dimen/_10ssp"
+        android:fontFamily="@font/raleway_semi_bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputTextLayoutPrice" />
 
@@ -80,8 +89,9 @@
                 android:layout_margin="@dimen/_10sdp"
                 android:padding="@dimen/_5sdp"
                 android:text="@string/location2"
+                android:fontFamily="@font/raleway_semi_bold"
                 android:textColor="@color/text_color"
-                android:textSize="@dimen/_14ssp"
+                android:textSize="@dimen/_12ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <TextView
@@ -90,6 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:padding="@dimen/_5sdp"
+                android:fontFamily="@font/raleway_semi_bold"
                 android:text="@string/choose"
                 android:textColor="@color/text_color"
                 android:textSize="@dimen/_10ssp"
@@ -126,8 +137,9 @@
         android:layout_margin="@dimen/_10sdp"
         android:padding="@dimen/_5sdp"
         android:text="@string/add_title"
+        android:fontFamily="@font/raleway_semi_bold"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_12ssp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider2" />
 
@@ -147,7 +159,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:padding="@dimen/_18sdp" />
+            android:padding="@dimen/_18sdp"
+            android:textColor="@color/text_color"
+            android:fontFamily="@font/raleway_medium"
+            android:textSize="@dimen/_12ssp"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.divider.MaterialDivider
@@ -169,7 +185,8 @@
         android:padding="@dimen/_5sdp"
         android:text="@string/describe_what_are_you_selling"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_12ssp"
+        android:fontFamily="@font/raleway_semi_bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/divider3" />
 
@@ -189,7 +206,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:padding="@dimen/_18sdp" />
+            android:padding="@dimen/_18sdp"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/_12ssp"
+            android:fontFamily="@font/raleway_medium"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
 

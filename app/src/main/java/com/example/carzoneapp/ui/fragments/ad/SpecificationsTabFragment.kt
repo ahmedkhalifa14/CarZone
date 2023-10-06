@@ -13,13 +13,19 @@ import com.example.domain.entity.Truck
 import com.example.domain.entity.Van
 import com.example.domain.entity.Vehicle
 import com.example.domain.entity.VehiclesCategories
+import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 
 @Suppress("DEPRECATION")
+@AndroidEntryPoint
 class SpecificationsTabFragment : Fragment() {
     private var _binding: FragmentSpecificationsTabBinding? = null
     private val binding get() = _binding
     private  var  category: VehiclesCategories?= null
+    @Inject
+    lateinit var firebaseAuth: FirebaseAuth
 
     //to create a new instance of SpecificationsTabFragment with arguments
     companion object {
@@ -82,7 +88,6 @@ class SpecificationsTabFragment : Fragment() {
         val seatingCapacity =
             binding!!.inputTextLayoutSeatingCapacityCar.editText!!.text.toString()
         return Vehicle(
-            "",
             vehicleModel,
             manufacturer,
             vehicleName,

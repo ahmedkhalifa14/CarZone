@@ -1,14 +1,14 @@
 <resources>
     <string name="app_name">CarZone</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="welcome_text1">welcome to Car Zone</string>
+    <string name="welcome_text1">welcome to CarZone</string>
     <string name="welcome_text2">The trusted community of car buyers and sellers</string>
     <string name="continue_with_google">Continue with Google</string>
     <string name="continue_with_facebook">Continue with Facebook</string>
     <string name="continue_with_email">Continue with Email</string>
     <string name="term_text1">If you continue, you are accepting</string>
     <string name="term_text2">CarZone Terms and Condition and Privacy Policy</string>
-    <string name="cancel">cancel</string>
+    <string name="cancel">Cancel</string>
     <string name="email">Email\n</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
@@ -26,6 +26,7 @@
     <string name="location">cairo</string>
     <string name="price">500000</string>
     <string name="negotiable">Negotiable</string>
+    <string name="not_negotiable"> Not Negotiable</string>
     <string name="user_name">User Name</string>
     <string name="profile_sub_title">View and edit profile</string>
     <string name="carzone_wallet">CarZone Wallet</string>
@@ -42,16 +43,15 @@
     <string name="account_item_subtitle5"> </string>
     <string name="sell_faster_more_and_at_higher_margins_with_packages">Sell faster, more and at higher margins with packages</string>
     <string name="user_balance">0</string>
-    <string name="search_message">Search Message...</string>
+    <string name="search_message">Search Message…</string>
     <string name="time">00:00</string>
     <string name="message">this is message</string>
 
-    // Field Validation
+    //Validation
     <string name="password_empty">Please, enter your password</string>
     <string name="min_password">Password should include 1Capital letter, 1 Number, and min 8 character, special character are not allowed</string>
     <string name="password_no_spec_characters">Special characters are not allowed</string>
     <string name="one_num_needed">One Number Needed at Least</string>
-
     <string name="cap_letter">One Capital letter Needed At Least</string>
     <string name="phone_number">Phone Number</string>
 
@@ -73,7 +73,6 @@
     <string name="my_ads">My Ads</string>
     <string name="account">Account</string>
     <string name="remember_me">Remember me</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="upload_up_to_7_photos">UPLOAD UP TO 7 PHOTOS</string>
     <string name="add_images">Add Images</string>
     <string name="include_some_details">Include some details</string>
@@ -108,7 +107,6 @@
     <string name="see_all">see all</string>
     <string name="what_are_you_looking_for">What are you looking for?</string>
     <string name="region_name">region name</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="ad_images">ad image</string>
     <string name="favorite">favorite</string>
     <string name="share">share</string>
@@ -151,20 +149,38 @@
     <string name="all_ads">All Ads</string>
     <string name="fav_icon" translatable="false">fav icon</string>
     <string name="delete_icon" translatable="false">delete icon</string>
-    <string name="ads_type">Ads Type</string>
+    <string name="ads_type">Ad Type</string>
     <string name="ic_attachment" translatable="false">ic_attachment</string>
-    <string name="send_message">Message...</string>
+    <string name="send_message">Message…</string>
     <string name="audio_btn" translatable="false">audio_btn</string>
     <string name="video_btn" translatable="false">video_btn</string>
     <string name="back_btn" translatable="false">back_btn</string>
-    <string name="seen_img">seen_img</string>
-    <string name="receiver_message">ReceiverMessage</string>
+    <string name="seen_img" translatable="false">seen_img</string>
+    <string name="receiver_message">Receiver Message</string>
     <string name="sender_message">sender Message</string>
     <string name="use_current_location">Use current location</string>
     <string name="choose_region">Choose region</string>
     <string name="egypt">Egypt</string>
-    <string name="see_all_in">see all in</string>
+    <string name="see_all_in">see all in </string>
     <string name="search_area_city_or_country">search area, city or country</string>
+    <string name="right_arrow">right_arrow</string>
+    <string name="no_saved_item_available">No saved items available</string>
+    <string name="saved_items">Saved Items</string>
+    <string name="saved_item_img">saved_item_img</string>
+    <string name="account_item_icon">account_item_icon</string>
+    <string name="account_item_icon2">account_item_icon2</string>
+    <string name="card_img">card_img</string>
+    <string name="info">info</string>
+    <string name="dropdown_icon" translatable="false">dropdown_icon</string>
+    <string name="notification_icon" translatable="false">notification_icon</string>
+    <string name="phone_login_img" translatable="false">phone_login_img</string>
+    <string name="please_enter_your_phone_number">Please Enter your phone number</string>
+    <string name="on_boarding_iv" translatable="false">on_boarding_iv</string>
+    <string name="otp_img" translatable="false">otp_img</string>
+    <string name="category">Category *</string>
+    <string name="phone">Phone</string>
+    <string name="my_friend_you_are_stupid_you_will_send_a_message_to_yourself">My friend, you are stupid. You will send a message to yourself</string>
+    <string name="joined_at">JoinedAt: </string>
 
 
 </resources>

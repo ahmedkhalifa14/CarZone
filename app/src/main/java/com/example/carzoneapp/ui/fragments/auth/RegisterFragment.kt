@@ -71,11 +71,11 @@ class RegisterFragment : Fragment() {
                     EventObserver(
                         onLoading = {
                             binding!!.spinKitProgress.isVisible = true
-                        }, onSuccess = { user ->
+                        }, onSuccess = {
                             binding!!.spinKitProgress.isVisible = false
                             Toast.makeText(
                                 requireContext(),
-                                "Verification email sent to ${user.email}",
+                                "Verification email sent to your mail",
                                 Toast.LENGTH_LONG
                             ).show()
                             sendDataAndNavigate()
@@ -109,8 +109,9 @@ class RegisterFragment : Fragment() {
             )
         }
         if (action != null) {
-            findNavController().popBackStack()
+            //findNavController().popBackStack()
             findNavController().navigate(action)
+
         }
     }
     private fun register() {

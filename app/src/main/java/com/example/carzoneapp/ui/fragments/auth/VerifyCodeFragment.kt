@@ -1,7 +1,6 @@
 package com.example.carzoneapp.ui.fragments.auth
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -69,17 +68,12 @@ class VerifyCodeFragment : Fragment() {
                 authViewModel.verifyCodeState.collect(
                     EventObserver(
                         onLoading = {
-                            Log.d("verifyCodeState","loading")
-
                             binding!!.spinKitProgress.isVisible = true
                         },
                         onSuccess = {successMessage->
-                            Log.d("verifyCodeState","successMessage")
                             setDataAndNavigate(successMessage)
                         },
                         onError = {
-                            Log.d("verifyCodeState",it)
-
                             binding!!.spinKitProgress.isVisible = false
                             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
                         }
@@ -97,7 +91,6 @@ class VerifyCodeFragment : Fragment() {
         binding!!.spinKitProgress.isVisible = false
         Toast.makeText(requireContext(), successMessage, Toast.LENGTH_SHORT).show()
         val action = VerifyCodeFragmentDirections.actionVerifyCodeFragmentToSetupFragment(user)
-        findNavController().popBackStack()
         findNavController().navigate(action)
     }
 

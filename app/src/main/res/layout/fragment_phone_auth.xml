@@ -35,7 +35,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@drawable/arrow_back_icon"
-            app:title="@string/phone_number_auth" />
+            app:title="@string/phone_number_auth"
+
+            />
     </com.google.android.material.appbar.AppBarLayout>
 
     <ImageView
@@ -48,7 +50,8 @@
         android:src="@drawable/mobile_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topAppBarLayout" />
+        app:layout_constraintTop_toBottomOf="@id/topAppBarLayout"
+        android:contentDescription="@string/phone_login_img" />
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -68,9 +71,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="Please Enter your phone number "
+        android:text="@string/please_enter_your_phone_number"
         android:layout_margin="@dimen/_10sdp"
-        android:textSize="@dimen/_18ssp"
+        android:fontFamily="@font/raleway_bold"
+        android:textSize="@dimen/_14ssp"
         android:textColor="@color/text_color"
 
         />
@@ -86,6 +90,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:prefixText="+20"
+        android:hint="@string/phone"
+        app:hintTextColor="@color/primaryColor"
         app:prefixTextColor="@color/text_color"
         app:startIconDrawable="@drawable/phone">
 
@@ -94,7 +100,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
-            android:padding="@dimen/_18sdp" />
+            android:fontFamily="@font/raleway_medium"
+            android:padding="@dimen/_18sdp"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/text_color"
+
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
@@ -109,7 +120,8 @@
         android:layout_marginEnd="@dimen/_15sdp"
         android:layout_marginStart="@dimen/_15sdp"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_12ssp"
+        android:fontFamily="@font/raleway_semi_bold"
         android:textStyle="bold"
         app:cornerRadius="@dimen/_3sdp"
         android:layout_marginBottom="@dimen/_10sdp"

@@ -123,4 +123,11 @@ dependencies {
     //implementation("com.facebook.shimmer:shimmer:0.6.0")
     implementation( "com.facebook.shimmer:shimmer:0.1.0@aar")
 
+
+    implementation ("androidx.activity:activity-ktx:1.7.2")
+    implementation( "androidx.fragment:fragment-ktx:1.6.1")
+
+
+
+
 }

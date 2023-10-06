@@ -28,7 +28,8 @@
         android:layout_marginTop="@dimen/_50sdp"
         android:text="@string/login_header_text1"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/_20ssp"
+        android:textSize="@dimen/_18ssp"
+        android:fontFamily="@font/raleway_bold"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,7 +42,8 @@
         android:layout_marginTop="@dimen/_5sdp"
         android:text="@string/login_header_text2"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/_16ssp"
+        android:textSize="@dimen/_14ssp"
+        android:fontFamily="@font/raleway_medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header_text"/>
 
@@ -65,6 +67,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
+            android:fontFamily="@font/raleway_medium"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/_12ssp"
             android:padding="@dimen/_18sdp" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -88,18 +93,23 @@
             android:id="@+id/inputTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_medium"
             android:inputType="textPassword"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/_12ssp"
             android:padding="@dimen/_18sdp" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.materialswitch.MaterialSwitch
         android:id="@+id/remember_me_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:checked="true"
+        android:checked="false"
         android:layout_marginTop="@dimen/_5sdp"
         android:text="@string/remember_me"
+        app:thumbIcon="@drawable/checked_icon"
         android:textColor="@color/text_color"
-        android:textSize="@dimen/_12ssp"
+        android:textSize="@dimen/_10ssp"
+        android:fontFamily="@font/raleway_medium"
         android:layout_marginStart="@dimen/_10sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputTextLayoutPassword"
@@ -114,10 +124,11 @@
         android:gravity="center"
         android:padding="@dimen/_10sdp"
         android:text="@string/login"
+        android:fontFamily="@font/raleway_semi_bold"
         android:layout_marginEnd="@dimen/_15sdp"
         android:layout_marginStart="@dimen/_15sdp"
         android:textColor="@color/white"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_12ssp"
         android:textStyle="bold"
         app:cornerRadius="@dimen/_3sdp"
         app:layout_constraintEnd_toEndOf="parent"

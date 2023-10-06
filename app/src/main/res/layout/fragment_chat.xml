@@ -49,8 +49,10 @@
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:text="@string/user_name"
-                android:textSize="@dimen/_14ssp"
+                android:textSize="@dimen/_12ssp"
                 android:textStyle="bold"
+                android:textColor="@color/text_color"
+                android:fontFamily="@font/raleway_semi_bold"
                 app:layout_constraintStart_toEndOf="@id/chat_user_img"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,7 +63,9 @@
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginTop="@dimen/_3sdp"
                 android:text="@string/last_seen"
-                android:textSize="@dimen/_12ssp"
+                android:textSize="@dimen/_8ssp"
+                android:fontFamily="@font/raleway_medium"
+                android:textColor="@color/text_color"
                 app:layout_constraintStart_toEndOf="@id/chat_user_img"
                 app:layout_constraintTop_toBottomOf="@id/chat_username_tv" />
 
@@ -168,12 +172,15 @@
                         android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
                         android:hint="@string/send_message"
+                        android:textColor="@color/text_color"
+
+                        android:fontFamily="@font/raleway_medium"
                         android:inputType="text"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/camera_btn"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:textSize="@dimen/_14ssp"
+                        android:textSize="@dimen/_12ssp"
                         android:textColorHint="@color/textColorHint"
                         android:padding="@dimen/_5sdp"
                         android:layout_marginStart="@dimen/_5sdp"

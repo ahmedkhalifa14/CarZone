@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.carzoneapp.adapters.MessageAdapter
 import com.example.carzoneapp.databinding.FragmentChatBinding
-import com.example.carzoneapp.ui.viewmodel.HomeViewModel
+import com.example.carzoneapp.ui.viewmodel.MainViewModel
 import com.example.carzoneapp.utils.EventObserver
 import com.example.domain.entity.ChatMessage
 import com.example.domain.entity.User
@@ -33,7 +33,7 @@ import javax.inject.Inject
 class ChatFragment : Fragment() {
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding!!
-    private val homeViewModel by viewModels<HomeViewModel>()
+    private val homeViewModel by viewModels<MainViewModel>()
     private lateinit var messageAdapter: MessageAdapter
     private lateinit var messagesRecyclerView: RecyclerView
     @Inject

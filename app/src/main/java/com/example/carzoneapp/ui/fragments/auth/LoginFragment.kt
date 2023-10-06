@@ -17,7 +17,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.carzoneapp.R
 import com.example.carzoneapp.databinding.FragmentLoginBinding
 import com.example.carzoneapp.ui.viewmodel.AuthViewModel
+import com.example.carzoneapp.ui.viewmodel.MainViewModel
 import com.example.carzoneapp.utils.EventObserver
+import com.example.domain.entity.LaunchInfo
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -28,10 +30,12 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding
     private val authViewModel: AuthViewModel by viewModels()
+    private val homeViewModel: MainViewModel by viewModels()
     private val navOptions =
         NavOptions.Builder()
             .setPopUpTo(R.id.loginFragment, true)
             .build()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -71,7 +75,13 @@ class LoginFragment : Fragment() {
                         },
                         onSuccess = {
                             binding!!.spinKitProgress.isVisible = false
-                            findNavController().navigate(R.id.homeFragment, null, navOptions)
+                            homeViewModel.saveFirstTimeLaunch(
+                                LaunchInfo(
+                                    isFirstTimeLaunch = true,
+                                    isLogin = true
+                                )
+                            )
+                            //findNavController().navigate(R.id.homeFragment, null, navOptions)
                             Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
                         },
                         onError = {
@@ -82,6 +92,28 @@ class LoginFragment : Fragment() {
                 )
             }
         }
+        lifecycle.coroutineScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                homeViewModel.saveFirstTimeLaunchState.collect(
+                    EventObserver(
+                        onLoading = {
+                            binding!!.spinKitProgress.isVisible = true
+                        },
+                        onSuccess = {
+                            binding!!.spinKitProgress.isVisible = false
+                            findNavController().navigate(R.id.homeFragment, null, navOptions)
+                        },
+                        onError = {
+                            binding!!.spinKitProgress.isVisible = false
+
+                            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+                        }
+                    )
+                )
+            }
+
+        }
+
     }
 
 }

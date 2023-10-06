@@ -2,7 +2,7 @@ package com.example.carzoneapp.utils
 
 import android.content.Context
 import com.example.carzoneapp.R
-import com.example.carzoneapp.entity.ProfileItem
+import com.example.domain.entity.ProfileItem
 
 
 object Constants {

@@ -10,17 +10,21 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.carzoneapp.R
 import com.example.carzoneapp.adapters.AccountItemAdapter
 import com.example.carzoneapp.databinding.FragmentAccountBinding
-import com.example.carzoneapp.ui.viewmodel.HomeViewModel
+import com.example.carzoneapp.ui.viewmodel.MainViewModel
 import com.example.carzoneapp.utils.Constants
 import com.example.carzoneapp.utils.EventObserver
 import com.example.domain.entity.User
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class AccountFragment : Fragment() {
@@ -29,7 +33,10 @@ class AccountFragment : Fragment() {
     private val binding get() = _binding
     private lateinit var accountItemAdapter: AccountItemAdapter
     private lateinit var accountItemRV: RecyclerView
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val homeViewModel: MainViewModel by viewModels()
+
+    @Inject
+    lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +52,10 @@ class AccountFragment : Fragment() {
         setupAccountItemRecyclerView()
         setAccountItemData()
         subscribeToObservables()
+        homeViewModel.getUserInfoByUserId(firebaseAuth.currentUser?.uid.toString())
+        binding!!.savedCard.setOnClickListener {
+            findNavController().navigate(R.id.action_accountFragment_to_savedItemsFragment)
+        }
     }
 
     private fun subscribeToObservables() {

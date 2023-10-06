@@ -2,6 +2,7 @@ package com.example.carzoneapp.ui.fragments.auth
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.content.IntentSender
 import android.location.Geocoder
 import android.net.Uri
@@ -12,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
@@ -21,6 +23,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -28,9 +31,10 @@ import com.example.carzoneapp.R
 import com.example.carzoneapp.databinding.FragmentSetupBinding
 import com.example.carzoneapp.helper.convertLatLongToLocation
 import com.example.carzoneapp.ui.viewmodel.AuthViewModel
-import com.example.carzoneapp.ui.viewmodel.HomeViewModel
+import com.example.carzoneapp.ui.viewmodel.MainViewModel
 import com.example.carzoneapp.utils.Constants
 import com.example.carzoneapp.utils.EventObserver
+import com.example.domain.entity.LaunchInfo
 import com.example.domain.entity.User
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -48,6 +52,7 @@ import com.vmadalin.easypermissions.dialogs.SettingsDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.io.IOException
 import java.util.Locale
 import javax.inject.Inject
 
@@ -63,21 +68,24 @@ class SetupFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     private var user: User? = null
     private val args: SetupFragmentArgs by navArgs()
     private var uriArray: ArrayList<Uri>? = null
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val homeViewModel: MainViewModel by viewModels()
     private var isNotLogin = false
     private var isLoginWithGoogle = false
 
     @Inject
     lateinit var firebaseAuth: FirebaseAuth
-    private val imageSelectionContract =
-        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+    private val navOptions =
+        NavOptions.Builder()
+            .setPopUpTo(R.id.setupFragment, true)
+            .build()
+    private val pickMedia =
+        registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
             if (uri != null) {
                 uriArray = ArrayList()
-                // Handle the selected image uri here
                 binding!!.profileImg.setImageURI(uri)
                 uriArray?.add(uri)
             } else {
-                Toast.makeText(requireContext(), "unknown error occurred", Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(), "Unknown error occurred", Toast.LENGTH_SHORT)
                     .show()
             }
         }
@@ -107,12 +115,8 @@ class SetupFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         displayUserData(user!!)
 
         geocoder = Geocoder(requireContext(), Locale.getDefault())
-        //checkLocationSettings()
+        checkLocationSettings()
         subscribeToObservables()
-        binding!!.LetsGoBtn.setOnClickListener {
-            findNavController().popBackStack()
-            findNavController().navigate(R.id.action_setupFragment_to_homeFragment)
-        }
         binding!!.locationCard.setOnClickListener {
             checkLocationSettings()
         }
@@ -130,7 +134,7 @@ class SetupFragment : Fragment(), EasyPermissions.PermissionCallbacks {
     }
 
     private fun openGallery() {
-        imageSelectionContract.launch("image/*")
+        pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
     }
 
     private fun displayUserData(user: User) {
@@ -144,7 +148,9 @@ class SetupFragment : Fragment(), EasyPermissions.PermissionCallbacks {
             binding!!.inputTextLayoutPhone.editText?.text =
                 Editable.Factory.getInstance().newEditable(user.phoneNumber)
             binding!!.inputTextLayoutPhone.editText?.isEnabled = false
-            isNotLogin = true
+        }
+        if (user.email.isNotEmpty()&&user.phoneNumber.isNotEmpty()){
+            isNotLogin=true
         }
         if (user.email.isNotEmpty()) {
             binding!!.inputTextLayoutEmail.editText?.text =
@@ -153,7 +159,6 @@ class SetupFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         }
         if (user.image.isNotEmpty()) {
             Glide.with(requireContext()).load(user.image).into(binding!!.profileImg)
-
             binding!!.profileImg.isClickable = false
             isLoginWithGoogle = true
         }
@@ -194,11 +199,38 @@ class SetupFragment : Fragment(), EasyPermissions.PermissionCallbacks {
                             if (isNotLogin) {
                                 findNavController().navigate(R.id.action_setupFragment_to_loginFragment)
                             } else {
-                                findNavController().navigate(R.id.action_setupFragment_to_homeFragment)
+                                homeViewModel.saveFirstTimeLaunch(
+                                    LaunchInfo(
+                                        isFirstTimeLaunch = true,
+                                        isLogin = true
+                                    )
+                                )
                             }
                         },
                         onError = {
                             binding!!.spinKitProgress.isVisible = false
+                            Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+                        }
+                    )
+                )
+            }
+
+        }
+        lifecycle.coroutineScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                homeViewModel.saveFirstTimeLaunchState.collect(
+                    EventObserver(
+                        onLoading = {
+                            binding!!.spinKitProgress.isVisible = true
+                        },
+                        onSuccess = {
+                            binding!!.spinKitProgress.isVisible = false
+                            findNavController().navigate(R.id.homeFragment, null, navOptions)
+                          //  findNavController().navigate(R.id.action_setupFragment_to_homeFragment)
+                        },
+                        onError = {
+                            binding!!.spinKitProgress.isVisible = false
+
                             Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
                         }
                     )
@@ -227,7 +259,8 @@ class SetupFragment : Fragment(), EasyPermissions.PermissionCallbacks {
             latLng.longitude.toString(),
             phone,
             email,
-            image
+            image,
+            System.currentTimeMillis()
         )
         authViewModel.saveUserData(user)
     }
@@ -294,14 +327,17 @@ class SetupFragment : Fragment(), EasyPermissions.PermissionCallbacks {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun showLocation() {
-        val location = convertLatLongToLocation(
-            latLng.latitude,
-            latLng.longitude,
-            geocoder
-        )
-        binding!!.locationTv.text = location
+        try {
+            val location = convertLatLongToLocation(latLng.latitude, latLng.longitude, geocoder)
+            binding?.locationTv?.text = location
+        } catch (e: IOException) {
+            Timber.tag(TAG).e("Geocoder IOException: %s", e.message)
+            binding?.locationTv?.text = "Location data not available"
+        }
     }
+
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     private fun checkLocationSettings() {

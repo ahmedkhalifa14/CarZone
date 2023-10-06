@@ -51,7 +51,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:padding="@dimen/_18sdp" />
+            android:padding="@dimen/_18sdp"
+            android:textSize="@dimen/_12ssp"
+            app:hintTextColor="@color/primaryColor"
+            android:textColor="@color/text_color"
+            android:fontFamily="@font/raleway_medium"
+            />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputTextLayoutEmail"
@@ -63,6 +68,7 @@
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginStart="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:hintTextColor="@color/primaryColor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inputTextLayoutUserName"
         app:startIconDrawable="@drawable/email">
@@ -72,7 +78,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:padding="@dimen/_18sdp" />
+            android:padding="@dimen/_18sdp"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/_12ssp"
+            android:fontFamily="@font/raleway_medium"
+            />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inputTextLayoutPhone"
@@ -87,6 +97,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/inputTextLayoutEmail"
         app:prefixText="+20"
+        app:hintTextColor="@color/primaryColor"
         app:prefixTextColor="@color/text_color"
         app:startIconDrawable="@drawable/phone">
         <com.google.android.material.textfield.TextInputEditText
@@ -94,7 +105,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone"
-            android:padding="@dimen/_18sdp" />
+            android:padding="@dimen/_18sdp"
+            android:textColor="@color/text_color"
+            android:fontFamily="@font/raleway_medium"
+            android:textSize="@dimen/_12ssp"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.card.MaterialCardView
@@ -120,8 +135,10 @@
                 android:layout_margin="@dimen/_10sdp"
                 android:padding="@dimen/_5sdp"
                 android:text="@string/location2"
+
                 android:textColor="@color/text_color"
-                android:textSize="@dimen/_14ssp"
+                android:textSize="@dimen/_12ssp"
+                android:fontFamily="@font/raleway_semi_bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
             <TextView
@@ -131,6 +148,7 @@
                 android:layout_marginStart="@dimen/_12sdp"
                 android:padding="@dimen/_5sdp"
                 android:text="@string/choose"
+                android:fontFamily="@font/raleway_medium"
                 android:textColor="@color/text_color"
                 android:textSize="@dimen/_10ssp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -144,7 +162,8 @@
                 android:src="@drawable/right_arrow"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/right_arrow" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -157,8 +176,9 @@
         android:text="@string/let_s_go"
         android:backgroundTint="@color/primaryColor"
         android:textColor="@color/button_text_color2"
-        android:textSize="@dimen/_14ssp"
+        android:textSize="@dimen/_12ssp"
         android:textStyle="bold"
+        android:fontFamily="@font/raleway_semi_bold"
         app:cornerRadius="@dimen/_3sdp"
         android:padding="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"

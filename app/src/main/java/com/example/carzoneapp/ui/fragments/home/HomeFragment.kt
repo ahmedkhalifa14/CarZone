@@ -18,14 +18,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.carzoneapp.adapters.CategoryAdapter
 import com.example.carzoneapp.adapters.ParentAdsAdapter
 import com.example.carzoneapp.databinding.FragmentHomeBinding
-import com.example.carzoneapp.entity.HomeAdsAdapterItem
-import com.example.carzoneapp.ui.viewmodel.HomeViewModel
+import com.example.carzoneapp.ui.viewmodel.MainViewModel
 import com.example.carzoneapp.utils.EventObserver
 import com.example.domain.entity.Ad
+import com.example.domain.entity.HomeAdsAdapterItem
+import com.example.domain.entity.SavedItem
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -38,7 +38,8 @@ class HomeFragment : Fragment() {
 
     private lateinit var parentAdsAdapter: ParentAdsAdapter
     private lateinit var parentAdsRecyclerView: RecyclerView
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val homeViewModel: MainViewModel by viewModels()
+    private var savedItems: List<SavedItem>? = null
 
     @Inject
     lateinit var firebaseAuth: FirebaseAuth
@@ -64,11 +65,9 @@ class HomeFragment : Fragment() {
     }
 
 
-
-
     override fun onResume() {
         super.onResume()
-        homeViewModel.getAllAds()
+        homeViewModel.getSavedItemsByUserId(firebaseAuth.currentUser?.uid.toString(), true)
         homeViewModel.getAllVehiclesCategories()
     }
 
@@ -105,6 +104,30 @@ class HomeFragment : Fragment() {
         }
         lifecycle.coroutineScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                homeViewModel.getSavedItemsState.collect(
+                    EventObserver(
+                        onLoading = {
+                            binding!!.adsShimmerLayout.isVisible = true
+                            binding!!.adsShimmerLayout.startShimmerAnimation()
+                        }, onSuccess = { savedItemsList ->
+                            savedItems = savedItemsList
+                            homeViewModel.getAllAds(false)
+                        },
+                        onError = {
+                            binding!!.adsShimmerLayout.stopShimmerAnimation()
+                            binding!!.adsShimmerLayout.isVisible = false
+                            Toast.makeText(
+                                requireContext(),
+                                "cannot find user data",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    )
+                )
+            }
+        }
+        lifecycle.coroutineScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 homeViewModel.allAdsState.collect(
                     EventObserver(
                         onLoading = {
@@ -114,8 +137,13 @@ class HomeFragment : Fragment() {
                         onSuccess = { adsList ->
                             binding!!.adsShimmerLayout.stopShimmerAnimation()
                             binding!!.adsShimmerLayout.isVisible = false
-                            displayData(adsList)
-                            // adsAdapter.differ.submitList(adsList)
+                            val updatedAdsList = adsList.map { ad ->
+                                val isInSavedItems = savedItems?.any { savedItem ->
+                                    savedItem.itemId == ad.adId
+                                }
+                                ad.copy(isInSavedItems = isInSavedItems)
+                            }
+                            displayData(updatedAdsList)
                         },
                         onError = {
                             binding!!.adsShimmerLayout.stopShimmerAnimation()
@@ -147,9 +175,61 @@ class HomeFragment : Fragment() {
                 )
             }
         }
+        lifecycle.coroutineScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                homeViewModel.addToSavedItemsState.collect(
+                    EventObserver(
+                        onLoading = {
+
+                        }, onSuccess = {
+                            homeViewModel.getSavedItemsByUserId(
+                                firebaseAuth.currentUser?.uid.toString(),
+                                false
+                            )
+
+
+                        },
+                        onError = {
+
+                            Toast.makeText(
+                                requireContext(),
+                                it,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    )
+                )
+            }
+        }
+        lifecycle.coroutineScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                homeViewModel.removeSavedItemsState.collect(
+                    EventObserver(
+                        onLoading = {
+
+                        }, onSuccess = {
+                            homeViewModel.getSavedItemsByUserId(
+                                firebaseAuth.currentUser?.uid.toString(),
+                                false
+                            )
+                        },
+                        onError = {
+
+                            Toast.makeText(
+                                requireContext(),
+                                it,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    )
+                )
+            }
+        }
+
+
     }
 
-    private fun displayData(adsList: MutableList<Ad>) {
+    private fun displayData(adsList: List<Ad>) {
         val vanList: MutableList<Ad> = mutableListOf()
         val carList: MutableList<Ad> = mutableListOf()
         val motoList: MutableList<Ad> = mutableListOf()
@@ -185,13 +265,29 @@ class HomeFragment : Fragment() {
             parentAdsAdapter = ParentAdsAdapter(listOfAds)
             parentAdsRecyclerView.adapter = parentAdsAdapter
             parentAdsAdapter.setOnItemClickListener { _, childItem ->
-                Toast.makeText(requireContext(), childItem.toString(), Toast.LENGTH_SHORT).show()
-                Timber.tag("childItem").d(childItem.toString())
                 val action = HomeFragmentDirections.actionHomeFragmentToAdDetailsFragment(childItem)
                 findNavController().navigate(action)
             }
-        }
+            parentAdsAdapter.setOnSaveIconClickListener { _, ad ->
+                if (ad.isInSavedItems == true) {
+                    homeViewModel.removeFromSavedItemsByUserId(
+                        firebaseAuth.currentUser?.uid.toString(),
+                        ad.adId
+                    )
+                } else {
+                    homeViewModel.addToSavedItems(
+                        SavedItem(
+                            firebaseAuth.currentUser?.uid.toString(),
+                            ad.adId,
+                            ad
+                        )
 
+                    )
+                }
+
+
+            }
+        }
 
 
     }

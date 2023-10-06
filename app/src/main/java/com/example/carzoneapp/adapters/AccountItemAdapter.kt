@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.carzoneapp.databinding.AccountItemBinding
-import com.example.carzoneapp.entity.ProfileItem
+import com.example.domain.entity.ProfileItem
 
-class AccountItemAdapter() : RecyclerView.Adapter<AccountItemAdapter.AccountItemViewHolder>() {
+class AccountItemAdapter : RecyclerView.Adapter<AccountItemAdapter.AccountItemViewHolder>() {
 
     inner class AccountItemViewHolder(val binding: AccountItemBinding) :
         RecyclerView.ViewHolder(binding.root)
@@ -40,8 +40,8 @@ class AccountItemAdapter() : RecyclerView.Adapter<AccountItemAdapter.AccountItem
         holder.itemView.apply {
             Glide.with(this).load(accountItem.iconOne).into(holder.binding.accountItemIcon)
             Glide.with(this).load(accountItem.iconTwo).into(holder.binding.accountItemIcon2)
-            holder.binding.accountItemTitle.text = accountItem.title.toString()
-            holder.binding.accountItemSubtitle.text = accountItem.subtitle.toString()
+            holder.binding.accountItemTitle.text = accountItem.title
+            holder.binding.accountItemSubtitle.text = accountItem.subtitle
             setOnClickListener {
                 onItemClickListener?.let { it(accountItem) }
             }

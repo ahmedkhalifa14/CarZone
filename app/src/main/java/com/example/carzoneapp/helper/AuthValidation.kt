@@ -92,14 +92,15 @@ object AuthValidation {
     }
 
     fun validateMobile(mobile: String): Boolean {
-        when (mobile.length) {
+        return when (mobile.length) {
             11 -> {
                 val emailSplit = mobile.split("")
                 val mobileFirstThreeNumber: String = emailSplit[1] + emailSplit[2] + emailSplit[3]
-                return mobileFirstThreeNumber == "010" || mobileFirstThreeNumber == "011" || mobileFirstThreeNumber == "012" || mobileFirstThreeNumber == "015"
+                mobileFirstThreeNumber == "010" || mobileFirstThreeNumber == "011" || mobileFirstThreeNumber == "012" || mobileFirstThreeNumber == "015"
             }
+
             else -> {
-                return false
+                false
             }
         }
 
