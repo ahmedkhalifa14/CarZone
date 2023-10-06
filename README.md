@@ -3,6 +3,18 @@ CarZone is an Android Application like OLX app for buy and sell cars
 
 <img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/cc2c83a0-dc2d-48fd-b151-511a85528911" width ="350" height="250">
 
+# ScreenShots
+
+## OnBoarding
+<div>
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/0c2741fe-fcb5-4247-8e42-161b1126e70f" width ="180" height="350">
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/31ed4dfa-a8b3-440f-83dc-97e29f5ae2fe" width "250" height="350">
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/192b1224-15c8-4613-806d-c2870bf6963b" width "250" height="350">
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/6d3430a8-a78f-42ce-b42a-1b810fccacae" width "250" height="350">
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/c8e825cd-70b2-47eb-99b9-1074864eb991" width "250" height="350">
+</div>
+
+
 # App Architecture
 CarZone follows uncle pop clean architecture
 "Uncle Pop Clean Architecture" is an app that exemplifies the principles of clean architecture in software development. It is designed with a clear separation of concerns, ensuring that business logic, user interface, and data access layers are distinct and independent. This architectural approach enhances maintainability, scalability, and testability. Uncle Pop Clean Architecture places a strong emphasis on modularity, making it easier to add or modify features without affecting the entire codebase. This app is a testament to best practices in software development, promoting clean, readable, and maintainable code that ensures a robust and adaptable foundation for future enhancements and improvements.
