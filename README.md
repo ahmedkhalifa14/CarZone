@@ -1,5 +1,5 @@
 # CarZone
-CarZone is an Android Application like OLX app for buy and sell cars
+CarZone is an Android Application like OLX app for buy and sell Vehicles.
 
 ## Main Features
 #### Authentication
