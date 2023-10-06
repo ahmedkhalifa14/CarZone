@@ -26,6 +26,32 @@ CarZone is an Android Application like OLX app for buy and sell cars
 </div>
 
 
+## Home Screen
+<div>
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/997fa016-8ccb-4317-bd7f-a661aa376f7c" width ="180" height="350">
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/1bedebf3-3e0d-41ec-8a81-3765be29f501" width "250" height="350">
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/1bedebf3-3e0d-41ec-8a81-3765be29f501" width "250" height="350">
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/90c859fc-372e-499e-9a05-31c48708907c" width "250" height="350">
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/9c20653f-4fb7-461f-8fb9-475e4a91be49" width "250" height="350">
+</div>
+
+## post Advertisement
+<div>
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/e003713c-dfa9-43ce-99ec-f62b7a5d19cb" width ="180" height="350">
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/5ea05aff-45f5-45f5-bca6-edbaa9e77206" width "250" height="350">
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/05ef05c4-55d2-4e54-b644-a71b500201a5" width "250" height="350">
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/fb18ba83-7ec4-4234-8030-9763ea7eca7e" width "250" height="350">
+</div>
+
+## Details Screens
+<div>
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/502a0e17-a60e-453b-9df3-c95db9339dea" width ="180" height="350">
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/981de61e-07c7-4e8c-bf8a-1d9fa40a403c" width "250" height="350">
+<img src="https://github.com/ahmedkhalifa14/ShopApp/assets/87338764/36dea824-8a1c-4a1a-a4de-529afa36255f)" width "250" height="350">
+<img src="" width "250" height="350">
+</div>
+
+
 
 # App Architecture
 CarZone follows uncle pop clean architecture
